@@ -26,7 +26,7 @@
 
     <main class="clearFix">
 
-        <div class="container">
+        <div class="container clearFix">
 
             <aside class="filterOpties">
                 <form action="" method="post" name="filter">
@@ -62,9 +62,58 @@
 
             <section class="artikelOverzicht">
                 <h1>Aanbevolen producten</h1>
-                <!-- foreach -->
+                <!-- placeholders tijdelijk-->
                 <article class="artikel">
-                    <img src="" alt="" class="productFoto">
+                    <img src="../img/dummy.avif" alt="" class="productFoto">
+                    <h4>Productnaam</h4>
+                    <p>€Productprijs
+                    <p>
+                    <p class="pBeschikbaarheid">Beschikbaarheid</p>
+                </article>
+                <article class="artikel">
+                    <img src="../img/dummy.avif" alt="" class="productFoto">
+                    <h4>Productnaam</h4>
+                    <p>€Productprijs
+                    <p>
+                    <p class="pBeschikbaarheid">Beschikbaarheid</p>
+                </article>
+                <article class="artikel">
+                    <img src="../img/dummy.avif" alt="" class="productFoto">
+                    <h4>Productnaam</h4>
+                    <p>€Productprijs
+                    <p>
+                    <p class="pBeschikbaarheid">Beschikbaarheid</p>
+                </article>
+                <article class="artikel">
+                    <img src="../img/dummy.avif" alt="" class="productFoto">
+                    <h4>Productnaam</h4>
+                    <p>€Productprijs
+                    <p>
+                    <p class="pBeschikbaarheid">Beschikbaarheid</p>
+                </article>
+                <article class="artikel">
+                    <img src="../img/dummy.avif" alt="" class="productFoto">
+                    <h4>Productnaam</h4>
+                    <p>€Productprijs
+                    <p>
+                    <p class="pBeschikbaarheid">Beschikbaarheid</p>
+                </article>
+                <article class="artikel">
+                    <img src="../img/dummy.avif" alt="" class="productFoto">
+                    <h4>Productnaam</h4>
+                    <p>€Productprijs
+                    <p>
+                    <p class="pBeschikbaarheid">Beschikbaarheid</p>
+                </article>
+                <article class="artikel">
+                    <img src="../img/dummy.avif" alt="" class="productFoto">
+                    <h4>Productnaam</h4>
+                    <p>€Productprijs
+                    <p>
+                    <p class="pBeschikbaarheid">Beschikbaarheid</p>
+                </article>
+                <article class="artikel">
+                    <img src="../img/dummy.avif" alt="" class="productFoto">
                     <h4>Productnaam</h4>
                     <p>€Productprijs
                     <p>
