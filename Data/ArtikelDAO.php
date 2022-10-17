@@ -23,7 +23,9 @@ class ArtikelDAO {
         $resultSet = $dbh->query($sql);
         $lijst = array();
         foreach($resultSet as $rij){
-            $artikel = new Artikel((int)$rij["artikelId"], (int)$rij["bestellijnId"], (int)$rij["score"], 
+     /* De Entiteit Artikel zal normaal niet alle properties bevatten die het hier terug geeft daar Klantenreviews score bevat en
+      dit een andere entiteit is */       
+         $artikel = new Artikel((int)$rij["artikelId"], (int)$rij["bestellijnId"], (int)$rij["score"], 
             $rij["ean"], $rij["naam"], $rij["beschrijving"], (float)$rij["prijs"], (int)$rij["gewichtInGram"], (int)$rij["bestelpeil"], 
             (int)$rij["voorraad"], (int)$rij["minimumVoorraad"], (int)$rij["maximumVoorraad"], (int)$rij["levertijd"], 
             (int)$rij["aantalBesteldLeverancier"], (int)$rij["maxAantalInMagazijnPlaats"]);
