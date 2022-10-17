@@ -1,0 +1,139 @@
+
+/*algemeen*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+
+}
+
+/*header en navigatie*/
+
+header {
+    width: 100%;
+    height: 6em;
+    background: #ABD7A8;
+    position: relative;
+}
+
+#logo {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 15%;
+    float: left;
+}
+
+.menu {
+    width: 20%;
+    height: 100%;
+    float: right;
+    margin-top: 2em;
+}
+
+.menu img {
+    margin-left: 1em;
+    width: 20%;
+    float: left;
+}
+
+.menu a{
+    color: white;
+    text-decoration: none;
+}
+
+/* main content*/
+
+main {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+/*filter opties*/
+
+.filterOpties {
+    margin-left: 1em;
+    width: 20%;
+    float: left;
+}
+
+.filterOpties h2, h3, select, label, a, input[type=checkbox]{
+    margin-bottom: 1em;
+}
+
+.button {
+    width: 60%;
+    padding: 2% 2%;
+    margin: 1em 0;
+    font-size: 13pt;
+    border: none;
+    border-radius: 0;
+    color: white;
+    background: #ABD7A8;
+}
+
+.button:hover {
+    background: #717171;
+    transition: 0.3s;
+    transition-timing-function: ease;
+    cursor: pointer;
+}
+
+.artikelOverzicht {
+    float: left;
+    margin-left: 3em;
+    width: 60%;
+}
+
+/*footer*/
+
+footer {
+    height: 4em;
+    background: #ABD7A8;
+    color: white;
+    ;
+    position: sticky;
+    top: 100%;
+
+}
+
+footer p {
+    padding-top: 1.5em;
+    width: 100%;
+    text-align: center;
+}
+
+
+/*clear*/
+
+.cf {
+    clear: both;
+}
+
+/*clearfix hack*/
+
+.clearFix:before,
+.clearFix:after {
+    content: " ";
+    display: table;
+}
+
+.clearFix:after {
+    clear: both;
+}
+
+/* enkel voor IE6/7  */
+
+.clearFix {
+    *zoom: 1;
+}
