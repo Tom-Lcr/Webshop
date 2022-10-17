@@ -3,6 +3,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -56,6 +57,56 @@ header {
     height: 100%;
 }
 
+/*zoeken*/
+
+.zoekSectie{
+    width: 100%;
+    height: 5em;
+    background: #edf0f1;
+    display:flex;     
+    align-items:center;
+}
+
+.zoeken{
+    width: 100%;
+    text-align:center;
+}
+
+#zoekBar{
+    height: 3em;
+    width: 30em;
+}
+
+#zoekForm input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    width: 22em;
+    background: #f1f1f1;
+  }
+
+  #zoekForm button {
+    width: 8%;
+    padding: 10px;
+    background: #ABD7A8;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; 
+  }
+
+  #zoekForm button:hover {
+    background: 
+    
+    #717171;
+  }
+  
+  #zoekForm::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
 /* main content*/
 
 main {
@@ -92,6 +143,8 @@ main {
     transition-timing-function: ease;
     cursor: pointer;
 }
+
+/*artikeloverzicht*/ 
 
 .artikelOverzicht {
     float: left;
