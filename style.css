@@ -96,7 +96,7 @@ main {
 .artikelOverzicht {
     float: left;
     margin-left: 3em;
-    width: 60%;
+    width: 70%;
 }
 
 .artikel{
@@ -105,7 +105,7 @@ main {
 }
 
 .artikel img{
-    width: 100%;
+    width: 80%;
 }
 
 /*footer*/
