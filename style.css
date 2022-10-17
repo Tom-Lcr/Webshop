@@ -92,7 +92,6 @@ header {
     color: white;
     font-size: 17px;
     border: 1px solid grey;
-    border-left: none; 
   }
 
   #zoekForm button:hover {
