@@ -18,10 +18,10 @@ class ArtikelService {
         return $lijst;
     }
 
-    public function getRating($artikelId): int {
+    public function getRating($artikelId): float {
         $artikelDAO = new ArtikelDAO();
-        $score = $artikelDAO->getRatingByArtikelId($artikelId);
-        return $score;
+        $rating = $artikelDAO->getRatingByArtikelId($artikelId);
+        return $rating;
     }
 
     

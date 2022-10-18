@@ -8,7 +8,7 @@ session_start();
 
 use Business\ArtikelService;
 use Entities\Artikel;
-use Entities\Winkelkar;
+//use Entities\Winkelkar;
 
 //Hieronder roep ik eerst een lijst van alle artikelen aan
 
@@ -17,8 +17,8 @@ $artikelLijst = $artikelSvc->getOverzicht();
 
 foreach ($artikelLijst as $artikel) {
     //Hieronder ga ik voor elk artikel het artikelId gaan halen
-               $artikelId = $artikel->getArtikelId();
-               $score = $artikelSvc->getRating($artikelId); //voor elk artikelId wordt in de database gezocht naar een score
+               print($artikelId = $artikel->getArtikelId());
+               print($score = $artikelSvc->getRating($artikelId)); //voor elk artikelId wordt in de database gezocht naar een score
                //Op basis van de scores zou dan eventueel gerangschikt kunnen worden in de presentation
             }
 
