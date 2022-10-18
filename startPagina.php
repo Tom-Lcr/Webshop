@@ -28,8 +28,20 @@ foreach ($artikelLijst as $artikel) { //elk $artikel = een object $artikel
                //Op basis van de scores die eruit gehaald worden zou dan eventueel gerangschikt kunnen worden in de presentation
             }
 
+$aantalArtikelsPerPagina = 20;
+$aantalRijen = $artikelSvc->getAantalArtikelRijen();
+$aantalPaginas = ceil($aantalRijen / $aantalArtikelsPerPagina);
+if (isset($_GET["page"])) {
+    $pagina = $_GET["page"];
+    if ($pagina < 1) { 
+        $pagina = 1; 
+    } else if ($pagina > $aantalPaginas) { 
+        $pagina = $aantalPaginas; 
+    }  
+	} else {
+    $pagina = 1;         
+    }
+$eerstePaginaArtikel = ($pagina-1)*$aantalArtikelsPerPagina;
+$artikelLijst = $artikelSvc->getArtikelOverzicht((int) $eerstePaginaArtikel, (int) $aantalArtikelsPerPagina);
 
-
-include("presentation/startPagina.php");	
-
-?>
+include("Presentation/startPagina.php");

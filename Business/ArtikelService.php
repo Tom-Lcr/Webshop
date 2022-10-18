@@ -24,6 +24,18 @@ class ArtikelService {
         return $rating;
     }
 
-    
+    public function getArtikelOverzicht(int $waarde1, int $waarde2) : array {
+        $artikelDAO = new ArtikelDAO();
+        $lijst = $artikelDAO->getEerste46((int) $waarde1, (int) $waarde2);
+        return $lijst;
+    }	
+
+    public function getAantalArtikelRijen() : int {
+        $artikelDAO = new ArtikelDAO();
+        $aantalArtikelRijen = $artikelDAO->getAantalArtikelRijen();
+        return $aantalArtikelRijen;
+    }
          
 } 
+
+
