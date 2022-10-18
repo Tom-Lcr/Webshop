@@ -20,7 +20,7 @@ class Artikel
     private float $rating;
 
 
-    public function __construct(int $artikelId, string $ean, string $naam, string $beschrijving, float $prijs, int $gewichtInGram, int $voorraad, int $levertijd,  array $categorien, float $rating = null)
+    public function __construct(int $artikelId, string $ean, string $naam, string $beschrijving, float $prijs, int $gewichtInGram, int $voorraad, int $levertijd,  array $categorieen, float $rating = null)
     {
         $this->artikelId = $artikelId;
         $this->ean = $ean;
