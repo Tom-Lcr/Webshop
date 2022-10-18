@@ -45,9 +45,9 @@
                 <aside class="artikelSpecifiekeOpties">
                     <h2>€129,99</h2>
                     <p>11 stuks in voorraad</p>
-                    
+
                     <!--aantal en artikel id via de url (GET) meegeven aan de controller -->
-                    <form action="artikelPaginaController.php?action=addCart?id=1?aantal=5" method="GET" class="winkelKarSpecifiekArtikelform">
+                    <form action="artikelPaginaController.php?action=addCart&id=1&aantal=5" method="POST" class="winkelKarSpecifiekArtikelform">
                         <label for="aantalVanArtikel">Aantal:</label>
                         <br>
                         <input type="number" name="" id="aantalVanArtikel">

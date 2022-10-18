@@ -8,14 +8,27 @@ use Business\winkelkarService;
 use Business\artikelService;
 use Business\recensieService;
 
-if(isset($_GET["action"]) && ($_GET["action"] === "addCart")){
-    $aantal = $_GET["aantal"];
-    $productId = $GET["id"];
+session_start();
 
-    /* Bussinesslaag aanspreken, productId en aantal toevoegen aan winkelkar */
-    
-    /*$winkelkarService = new winkelkarService();
-    $winkelkarService->voegArtikelToe((int) $productId, (int) $aantal);*/
+//aanmaken van winkelkar sessie array indien deze leeg is
+
+if (!isset($_SESSION["winkelkar"])) {
+    $_SESSION["winkelkar"] = [];
+}
+
+//Als de get actie addCart is meegegven, stuur dan het productId en het aantal door naar de bussiness. 
+//Opgehaalde winkelkarobject opslaan in de sessie array
+
+if(isset($_GET["action"]) && ($_GET["action"] === "addCart")){
+
+    $aantal = $_GET["aantal"];
+    $productId = $_GET["id"];
+
+    $winkelkarService = new winkelkarService();
+    $winkelkarObject = $winkelkarService->voegItemToe((int) $productId, (int) $aantal);
+
+    $winkelkarObject = [1, 5];
+    array_push($_SESSION["winkelkar"], $winkelkarObject);  
 }
 
 include("Presentation/artikelPagina.php");
