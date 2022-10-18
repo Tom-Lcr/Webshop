@@ -23,7 +23,4 @@ if (isset($_GET["page"])) {
 $eerstePaginaArtikel = ($pagina-1)*$aantalArtikelsPerPagina;
 $artikelLijst = $artikelSvc->getArtikelOverzicht((int) $eerstePaginaArtikel, (int) $aantalArtikelsPerPagina);
 
-
-
-
 include("Presentation/startPagina.php");

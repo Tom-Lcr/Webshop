@@ -12,7 +12,7 @@ class ArtikelDAO {
     public function getEerste46(int $waarde1, int $waarde2): array {
         $optelwaarde = $waarde1 + $waarde2;
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
-        $statement = $dbh->prepare("select artikelId, naam, prijs, voorraad from artikelen where artikelId > :wrd1 and artikelId <= :wrd2");
+        $statement = $dbh->prepare("select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelen where artikelId > :wrd1 and artikelId <= :wrd2");
         $statement->bindValue(":wrd1", $waarde1);
         $statement->bindValue(":wrd2", $optelwaarde);
         $statement->execute();
@@ -20,7 +20,7 @@ class ArtikelDAO {
         $lijstMetAantal = array();
         $lijst = array();
         foreach($resultSet as $rij){
-            $artikel = new Artikel((int) $rij["artikelId"], $rij["naam"], (float) $rij["prijs"], (int) $rij["voorraad"]);
+            $artikel = new Artikel((int) $rij["artikelId"], $rij["ean"], $rij["naam"], $rij["beschrijving"], (float) $rij["prijs"], (int) $rij["gewichtInGram"], (int) $rij["voorraad"], (int) $rij["levertijd"]);
             array_push($lijst, $artikel);
         }
         $dbh = null;
