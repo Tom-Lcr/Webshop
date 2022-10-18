@@ -31,11 +31,11 @@ class ArtikelDAO {
     }
 
     /*Onzeker over onderste functie, maar de query klopt wanneer ik hem uitprobeer in sql. De bedoeling is om gewoon
-    om het getal uit de database te krijgen dat overeenkomt met hun score (som/aantal)*/
+    het getal uit de database te krijgen dat overeenkomt met hun score (som/aantal)*/
 
     public function getScoreByArtikelId(int $artikelId) :? int {
-        $sql = "select bestellijnen.artikelId as artikelId, (sum(score)/count(score)) as totale_score from bestellijnen, klantenreviews where 
-        bestellijnen.bestellijnId = klantenreviews.bestellijnId and artikelId = :artikelid";
+        $sql = "select bestellijnen.artikelId as artikelId, (sum(score)/count(score)) as totale_score from bestellijnen, 
+        klantenreviews where bestellijnen.bestellijnId = klantenreviews.bestellijnId and artikelId = :artikelid";
 	$dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
 	$stmt = $dbh->prepare($sql);
     $stmt->execute(array(':artikelId' => $artikelId));
