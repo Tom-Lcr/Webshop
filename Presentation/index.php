@@ -163,17 +163,7 @@
                         <button type="submit" class="winkelkarArtikelBtn"><img src="../img/winkelkar.png" alt=""></button>
                     </form>
                 </article>
-                <article class="artikel">
-                    <img src="../img/dummy.avif" alt="" class="productFoto">
-                    <h4>Productnaam</h4>
-                    <p>€Productprijs
-                    <p>
-                    <p class="pBeschikbaarheid">Beschikbaarheid</p>
-                    <form action="" class="winkelKarPerArtikelForm">
-                        <input type="number" name="aantalVanArtikel" id="aantalVanArtikel">
-                        <button type="submit" class="winkelkarArtikelBtn"><img src="../img/winkelkar.png" alt=""></button>
-                    </form>
-                </article>
+                
             </section>
 
         </div>
