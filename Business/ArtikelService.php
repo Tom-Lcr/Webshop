@@ -9,13 +9,21 @@ use Entities\Artikel;
 
 
 class ArtikelService {
-    
+ 
+    //Deze twee functies bouwen voort op de 2 functies uit de artikelDAO
 
     public function getOverzicht(): array {
         $artikelDAO = new ArtikelDAO();
         $lijst = $artikelDAO->getAll();
         return $lijst;
     }
+
+    public function getScore($artikelId): int {
+        $artikelDAO = new ArtikelDAO();
+        $score = $artikelDAO->getScoreByArtikelId($artikelId);
+        return $score;
+    }
+
     
          
 } 
