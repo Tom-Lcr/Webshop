@@ -57,17 +57,47 @@
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo beatae nihil neque voluptatibus nemo nisi officia, laudantium excepturi fugit quasi asperiores, consequuntur eos, incidunt ipsum omnis quam ab ut aspernatur. Quam sapiente ad iure quos. Dolorem aliquam vitae eligendi vel. Numquam ea provident sint natus ullam eveniet inventore necessitatibus iusto.</p>
                 </section>
                 <section class="score">
-                   <h3>Gemiddelde waardering</h3>
-                   <p class="score">3,3</p>
+                    <h3>Gemiddelde waardering</h3>
+                    <p class="score">3,3</p>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
                 </section>
+                <br>
                 <section class="gebruikersreviews">
                     <h3>Reviews</h3>
-                    
+                    <article>
+                        <h4>Klant 1</h4>
+                        <p class="datum">10-10-2022</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <p class="review">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut magni ratione vero nemo quisquam, sunt sed veniam architecto illum ullam, ipsum iure tempora. Fugiat, quidem.</p>
+                    </article>
+                    <article>
+                        <h4>Klant 2</h4>
+                        <p class="datum">10-10-2022</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <p class="review">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, voluptas.</p>
+                    </article>
+                    <article>
+                        <h4>Klant 3</h4>
+                        <p class="datum">10-10-2022</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <p class="review">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut magni ratione vero nemo quisquam, sunt sed veniam architecto illum ullam, ipsum iure tempora. Fugiat, quidem.</p>
+                    </article>
                 </section>
             </article>
 
