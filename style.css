@@ -152,13 +152,49 @@ main {
 }
 
 .artikel{
-    width: 25%;
+    width: 22%;
+    margin-right: 3%;
     float: left;
+    text-align: center;
+    border: 1px solid #ABD7A8;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
 }
 
 .artikel img{
     width: 80%;
 }
+
+.winkelKarPerArtikelForm{
+    width: 100%;
+    display:flex;
+    margin-top: 1em;
+}
+
+#aantalVanArtikel{
+    width: 45%;
+    margin-right: 10%;
+}
+
+.winkelkarArtikelBtn{
+   width: 45%;
+   border: 1px solid #717171;
+   background: #ABD7A8;
+}
+
+.winkelkarArtikelBtn:hover{
+    background: #717171;
+    transition: 0.3s;
+    transition-timing-function: ease;
+    cursor: pointer;
+}
+
+.winkelkarArtikelBtn img{
+    width: 30px;
+    height: 30px;
+}
+
 
 /*footer*/
 
@@ -166,7 +202,6 @@ footer {
     height: 4em;
     background: #ABD7A8;
     color: white;
-    ;
     position: sticky;
     top: 100%;
 
