@@ -14,7 +14,11 @@ body {
 .container {
     width: 90%;
     margin: 0 auto;
+}
 
+.artikelSpecifiek{
+    width: 60%;
+    margin: 0 auto;
 }
 
 /*header en navigatie*/
@@ -212,6 +216,42 @@ footer p {
     width: 100%;
     text-align: center;
 }
+
+
+/* +++++++++++++++++++++ Artikel specifieke pagina ++++++++++++++++++++++++++++ */
+
+.artikelSpecifiekeOpties{
+    float: right;
+    width: 40%;
+    margin-left: 10%;
+}
+
+.artikelHeader{
+    width: 40%;
+    float: left;
+}
+
+.artikelHeader img{
+    width: 100%;
+}
+
+.artikelSpecifiekeOpties  h2, p, .winkelKarSpecifiekArtikelform input[type=number], input[type=button]{
+    margin-bottom: 1em;
+}
+
+.winkelKarSpecifiekArtikelform .winkelkarArtikelBtn, #aantalVanArtikel{
+    width: 60%;
+}
+
+.artikelSpecifiekeOpties #aantalVanArtikel{
+    margin-top: 1em;
+}
+
+.checked {
+    color: orange;
+}
+
+
 
 
 /*clear*/
