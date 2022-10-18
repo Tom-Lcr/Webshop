@@ -18,9 +18,9 @@ class ArtikelService {
         return $lijst;
     }
 
-    public function getScore($artikelId): int {
+    public function getRating($artikelId): int {
         $artikelDAO = new ArtikelDAO();
-        $score = $artikelDAO->getScoreByArtikelId($artikelId);
+        $score = $artikelDAO->getRatingByArtikelId($artikelId);
         return $score;
     }
 
