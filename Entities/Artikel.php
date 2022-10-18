@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Entities;
 
 
-//artikel heeft een array van categorieIds
+// Ik heb categorieen verwijderd uit de Entity Artikel die Jens had aangemaakt. Ik had dit besproken met Jens.
 class Artikel
 {
     private int $artikelId;
@@ -31,7 +31,6 @@ class Artikel
         $this->gewichtInGram = $gewichtInGram;
         $this->voorraad = $voorraad;
         $this->levertijd = $levertijd;
-        $this->$categorieen = $categorieen;
         $this->rating = $rating;
     }
     
@@ -66,10 +65,6 @@ class Artikel
     public function getLevertijd(): int
     {
         return $this->levertijd;
-    }
-    public function getCategorieen(): array
-    {
-        return $this->categorieen;
     }
 
     public function getRating(): float
