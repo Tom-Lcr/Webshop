@@ -10,13 +10,7 @@ use Entities\Artikel;
 
 class ArtikelService {
  
-    //Deze twee functies bouwen voort op de 2 functies uit de artikelDAO
-
-    public function getOverzicht(): array {
-        $artikelDAO = new ArtikelDAO();
-        $lijst = $artikelDAO->getAll();
-        return $lijst;
-    }
+   
 
     public function getRating($artikelId): float {
         $artikelDAO = new ArtikelDAO();
@@ -26,7 +20,7 @@ class ArtikelService {
 
     public function getArtikelOverzicht(int $waarde1, int $waarde2) : array {
         $artikelDAO = new ArtikelDAO();
-        $lijst = $artikelDAO->getEerste46((int) $waarde1, (int) $waarde2);
+        $lijst = $artikelDAO->getAll((int) $waarde1, (int) $waarde2);
         return $lijst;
     }	
 

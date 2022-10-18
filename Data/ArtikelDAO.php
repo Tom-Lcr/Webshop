@@ -28,7 +28,7 @@ class ArtikelDAO {
 	return $rating;
     }
 
-    public function getEerste46(int $waarde1, int $waarde2): array {
+    public function getAll(int $waarde1, int $waarde2): array {
         $optelwaarde = $waarde1 + $waarde2;
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $statement = $dbh->prepare("select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelen where artikelId > :wrd1 and artikelId <= :wrd2");
@@ -39,7 +39,10 @@ class ArtikelDAO {
         $lijstMetAantal = array();
         $lijst = array();
         foreach($resultSet as $rij){
-            $artikel = new Artikel((int) $rij["artikelId"], $rij["ean"], $rij["naam"], $rij["beschrijving"], (float) $rij["prijs"], (int) $rij["gewichtInGram"], (int) $rij["voorraad"], (int) $rij["levertijd"]);
+            $artikeldao = new ArtikelDAO;
+            $rating = $artikeldao->getRatingByArtikelId((int)$rij["artikelId"]);
+            $artikel = new Artikel((int) $rij["artikelId"], $rij["ean"], $rij["naam"], $rij["beschrijving"], (float) $rij["prijs"], 
+            (int) $rij["gewichtInGram"], (int) $rij["voorraad"], (int) $rij["levertijd"], $rating);
             array_push($lijst, $artikel);
         }
         $dbh = null;
@@ -47,28 +50,6 @@ class ArtikelDAO {
     }
      
    
-
-    /*Onderste functie geeft een lijst terug van alle artikel objecten in de database. De rating staat er niet bij in de database
-    maar haal ik uit de tabel klantenreviews. Een object Artikel heeft ook een rating nodig conform de Entity die opgemaakt werd. 
-    Zo kunnen we ook gaan sorteren op de startpagina uiteindelijk.*/
-	
-
-    public function getAll(): Array {
-        $sql = "select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelen";
-        $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);  
-        $resultSet = $dbh->query($sql);
-        $lijst = array();
-        foreach($resultSet as $rij){
-            $artikeldao = new ArtikelDAO;
-            $rating = $artikeldao->getRatingByArtikelId((int)$rij["artikelId"]);
-            $artikel = new Artikel((int)$rij["artikelId"], $rij["ean"], $rij["naam"], $rij["beschrijving"], (float)$rij["prijs"], 
-            (int)$rij["gewichtInGram"], (int)$rij["voorraad"], (int)$rij["levertijd"], $rating);
-            array_push($lijst, $arikel);
-        }
-        $dbh = null;
-        return $lijst;
-    }
-    
 
     public function getAantalArtikelRijen(): int {
         $sql = "select * from artikelen";
