@@ -58,7 +58,7 @@
                 </section>
                 <section class="score">
                     <h3>Gemiddelde waardering</h3>
-                    <p class="score">3,3</p>
+                    <p class="scoreGem">3,3</p>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
@@ -94,7 +94,7 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star checked"></span>
                         <span class="fa fa-star"></span>
                         <p class="review">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut magni ratione vero nemo quisquam, sunt sed veniam architecto illum ullam, ipsum iure tempora. Fugiat, quidem.</p>
                     </article>
