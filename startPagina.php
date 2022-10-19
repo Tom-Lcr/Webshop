@@ -38,4 +38,6 @@ foreach ($artikelLijst as $artikel) { // Tom: objecten artikel hebben we mogelij
 
   }
 
+
+
 include("Presentation/startPagina.php");

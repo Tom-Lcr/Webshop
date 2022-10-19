@@ -8,6 +8,7 @@ namespace Data;
 use \PDO;
 use Data\DBConfig;
 use Entities\Artikel;
+use Data\ArtikelDAO;
 
 
 
@@ -31,7 +32,8 @@ class ArtikelDAO {
     public function getAll(int $waarde1, int $waarde2): array {
         $optelwaarde = $waarde1 + $waarde2;
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
-        $statement = $dbh->prepare("select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelen where artikelId > :wrd1 and artikelId <= :wrd2");
+        $statement = $dbh->prepare("select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd 
+        from artikelen where artikelId > :wrd1 and artikelId <= :wrd2");
         $statement->bindValue(":wrd1", $waarde1);
         $statement->bindValue(":wrd2", $optelwaarde);
         $statement->execute();
@@ -59,7 +61,33 @@ class ArtikelDAO {
         $dbh = null;
         return $aantalRijen;
     }
-
+   
+    public function zoekArtikelen(string $zoekterm):? Array {
+        $sql = "select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelen
+        where naam like '%:zoekterm%'";
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);  
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute(array(':zoekterm' => $zoekterm));
+        $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!$resultSet) {
+            return null;
+        } else { 
+            $lijst = array();  
+            foreach($resultSet as $rij){
+                $artikeldao = new ArtikelDAO;
+                $rating = $artikeldao->getRatingByArtikelId((int)$rij["artikelId"]);
+                $artikel = new Artikel((int) $rij["artikelId"], $rij["ean"], $rij["naam"], $rij["beschrijving"], (float) $rij["prijs"], 
+                (int) $rij["gewichtInGram"], (int) $rij["voorraad"], (int) $rij["levertijd"], $rating);
+                array_push($lijst, $artikel);
+            }
+           $dbh = null;
+           return $lijst;
+    }
 
 }
+
+}
+
+
+
 

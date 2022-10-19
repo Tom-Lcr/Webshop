@@ -29,6 +29,13 @@ class ArtikelService {
         $aantalArtikelRijen = $artikelDAO->getAantalArtikelRijen();
         return $aantalArtikelRijen;
     }
+
+    public function zoekArtikelen($zoekterm) :? array {
+        $artikelDAO = new ArtikelDAO();
+        $gevondenArtikelen = $artikelDAO->zoekArtikelen($zoekterm);
+        return $gevondenArtikelen;
+    }
+    
          
 } 
 
