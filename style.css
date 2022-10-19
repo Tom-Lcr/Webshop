@@ -167,6 +167,7 @@ input[type=checkbox] {
     border: 1px solid #ABD7A8;
     margin-top: 1em;
     margin-bottom: 1em;
+    padding-bottom: 1em;
     float: left;
 }
 
