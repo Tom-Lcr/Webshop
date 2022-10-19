@@ -7,6 +7,10 @@ namespace Data;
 
 use \PDO;
 use Data\DBConfig;
+<<<<<<< HEAD
+=======
+use Business\CategorieService;
+>>>>>>> e95bd6f51fa3e8ede1524eba47572ef76501cc55
 use Entities\Artikel;
 
 
@@ -60,6 +64,56 @@ class ArtikelDAO {
         return $aantalRijen;
     }
 
+<<<<<<< HEAD
+=======
+    //geeft alle artikelids die tot een bepaalde categorie behoren, inclusief de subcategorieen
+    public function getArtikelIdsByCategorieID(int $categorieId): array
+    {
+        $categorieIds = (new CategorieService())->getAllCategorieIdsByCategorieID($categorieId);
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $statement = $dbh->prepare("SELECT DISTINCT artikelId FROM artikelcategorieen WHERE categorieId IN (" . implode(',', $categorieIds) . ")");
+        //$statement = $dbh->prepare("SELECT * FROM artikelen WHERE artikelId IN ...");
+        //$statement->bindValue(":wrd1", $waarde1);
+
+        $statement->execute();
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $lijst = array();
+        foreach ($resultSet as $rij) {
+            array_push($lijst, $rij["artikelId"]);
+        }
+        $dbh = null;
+        return $lijst;
+    }
+
+    //geeft alle artikels die tot een bepaalde categorie behoren, inclusief de subcategorieen
+    public function getArtikelsByCategorieID(int $categorieId): array
+    {
+        $categorieIds = (new CategorieService())->getAllCategorieIdsByCategorieID($categorieId);
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $statement = $dbh->prepare("SELECT * FROM artikelen WHERE artikelId IN ( SELECT DISTINCT artikelId FROM artikelcategorieen WHERE categorieId IN (" . implode(',', $categorieIds) . "))");
+        $statement->execute();
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $lijst = array();
+        $artikeldao = new ArtikelDAO;
+        foreach ($resultSet as $rij) {
+            $rating = $artikeldao->getRatingByArtikelId((int)$rij["artikelId"]);
+            $artikel = new Artikel(
+                (int) $rij["artikelId"],
+                $rij["ean"],
+                $rij["naam"],
+                $rij["beschrijving"],
+                (float) $rij["prijs"],
+                (int) $rij["gewichtInGram"],
+                (int) $rij["voorraad"],
+                (int) $rij["levertijd"],
+                $rating
+            );
+            array_push($lijst, $artikel);
+        }
+        $dbh = null;
+        return $lijst;
+    }
+>>>>>>> e95bd6f51fa3e8ede1524eba47572ef76501cc55
 
 }
 

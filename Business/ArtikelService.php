@@ -29,6 +29,16 @@ class ArtikelService {
         $aantalArtikelRijen = $artikelDAO->getAantalArtikelRijen();
         return $aantalArtikelRijen;
     }
+<<<<<<< HEAD
+=======
+
+
+//geeft alle artikels die tot een categorie behoren (inclusief de subcategorieen), voor presentatie wanneer op een bepaalde categorie gefilterds is
+    public function getArtikelsByCategorieId(int $categorieId): array
+    {
+        return (new ArtikelDAO)->getArtikelsByCategorieID($categorieId);
+    }
+>>>>>>> e95bd6f51fa3e8ede1524eba47572ef76501cc55
          
 } 
 
