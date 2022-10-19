@@ -64,7 +64,6 @@ class ArtikelDAO {
     //geeft alle artikelids die tot een bepaalde categorie behoren, inclusief de subcategorieen
     public function getArtikelIdsByCategorieID(int $categorieId): array
     {
-
         $categorieIds = (new CategorieService())->getAllCategorieIdsByCategorieID($categorieId);
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $statement = $dbh->prepare("SELECT DISTINCT artikelId FROM artikelcategorieen WHERE categorieId IN (" . implode(',', $categorieIds) . ")");

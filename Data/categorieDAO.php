@@ -70,4 +70,24 @@ class CategorieDAO
             throw new DatabaseException($e->getMessage());
         }
     }
+
+    public function getHoofdcategorieen(): array
+    {
+        $sql = "SELECT * FROM categorieen WHERE hoofdCategorieId = NULL";
+        try {
+            $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $dbh->prepare($sql);
+            $stmt->execute();
+            $resultSet =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $lijst = array();
+            foreach ($resultSet as $rij) {
+                $lijst[$rij["id"]] = new Categorie((int)$rij["categorieId"], $rij["naam"], $rij["hoofdCategorieId"]);
+            }
+            $dbh = null;
+            return $lijst;
+        } catch (PDOException $e) {
+            throw new DatabaseException($e->getMessage());
+        }
+    }
 }

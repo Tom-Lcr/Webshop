@@ -21,6 +21,12 @@ class CategorieService
         return $categorieDAO->getAllCategorieen();
     }
 
+    public function getHoofdcategorieën()
+    {
+        $categorieDAO = new CategorieDAO();
+        return $categorieDAO->getHoofdcategorieen();
+    }
+
     //geeft lijst categorieIds terug bij input van een lijst van categorieën
     public function getIdList(array $categorieen)
     {
@@ -63,4 +69,6 @@ class CategorieService
         }
         return $lijst;
     }
+
+
 }
