@@ -117,8 +117,8 @@ declare(strict_types=1);
                         print '<a  href="./startPagina.php?page=' . ($pagina - 1) . '">' . "<=" . '</a> ';
                     }
                     for ($paginaT = 1; $paginaT <= $aantalPaginas; $paginaT++) {
-                        if ($pagina === $paginaT) {
-                            print '<a href="./startPagina.php?page=' . $paginaT . '">' . $paginaT . '</a> ';
+                        if ((int) $_GET["page"] === $paginaT) {
+                            print '<a href="./startPagina.php?page=' . $paginaT . '" class="huidigePagina">' . $paginaT . '</a> ';
                         } else {
                             print '<a href="./startPagina.php?page=' . $paginaT . '">' . $paginaT . '</a> ';
                         }
