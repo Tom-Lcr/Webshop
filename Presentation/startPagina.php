@@ -57,9 +57,9 @@ declare(strict_types=1);
                             <option value="">Prijs - laag</option>
                         </select>
                         <h3>Categorie:</h3>
-                        <select name="categorieOpties" id="" class="categorieOpties">
-                            <option value="">categorieen</option>
-                        </select>
+                        <!-- Hier moeten de categorien worden geladen, 
+                        eerst de hoofdcategorien, als een hoofdcategorie geselecteerd is -> nieuwe pagina met de subcategorieen. -->
+
                         <h3>Beschikbaarheid:</h3>
                         <input type="checkbox" name="checkBeschikbaarheid" value="nuBeschikbaar">
                         <label for="checkBeschikbaarheid">Nu beschikbaar</label>
@@ -115,6 +115,9 @@ declare(strict_types=1);
                     <?php
                     if ($pagina > 1) {
                         print '<a  href="./startPagina.php?page=' . ($pagina - 1) . '">' . "<=" . '</a> ';
+                    }
+                    if(!isset($_GET["page"])){
+                        $_GET["page"]=1;
                     }
                     for ($paginaT = 1; $paginaT <= $aantalPaginas; $paginaT++) {
                         if ((int) $_GET["page"] === $paginaT) {
