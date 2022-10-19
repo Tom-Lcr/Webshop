@@ -37,7 +37,7 @@ class Bestelling
         string $betaalwijze,
         bool $annulatie,
         string $terubetalingsCode,
-        int $bestellingstatus,
+        string $bestellingstatus,
         bool $actiecodeGebruikt,
         string $bedrijfsnaam,
         string $btwNummer,
