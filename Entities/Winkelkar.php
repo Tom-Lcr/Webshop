@@ -10,8 +10,8 @@ namespace Entities;
 
 class Winkelkar
 {
-    private $productId;
-    private $aantal;
+    private int $productId;
+    private int $aantal;
 
     public function __construct(int $productId, int $aantal)
     {
@@ -35,6 +35,3 @@ class Winkelkar
         $this->productId = $productId;
     }
 }
-
-
-
