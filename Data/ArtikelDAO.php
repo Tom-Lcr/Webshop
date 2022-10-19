@@ -7,6 +7,7 @@ namespace Data;
 
 use \PDO;
 use Data\DBConfig;
+use Business\CategorieService;
 use Entities\Artikel;
 
 
@@ -27,35 +28,88 @@ class ArtikelDAO {
 	$dbh = null;
 	return $rating;
     }
+    /*
+    select artikelen.artikelId as artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd, ROUND(AVG(score)) as rating from artikelen, bestellijnen, klantenreviews where artikelen.artikelId = bestellijnen.artikelId and bestellijnen.bestellijnId = klantenreviews.bestellijnId group by artikelId order by rating desc limit 0,3; 
+
+     */
 
     public function getAll(int $waarde1, int $waarde2): array {
         $optelwaarde = $waarde1 + $waarde2;
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
-        $statement = $dbh->prepare("select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelen where artikelId > :wrd1 and artikelId <= :wrd2");
-        $statement->bindValue(":wrd1", $waarde1);
-        $statement->bindValue(":wrd2", $optelwaarde);
+        $statement = $dbh->prepare("select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelen limit " . $waarde1 . "," . $waarde2);
+        //$statement->bindValue(":wrd1", (int) $waarde1);
+        //$statement->bindValue(":wrd2", (int) $waarde2);
         $statement->execute();
         $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $lijstMetAantal = array();
         $lijst = array();
         foreach($resultSet as $rij){
             $artikeldao = new ArtikelDAO;
             $rating = $artikeldao->getRatingByArtikelId((int)$rij["artikelId"]);
             $artikel = new Artikel((int) $rij["artikelId"], $rij["ean"], $rij["naam"], $rij["beschrijving"], (float) $rij["prijs"], 
-            (int) $rij["gewichtInGram"], (int) $rij["voorraad"], (int) $rij["levertijd"], $rating);
+            (int) $rij["gewichtInGram"], (int) $rij["voorraad"], (int) $rij["levertijd"]);
             array_push($lijst, $artikel);
         }
         $dbh = null;
         return $lijst;
     }
-     
+
+    public function getAllArtikelen(): array {
+        
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $statement = $dbh->prepare("select artikelen.artikelId as artikelId, ean, naam, 
+        beschrijving, prijs, gewichtInGram, voorraad, levertijd, ROUND(AVG(score)) as rating 
+        from artikelen, bestellijnen, klantenreviews 
+        where artikelen.artikelId = bestellijnen.artikelId and 
+        bestellijnen.bestellijnId = klantenreviews.bestellijnId group by artikelId 
+        order by rating desc");
+        $statement->execute();
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $lijst = array();
+        foreach($resultSet as $rij){
+            $artikel = new Artikel((int) $rij["artikelId"], $rij["ean"], $rij["naam"], $rij["beschrijving"], (float) $rij["prijs"], 
+            (int) $rij["gewichtInGram"], (int) $rij["voorraad"], (int) $rij["levertijd"]);
+            $artikel->setRating((float) $rij["rating"]);
+            array_push($lijst, $artikel);
+        }
+        $volleLijst = $this->getAllArtikelenZR($lijst);
+        
+        $dbh = null;
+        return $volleLijst;
+    } 
+
+    public function getAllArtikelenZR(array $rlijst): array {
+        
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $statement = $dbh->prepare("select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelen");
+        $statement->execute();
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+    
+        foreach($resultSet as $rij){
+            $komtvoor = false;
+            foreach($rlijst as $artikel) {
+                if ($rij["artikelId"] == $artikel->getArtikelId()) {
+                    $komtvoor = true;
+                }
+            }
+            if ($komtvoor == false) {
+               
+            $artikel = new Artikel((int) $rij["artikelId"], $rij["ean"], $rij["naam"], $rij["beschrijving"], (float) $rij["prijs"], 
+            (int) $rij["gewichtInGram"], (int) $rij["voorraad"], (int) $rij["levertijd"]);
+            array_push($rlijst, $artikel);
+            }
+        }
+        $dbh = null;
+        return $rlijst;
+    }
    
 
     public function getAantalArtikelRijen(): int {
-        $sql = "select * from artikelen";
+        $sql = "select count(*) from artikelen";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
-        $resultSet = $dbh->query($sql);
-        $aantalRijen = $resultSet->rowCount();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        $rij = $stmt->fetch(PDO::FETCH_ASSOC);
+        $aantalRijen = $rij["count(*)"];
         $dbh = null;
         return $aantalRijen;
     }
@@ -75,6 +129,53 @@ class ArtikelDAO {
 	    return $artikel;
     }
 
+    //geeft alle artikelids die tot een bepaalde categorie behoren, inclusief de subcategorieen
+    public function getArtikelIdsByCategorieID(int $categorieId): array
+    {
+        $categorieIds = (new CategorieService())->getAllCategorieIdsByCategorieID($categorieId);
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $statement = $dbh->prepare("SELECT DISTINCT artikelId FROM artikelcategorieen WHERE categorieId IN (" . implode(',', $categorieIds) . ")");
+        //$statement = $dbh->prepare("SELECT * FROM artikelen WHERE artikelId IN ...");
+        //$statement->bindValue(":wrd1", $waarde1);
+
+        $statement->execute();
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $lijst = array();
+        foreach ($resultSet as $rij) {
+            array_push($lijst, $rij["artikelId"]);
+        }
+        $dbh = null;
+        return $lijst;
+    }
+
+    //geeft alle artikels die tot een bepaalde categorie behoren, inclusief de subcategorieen
+    public function getArtikelsByCategorieID(int $categorieId): array
+    {
+        $categorieIds = (new CategorieService())->getAllCategorieIdsByCategorieID($categorieId);
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $statement = $dbh->prepare("SELECT * FROM artikelen WHERE artikelId IN ( SELECT DISTINCT artikelId FROM artikelcategorieen WHERE categorieId IN (" . implode(',', $categorieIds) . "))");
+        $statement->execute();
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $lijst = array();
+        $artikeldao = new ArtikelDAO;
+        foreach ($resultSet as $rij) {
+            $rating = $artikeldao->getRatingByArtikelId((int)$rij["artikelId"]);
+            $artikel = new Artikel(
+                (int) $rij["artikelId"],
+                $rij["ean"],
+                $rij["naam"],
+                $rij["beschrijving"],
+                (float) $rij["prijs"],
+                (int) $rij["gewichtInGram"],
+                (int) $rij["voorraad"],
+                (int) $rij["levertijd"],
+                $rating
+            );
+            array_push($lijst, $artikel);
+        }
+        $dbh = null;
+        return $lijst;
+    }
 
 }
 

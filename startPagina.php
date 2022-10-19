@@ -41,7 +41,7 @@ if (isset($_GET["page"])) {
     $pagina = 1;         
     }
 $eerstePaginaArtikel = ($pagina-1)*$aantalArtikelsPerPagina;
-$artikelLijst = $artikelSvc->getArtikelOverzicht((int) $eerstePaginaArtikel, (int) $aantalArtikelsPerPagina);
+$artikelLijst = $artikelSvc->getArtikelOverzicht2((int) $eerstePaginaArtikel, (int) $aantalArtikelsPerPagina);
 
 foreach ($artikelLijst as $artikel) { //elk $artikel = een object $artikel
     //Hieronder ga ik voor elk artikel het artikelId gaan halen

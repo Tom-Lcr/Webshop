@@ -22,7 +22,17 @@ class ArtikelService {
         $artikelDAO = new ArtikelDAO();
         $lijst = $artikelDAO->getAll((int) $waarde1, (int) $waarde2);
         return $lijst;
-    }	
+    }
+    
+    public function getArtikelOverzicht2(int $waarde1, int $waarde2) : array {
+        $artikelDAO = new ArtikelDAO();
+        $lijst = $artikelDAO->getAllArtikelen();
+        $lijstgedeelte = array();
+        for ($teller = $waarde1 + 1; $teller <= $waarde1 + $waarde2 && $teller < count($lijst); $teller++) {
+            array_push($lijstgedeelte, $lijst[$teller]);
+        }
+        return $lijstgedeelte;
+    }
 
     public function getAantalArtikelRijen() : int {
         $artikelDAO = new ArtikelDAO();
@@ -34,6 +44,12 @@ class ArtikelService {
     {
         $artikelDAO = new ArtikelDAO();
         return $artikelDAO->getArtikelById((int) $artikelId);
+    }
+
+    //geeft alle artikels die tot een categorie behoren (inclusief de subcategorieen), voor presentatie wanneer op een bepaalde categorie gefilterds is
+    public function getArtikelsByCategorieId(int $categorieId): array
+    {
+        return (new ArtikelDAO)->getArtikelsByCategorieID($categorieId);
     }
          
 } 
