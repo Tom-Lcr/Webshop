@@ -26,8 +26,9 @@ if(isset($_GET["action"]) && ($_GET["action"] === "addCart")){
 
     $winkelkarService = new winkelkarService();
     $winkelkarObject = $winkelkarService->voegItemToe((int) $productId, (int) $aantal);
+    
+    $winkelkarObject = serialize($winkelkarObject);
 
-    $winkelkarObject = [1, 5];
     array_push($_SESSION["winkelkar"], $winkelkarObject);  
 }
 
