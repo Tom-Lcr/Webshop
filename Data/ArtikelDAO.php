@@ -61,10 +61,14 @@ class ArtikelDAO {
         $dbh = null;
         return $aantalRijen;
     }
+
+    /*Tom: Ik dacht dat de functie hieronder het juiste resultaat zou geven, maar als ik ze uittest gaat er iets mis en ik begrijp
+    niet goed wat... De query klopt, want die heb ik uitgetest in sql. Dus er moet ergens een fout in de syntax zijn... Kan je mij
+    aub ook laten weten wat de fout was als je ze vindt? Blijf graag op de hoogte. :)*/
    
     public function zoekArtikelen(string $zoekterm):? Array {
         $sql = "select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelen
-        where naam like '%:zoekterm%'";
+        where naam like %:zoekterm%";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);  
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':zoekterm' => $zoekterm));
