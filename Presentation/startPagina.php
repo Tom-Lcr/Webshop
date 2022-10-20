@@ -1,10 +1,6 @@
 <?php
-<<<<<<< HEAD
 
 declare(strict_types=1);
-=======
-    declare(strict_types=1);
->>>>>>> 290aede40bc0a24f46b9a2445c1ef0600d506063
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -13,15 +9,10 @@ declare(strict_types=1);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="../script.js"></script>
 
-=======
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
->>>>>>> 290aede40bc0a24f46b9a2445c1ef0600d506063
     <title>Prularia</title>
 </head>
 
@@ -29,7 +20,6 @@ declare(strict_types=1);
 
     <header>
         <div class="container">
-<<<<<<< HEAD
             <a href="startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
             <nav class="menu">
                 <div class="menuOpties">
@@ -45,27 +35,12 @@ declare(strict_types=1);
             </nav>
         </div>
 
-=======
-            <a href="Presentation/startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
-            <nav class="menu">
-                <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
-                <div class="profielMenu">
-                    <a href="#"><img src="img/profiel.png" alt="profiel"></a>
-                    <a href="#" id="menu">MENU</a>
-                </div>
-            </nav>
-        </div>
->>>>>>> 290aede40bc0a24f46b9a2445c1ef0600d506063
     </header>
 
     <section class="zoekSectie">
         <div class="container">
             <div class="zoeken">
-<<<<<<< HEAD
                 <form action="startpagina.php?action=zoek" method="post" id="zoekForm">
-=======
-                <form action="" method="post" id="zoekForm">
->>>>>>> 290aede40bc0a24f46b9a2445c1ef0600d506063
                     <input type="text" placeholder="Zoeken.." name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
@@ -89,7 +64,6 @@ declare(strict_types=1);
                             <option value="">Prijs - laag</option>
                         </select>
                         <h3>Categorie:</h3>
-<<<<<<< HEAD
                         <!-- Hier moeten de categorien worden geladen, 
                         eerst de hoofdcategorien, als een hoofdcategorie geselecteerd is -> nieuwe pagina met de subcategorieen. -->
                         <a href="" class="categorieLink">Huishouden</a>
@@ -98,11 +72,6 @@ declare(strict_types=1);
                         <br>
                         <a href="" class="categorieLink">Wonen</a>
 
-=======
-                        <select name="categorieOpties" id="" class="categorieOpties">
-                            <option value="">categorieen</option>
-                        </select>
->>>>>>> 290aede40bc0a24f46b9a2445c1ef0600d506063
                         <h3>Beschikbaarheid:</h3>
                         <input type="checkbox" name="checkBeschikbaarheid" value="nuBeschikbaar">
                         <label for="checkBeschikbaarheid">Nu beschikbaar</label>
@@ -123,7 +92,6 @@ declare(strict_types=1);
             <section class="artikelOverzicht">
                 <h1>Aanbevolen producten</h1>
                 <!-- placeholders tijdelijk-->
-<<<<<<< HEAD
                 <section class="producten clearFix">
                     <?php
                     $teller = 0;
@@ -177,53 +145,6 @@ declare(strict_types=1);
                 </div>
             </section>
 
-=======
-                <?php 
-                    $teller = 0;  
-                    foreach ($artikelLijst as $artikel) {
-                    $teller++;
-                ?>
-                <article class="artikel">
-                    <img src="img/dummy.avif" alt="" class="productFoto">
-                    <h4><?php print $artikel->getNaam(); ?></h4>
-                    <p>€<?php print $artikel->getPrijs(); ?>
-                    <p>
-                    <?php if ($artikel->isInVoorraad()) { ?>    
-                    <p class="pBeschikbaarheid">In voorraad</p>
-                    <?php }else{ ?> 
-                    <p class="pBeschikbaarheid">Niet beschikbaar</p> 
-                    <?php } ?>
-                    <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId());?>" class="winkelKarPerArtikelForm">
-                        <input type="number" name="aantalVanArtikel" id="aantalVanArtikel">
-                        <button type="submit" class="winkelkarArtikelBtn"><img src="img/winkelkar.png" alt=""></button>
-                    </form>
-                </article>&nbsp;&nbsp;&nbsp;&nbsp;
-                <?php 
-                if ($teller === 4) { 
-                    print "<br><br>";
-                    $teller = 0;
-                 }
-                } 
-                ?>      
-                <br>
-                <?php   
-            if ($pagina > 1) {
-                print '<a href="./startPagina.php?page=' . ($pagina - 1) . '">' . "<=" . '</a> '; 
-            }
-            for($paginaT=1;$paginaT<=$aantalPaginas;$paginaT++){
-                if ($pagina === $paginaT) {
-                print '<a href="./startPagina.php?page=' . $paginaT . '">' . $paginaT . '</a> ';
-                }else{
-                print '<a href="./startPagina.php?page=' . $paginaT . '">' . $paginaT . '</a> ';    
-                }
-            }
-            if ($pagina < $aantalPaginas) {
-                print '<a href="./startPagina.php?page=' . ($pagina + 1) . '">' . "=>" . '</a> '; 
-            }
-            ?>
-            </section>
-             
->>>>>>> 290aede40bc0a24f46b9a2445c1ef0600d506063
         </div>
     </main>
 
