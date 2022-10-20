@@ -97,7 +97,6 @@ header {
     font-size: 17px;
     border: 1px solid grey;
     width: 22em;
-    background: #f1f1f1;
 }
 
 #zoekForm button {
@@ -342,6 +341,11 @@ input[type=button] {
 
 .checked {
     color: orange;
+}
+
+.scoreGem{
+    font-size: 2em;
+    font-weight: bold;
 }
 
 
