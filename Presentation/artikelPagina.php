@@ -13,12 +13,14 @@
 <body>
     <header>
         <div class="container">
-            <a href="index.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
+            <a href="Presentation/startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
             <nav class="menu">
-                <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
-                <div class="profielMenu">
-                    <a href="#"><img src="img/profiel.png" alt="profiel"></a>
-                    <a href="#" id="menu">MENU</a>
+                <div class="menuOpties">
+                    <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
+                    <div class="profielMenu">
+                        <a href="#"><img src="img/profiel.png" alt="profiel"></a>
+                        <a href="#" id="menu">MENU</a>
+                    </div>
                 </div>
             </nav>
         </div>

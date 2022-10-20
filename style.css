@@ -42,22 +42,34 @@ header {
     width: 20%;
     height: 100%;
     float: right;
-    margin-top: 2em;
+    height: 6em;
+    position: relative;
 }
 
-.menu img {
+.menuOpties img {
     margin-left: 1em;
-    width: 20%;
+    height: 4em;
     float: left;
+}
+
+.profielMenu img {
+    height: 4em;
 }
 
 .menu a {
     color: white;
     text-decoration: none;
+    float: left;
 }
 
-#menu {
-    height: 100%;
+.menuOpties {
+    height: 4em;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
 }
 
 /*zoeken*/
@@ -133,6 +145,19 @@ input[type=checkbox] {
     margin-bottom: 1em;
 }
 
+.filterOpties a{
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    transition: 0.1s ease;
+}
+
+.filterOpties a:hover{
+    color: #ABD7A8;
+    transform: scale(1.025);
+    transform-origin: 0% 100%;
+    transition: 0.1s ease;}
+
 .button {
     width: 60%;
     padding: 2% 2%;
@@ -204,7 +229,7 @@ input[type=checkbox] {
     height: 30px;
 }
 
-.producten{
+.producten {
     margin-bottom: 2em;
 }
 
@@ -217,12 +242,12 @@ input[type=checkbox] {
     text-align: center;
 }
 
-.paginaCounter a{
+.paginaCounter a {
     text-decoration: none;
     color: #717171;
 }
 
-.huidigePagina{
+.huidigePagina {
     font-weight: bold;
 }
 
@@ -281,8 +306,6 @@ input[type=button] {
 .checked {
     color: orange;
 }
-
-
 
 
 /*clear*/

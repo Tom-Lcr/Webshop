@@ -21,10 +21,12 @@ declare(strict_types=1);
         <div class="container">
             <a href="Presentation/startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
             <nav class="menu">
-                <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
-                <div class="profielMenu">
-                    <a href="#"><img src="img/profiel.png" alt="profiel"></a>
-                    <a href="#" id="menu">MENU</a>
+                <div class="menuOpties">
+                    <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
+                    <div class="profielMenu">
+                        <a href="#"><img src="img/profiel.png" alt="profiel"></a>
+                        <a href="#" id="menu">MENU</a>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -59,7 +61,12 @@ declare(strict_types=1);
                         <h3>Categorie:</h3>
                         <!-- Hier moeten de categorien worden geladen, 
                         eerst de hoofdcategorien, als een hoofdcategorie geselecteerd is -> nieuwe pagina met de subcategorieen. -->
-
+                        <a href="" class="categorieLink">Huishouden</a>
+                        <br>
+                        <a href="" class="categorieLink">Klussen</a>
+                        <br>
+                        <a href="" class="categorieLink">Wonen</a>
+                        
                         <h3>Beschikbaarheid:</h3>
                         <input type="checkbox" name="checkBeschikbaarheid" value="nuBeschikbaar">
                         <label for="checkBeschikbaarheid">Nu beschikbaar</label>
@@ -81,43 +88,43 @@ declare(strict_types=1);
                 <h1>Aanbevolen producten</h1>
                 <!-- placeholders tijdelijk-->
                 <section class="producten clearFix">
-                <?php
-                $teller = 0;
-                foreach ($artikelLijst as $artikel) {
-                    $teller++;
-                ?>
-                    <article class="artikel">
-                        <img src="img/dummy.avif" alt="" class="productFoto">
-                        <h4><?php print $artikel->getNaam(); ?></h4>
-                        <p>€<?php print $artikel->getPrijs(); ?>
-                        <p>
-                            <?php if ($artikel->isInVoorraad()) { ?>
-                        <p class="pBeschikbaarheid">In voorraad</p>
-                    <?php } else { ?>
-                        <p class="pBeschikbaarheid">Niet beschikbaar</p>
-                    <?php } ?>
-                    <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId()); ?>" class="winkelKarPerArtikelForm">
-                        <input type="number" name="aantalVanArtikel" id="aantalVanArtikel">
-                        <button type="submit" class="winkelkarArtikelBtn"><img src="img/winkelkar.png" alt=""></button>
-                    </form>
-                    </article>
-                    
                     <?php
-                    if ($teller === 4) {
-                        print "<br><br>";
-                        $teller = 0;
+                    $teller = 0;
+                    foreach ($artikelLijst as $artikel) {
+                        $teller++;
+                    ?>
+                        <article class="artikel">
+                            <img src="img/dummy.avif" alt="" class="productFoto">
+                            <h4><?php print $artikel->getNaam(); ?></h4>
+                            <p>€<?php print $artikel->getPrijs(); ?>
+                            <p>
+                                <?php if ($artikel->isInVoorraad()) { ?>
+                            <p class="pBeschikbaarheid">In voorraad</p>
+                        <?php } else { ?>
+                            <p class="pBeschikbaarheid">Niet beschikbaar</p>
+                        <?php } ?>
+                        <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId()); ?>" class="winkelKarPerArtikelForm">
+                            <input type="number" name="aantalVanArtikel" id="aantalVanArtikel">
+                            <button type="submit" class="winkelkarArtikelBtn"><img src="img/winkelkar.png" alt=""></button>
+                        </form>
+                        </article>
+
+                    <?php
+                        if ($teller === 4) {
+                            print "<br><br>";
+                            $teller = 0;
+                        }
                     }
-                }
                     ?>
                 </section>
-                    <br>
-                    <div class="paginaCounter">
+                <br>
+                <div class="paginaCounter">
                     <?php
                     if ($pagina > 1) {
                         print '<a  href="./startPagina.php?page=' . ($pagina - 1) . '">' . "<=" . '</a> ';
                     }
-                    if(!isset($_GET["page"])){
-                        $_GET["page"]=1;
+                    if (!isset($_GET["page"])) {
+                        $_GET["page"] = 1;
                     }
                     for ($paginaT = 1; $paginaT <= $aantalPaginas; $paginaT++) {
                         if ((int) $_GET["page"] === $paginaT) {
@@ -130,7 +137,7 @@ declare(strict_types=1);
                         print '<a href="./startPagina.php?page=' . ($pagina + 1) . '">' . "=>" . '</a> ';
                     }
                     ?>
-                    </div>
+                </div>
             </section>
 
         </div>
