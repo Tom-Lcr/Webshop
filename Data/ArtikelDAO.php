@@ -8,7 +8,6 @@ namespace Data;
 use \PDO;
 use Data\DBConfig;
 use Entities\Artikel;
-use Data\ArtikelDAO;
 
 
 
