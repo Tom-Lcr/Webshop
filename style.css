@@ -145,18 +145,44 @@ input[type=checkbox] {
     margin-bottom: 1em;
 }
 
-.filterOpties a{
+.filterOpties a {
     text-decoration: none;
     color: black;
     display: inline-block;
     transition: 0.1s ease;
 }
 
-.filterOpties a:hover{
+.filterOpties a:hover {
     color: #ABD7A8;
     transform: scale(1.025);
     transform-origin: 0% 100%;
-    transition: 0.1s ease;}
+    transition: 0.1s ease;
+}
+
+select {
+    width: 50%;
+    min-width: 15ch;
+    max-width: 30ch;
+    border: 1px solid var(--select-border);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+    font-size: 1em;
+    cursor: pointer;
+    line-height: 1;
+    background-color: #fff;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  }
+
+select::-ms-expand {
+    display: none;
+    outline: none;
+}
+
+:root {
+    --select-border: #777;
+    --select-focus: blue;
+    --select-arrow: var(--select-border);
+}
 
 .button {
     width: 60%;
@@ -245,10 +271,21 @@ input[type=checkbox] {
 .paginaCounter a {
     text-decoration: none;
     color: #717171;
+    transition: 0.2s ease;
+    display: inline-block;
+    font-size: 1.2em;
+}
+
+.paginaCounter a:hover {
+    color: #ABD7A8;
+    font-weight: bold;
+    transform: scale(1.1);
+    transform-origin: 0% 100%;
+    transition: 0.2s ease;
 }
 
 .huidigePagina {
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 
