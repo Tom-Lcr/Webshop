@@ -40,11 +40,11 @@ class ArtikelDAO
         return $rating;
     }
 
-    public function getAll(int $pagina = 0, int $aantalPerPagina = 20, string $volgorde = "rating DESC, prijs DESC"): array
+    public function getAll(int $pagina = 1, int $aantalPerPagina = 20, string $volgorde = "rating DESC, prijs DESC"): array
     {
         
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);        
-        $statement = $dbh->prepare($this->metScores . "select * from artikelenMetScores ORDER BY $volgorde LIMIT ". $pagina*$aantalPerPagina . ", ". $aantalPerPagina);
+        $statement = $dbh->prepare($this->metScores . "select * from artikelenMetScores ORDER BY $volgorde LIMIT ". ($pagina-1)*$aantalPerPagina . ", ". $aantalPerPagina);
         
         //$statement->bindValue(":volgorde", $volgorde);
         
