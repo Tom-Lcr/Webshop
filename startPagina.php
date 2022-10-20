@@ -33,11 +33,17 @@ if (isset($_GET["page"])) {
 $eerstePaginaArtikel = ($pagina-1)*$aantalArtikelsPerPagina;
 $artikelLijst = $artikelSvc->getArtikelOverzicht((int) $eerstePaginaArtikel, (int) $aantalArtikelsPerPagina);
 
-foreach ($artikelLijst as $artikel) { // Tom: objecten artikel hebben we mogelijk nodig
-           
+
+
+  if (isset($_GET["action"]) && ($_GET["action"] === "zoek")) {
+
+    $artikelSvc = new ArtikelService();
+    $gevondenArtikelen = $artikelSvc->zoekArtikelen($_POST["search"]);
+
 
   }
 
+  
 
-
+  
 include("Presentation/startPagina.php");
