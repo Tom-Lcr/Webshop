@@ -11,8 +11,7 @@ declare(strict_types=1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
-    <script src="../script.js"></script>
-
+    <script src="script.js" defer></script>
     <title>Prularia</title>
 </head>
 
@@ -100,7 +99,7 @@ declare(strict_types=1);
                     ?>
                         <article class="artikel">
                             <img src="img/dummy.avif" alt="" class="productFoto">
-                            <h4 id="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
+                            <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
                             <p>€<?php print $artikel->getPrijs(); ?>
                             <p>
                                 <?php if ($artikel->isInVoorraad()) { ?>
@@ -156,3 +155,4 @@ declare(strict_types=1);
 </body>
 
 </html>
+

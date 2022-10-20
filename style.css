@@ -257,6 +257,7 @@ select::-ms-expand {
     margin-bottom: 1em;
     padding-bottom: 1em;
     float: left;
+    height: 23em;
 }
 
 .artikel img {
