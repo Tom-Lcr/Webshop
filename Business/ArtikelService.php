@@ -36,6 +36,12 @@ class ArtikelService {
         return $gevondenArtikelen;
     }
     
+
+//geeft alle artikels die tot een categorie behoren (inclusief de subcategorieen), voor presentatie wanneer op een bepaalde categorie gefilterds is
+    public function getArtikelsByCategorieId(int $categorieId): array
+    {
+        return (new ArtikelDAO)->getArtikelsByCategorieID($categorieId);
+    }
          
 } 
 
