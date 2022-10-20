@@ -38,4 +38,18 @@ foreach ($artikelLijst as $artikel) { // Tom: objecten artikel hebben we mogelij
 
 }
 
+/*test veriable winkelkar badge*/
+
+if (!isset($_SESSION["aantalTeller"])){
+    $_SESSION["aantalTeller"] = 0;
+}
+
+if(isset($_POST["btnWinkelKar"]) && isset($_POST["aantalVanArtikel"])){
+    /* hier komt de code om het huidig aantal artikelen die in de winkelkar zitten te berekenen 
+    en aan te duiden via de winkelkar badge */
+
+    /*test sessie variabele*/
+    $_SESSION["aantalTeller"] += (int) $_POST["aantalVanArtikel"];
+}
+
 include("Presentation/startPagina.php");

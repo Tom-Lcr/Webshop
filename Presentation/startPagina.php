@@ -29,7 +29,7 @@ declare(strict_types=1);
                     <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
                     <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
                     hier moet de code komen die het aantal weergeeft -->
-                    <span class='badge badge-warning' id='lblCartCount'> 5 </span>
+                    <span class='badge badge-warning' id='lblCartCount'> <?php /*dit is een test variabele*/ echo $_SESSION["aantalTeller"] ?> </span>
                 </div>
             </nav>
         </div>
@@ -109,7 +109,7 @@ declare(strict_types=1);
                         <?php } ?>
                         <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId()); ?>" class="winkelKarPerArtikelForm">
                             <input type="number" name="aantalVanArtikel" id="aantalVanArtikel">
-                            <button type="submit" class="winkelkarArtikelBtn"><img src="img/winkelkar.png" alt=""></button>
+                            <button type="submit" class="winkelkarArtikelBtn" name="btnWinkelKar"><img src="img/winkelkar.png" alt=""></button>
                         </form>
                         </article>
 
