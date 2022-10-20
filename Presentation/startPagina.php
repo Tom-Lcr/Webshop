@@ -19,7 +19,7 @@ declare(strict_types=1);
 
     <header>
         <div class="container">
-            <a href="Presentation/startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
+            <a href="startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
             <nav class="menu">
                 <div class="menuOpties">
                     <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
@@ -66,7 +66,7 @@ declare(strict_types=1);
                         <a href="" class="categorieLink">Klussen</a>
                         <br>
                         <a href="" class="categorieLink">Wonen</a>
-                        
+
                         <h3>Beschikbaarheid:</h3>
                         <input type="checkbox" name="checkBeschikbaarheid" value="nuBeschikbaar">
                         <label for="checkBeschikbaarheid">Nu beschikbaar</label>

@@ -13,7 +13,7 @@
 <body>
     <header>
         <div class="container">
-            <a href="Presentation/startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
+            <a href="startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
             <nav class="menu">
                 <div class="menuOpties">
                     <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
