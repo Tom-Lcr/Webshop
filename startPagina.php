@@ -31,7 +31,7 @@ if (isset($_GET["page"])) {
     $pagina = 1;         
     }
 $eerstePaginaArtikel = ($pagina-1)*$aantalArtikelsPerPagina;
-$artikelLijst = $artikelSvc->getArtikelOverzicht((int) $eerstePaginaArtikel, (int) $aantalArtikelsPerPagina);
+$artikelLijst = $artikelSvc->getArtikelOverzicht((int) $pagina, (int) $aantalArtikelsPerPagina);
 
 
 
