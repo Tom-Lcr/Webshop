@@ -40,16 +40,22 @@ class ArtikelService {
         return $aantalArtikelRijen;
     }
 
+    public function zoekArtikelen($zoekterm, int $waarde1, int $waarde2) :? array {
+        $artikelDAO = new ArtikelDAO();
+        $gevondenArtikelen = $artikelDAO->zoekArtikelen($zoekterm, (int) $waarde1, (int) $waarde2);
+        return $gevondenArtikelen;
+    }
+
     public function getArtikelById(int $artikelId): ?Artikel
     {
         $artikelDAO = new ArtikelDAO();
         return $artikelDAO->getArtikelById((int) $artikelId);
     }
-
-    //geeft alle artikels die tot een categorie behoren (inclusief de subcategorieen), voor presentatie wanneer op een bepaalde categorie gefilterds is
-    public function getArtikelsByCategorieId(int $categorieId): array
-    {
-        return (new ArtikelDAO)->getArtikelsByCategorieID($categorieId);
+    
+    public function getAantalZoekArtikelRijen(string $zoekterm) : int {
+        $artikelDAO = new ArtikelDAO();
+        $aantalArtikelRijen = $artikelDAO->getAantalZoekArtikelRijen($zoekterm);
+        return $aantalArtikelRijen;
     }
          
 } 
