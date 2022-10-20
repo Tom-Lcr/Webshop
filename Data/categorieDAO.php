@@ -90,5 +90,4 @@ class CategorieDAO
             throw new DatabaseException($e->getMessage());
         }
     }
-    //change
 }
