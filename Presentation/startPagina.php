@@ -11,6 +11,7 @@ declare(strict_types=1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="../script.js"></script>
 
     <title>Prularia</title>
 </head>
@@ -22,14 +23,17 @@ declare(strict_types=1);
             <a href="startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
             <nav class="menu">
                 <div class="menuOpties">
-                    <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
                     <div class="profielMenu">
                         <a href="#"><img src="img/profiel.png" alt="profiel"></a>
                         <a href="#" id="menu">MENU</a>
                     </div>
+                    <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
+                    <span class='badge badge-warning' id='lblCartCount'> 5 </span>
+
                 </div>
             </nav>
         </div>
+
     </header>
 
     <section class="zoekSectie">
@@ -95,7 +99,7 @@ declare(strict_types=1);
                     ?>
                         <article class="artikel">
                             <img src="img/dummy.avif" alt="" class="productFoto">
-                            <h4><?php print $artikel->getNaam(); ?></h4>
+                            <h4 id="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
                             <p>€<?php print $artikel->getPrijs(); ?>
                             <p>
                                 <?php if ($artikel->isInVoorraad()) { ?>

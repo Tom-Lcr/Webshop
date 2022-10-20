@@ -36,6 +36,6 @@ $artikelLijst = $artikelSvc->getArtikelOverzicht((int) $eerstePaginaArtikel, (in
 foreach ($artikelLijst as $artikel) { // Tom: objecten artikel hebben we mogelijk nodig
            
 
-  }
+}
 
 include("Presentation/startPagina.php");
