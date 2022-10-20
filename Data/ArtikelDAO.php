@@ -17,14 +17,11 @@ use Entities\Artikel;
 
 class ArtikelDAO
 {
-
-  
-
     private string $metScores = "WITH scores(rating, id) AS (SELECT AVG(score), artikelId FROM klantenreviews inner JOIN bestellijnen on klantenreviews.bestellijnId = bestellijnen.bestellijnId GROUP BY artikelId), 
     artikelenMetScores AS (SELECT artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd, rating FROM artikelen LEFT OUTER JOIN scores on artikelen.artikelId = scores.id)";
-    public function metPaginas(string $sql, int $pagina, int $aantal = 20): string
+    public function metPaginas(int $pagina, int $aantal = 20): string
     {
-        return $sql . " LIMIT " . (int) ($pagina - 1) * $aantal . ", " . $aantal;
+        return " LIMIT " . (int) ($pagina - 1) * $aantal . ", " . $aantal;
     }
 
     public function getRatingByArtikelId(int $artikelId): ?float
@@ -44,7 +41,7 @@ class ArtikelDAO
     {
         
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);        
-        $statement = $dbh->prepare($this->metScores . "select * from artikelenMetScores ORDER BY $volgorde LIMIT ". ($pagina-1)*$aantalPerPagina . ", ". $aantalPerPagina);
+        $statement = $dbh->prepare($this->metScores . "SELECT * FROM artikelenMetScores ORDER BY $volgorde LIMIT ". ($pagina-1)*$aantalPerPagina . ", ". $aantalPerPagina);
         
         //$statement->bindValue(":volgorde", $volgorde);
         
