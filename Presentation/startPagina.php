@@ -76,6 +76,14 @@
             </aside>
 
             <section class="artikelOverzicht">
+            <?php
+          if($error){
+        ?>                  
+                    <p class="text-danger"><?php echo $error; ?></p>
+
+        <?php
+          }
+        ?> 
                 <h1>Aanbevolen producten</h1>
                 <!-- placeholders tijdelijk-->
                 <?php 
@@ -94,7 +102,7 @@
                     <p class="pBeschikbaarheid">Niet beschikbaar</p> 
                     <?php } ?>
                     <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId());?>" class="winkelKarPerArtikelForm">
-                        <input type="number" name="aantalVanArtikel" id="aantalVanArtikel">
+                        <input type="number" name="aantalVanArtikel" id="aantalVanArtikel" min="1" required>
                         <button type="submit" class="winkelkarArtikelBtn"><img src="img/winkelkar.png" alt=""></button>
                     </form>
                 </article>&nbsp;&nbsp;&nbsp;&nbsp;
