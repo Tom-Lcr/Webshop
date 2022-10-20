@@ -28,8 +28,9 @@ declare(strict_types=1);
                         <a href="#" id="menu">MENU</a>
                     </div>
                     <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
+                    <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
+                    hier moet de code komen die het aantal weergeeft -->
                     <span class='badge badge-warning' id='lblCartCount'> 5 </span>
-
                 </div>
             </nav>
         </div>
