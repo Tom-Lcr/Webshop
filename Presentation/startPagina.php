@@ -40,7 +40,7 @@ declare(strict_types=1);
     <section class="zoekSectie">
         <div class="container">
             <div class="zoeken">
-                <form action="zoek" method="post" id="zoekForm">
+                <form action="startpagina.php?action=zoek" method="post" id="zoekForm">
                     <input type="text" placeholder="Zoeken.." name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
