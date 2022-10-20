@@ -154,6 +154,21 @@ public function getArtikelsByCategorieID(int $categorieId): array
     return $lijst;
 }
 
+public function getArtikelById(int $artikelId) : Artikel {
+    $sql = "select * from artikelen where artikelId = :artikelId" ;
+	$dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+	$stmt = $dbh->prepare($sql);
+    $stmt->execute(array(':artikelId' => $artikelId));
+	$rij = $stmt->fetch(PDO::FETCH_ASSOC);
+    $artikeldao = new ArtikelDAO;
+    $rating = $artikeldao->getRatingByArtikelId((int)$rij["artikelId"]);
+    $artikel = new Artikel((int) $rij["artikelId"], $rij["ean"], $rij["naam"], $rij["beschrijving"], (float) $rij["prijs"], 
+                (int) $rij["gewichtInGram"], (int) $rij["voorraad"], (int) $rij["levertijd"], $rating);
+	$dbh = null;
+	return $artikel;
+    }
+
+
 }
 
 

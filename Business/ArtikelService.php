@@ -30,7 +30,7 @@ class ArtikelService {
         return $aantalArtikelRijen;
     }
 
-    public function zoekArtikelen($zoekterm) :? array {
+    public function zoekArtikelen(string $zoekterm) :? array {
         $artikelDAO = new ArtikelDAO();
         $gevondenArtikelen = $artikelDAO->zoekArtikelen($zoekterm);
         return $gevondenArtikelen;
@@ -42,6 +42,14 @@ class ArtikelService {
     {
         return (new ArtikelDAO)->getArtikelsByCategorieID($categorieId);
     }
+
+    public function getArtikel(int $artikelId) : Artikel {
+        $artikelDAO = new ArtikelDAO();
+        $artikel = $artikelDAO->getArtikelById($artikelId);
+        return $artikel;
+    }
+
+    
          
 } 
 
