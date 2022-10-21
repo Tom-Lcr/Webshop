@@ -260,8 +260,16 @@ select::-ms-expand {
     height: 23em;
 }
 
-.artikel img {
+.artikel img, .nietInVoorraad img {
     width: 80%;
+}
+
+.nietInVoorraad img{
+    filter: grayscale(100%);
+}
+
+.nietInVoorraad .winkelkarArtikelBtn{
+    
 }
 
 .winkelKarPerArtikelForm {
@@ -295,6 +303,18 @@ select::-ms-expand {
 
 .producten {
     margin-bottom: 2em;
+}
+
+.nietInVoorraad {
+    width: 22%;
+    margin-right: 3%;
+    text-align: center;
+    border: 1px solid #717171;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    float: left;
+    height: 23em;
 }
 
 /*pagina teller*/
