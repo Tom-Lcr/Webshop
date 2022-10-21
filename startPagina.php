@@ -36,6 +36,9 @@ if (isset($_GET["action"]) && $_GET["action"] == "voegToe") {
         $error = "Dit product is niet in voorraad";
     }
 }
+
+
+
 $aantalArtikelsPerPagina = 20;
 if ($_SESSION["filter"] = "default") {
    $aantalRijen = $artikelSvc->getAantalArtikelRijen();
@@ -58,6 +61,10 @@ if (isset($_GET["page"])) {
 	} else {
     $pagina = 1;         
     }
+
+if (isset($_GET["action"]) && $_GET["action"] == "filter") {
+     $artikelSvc->getArtikelOverzicht((int) $pagina, (int) $aantalArtikelsPerPagina, $_POST["sorteerOpties"]);
+}    
  
 if ($_SESSION["filter"] = "default") {
    $artikelLijst = $artikelSvc->getArtikelOverzicht((int) $pagina, (int) $aantalArtikelsPerPagina);    

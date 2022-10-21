@@ -64,15 +64,15 @@ declare(strict_types=1);
         <div class="container clearFix">
 
             <aside class="filterOpties">
-                <form action="" method="post" name="filter">
+                <form action="./startPagina.php?action=filter" method="post" name="filter">
                     <h2>Opties</h2>
                     <section>
                         <h3>Sorteren op:</h3>
                         <select name="sorteerOpties" id="" class="sorteerOpties">
                             <option value="">Waardering - hoog</option>
                             <option value="">Waardering - laag</option>
-                            <option value="">Prijs - hoog</option>
-                            <option value="">Prijs - laag</option>
+                            <option value="prijs DESC">Prijs - hoog</option>
+                            <option value="prijs ASC">Prijs - laag</option>
                         </select>
                         <h3>Categorie:</h3>
                         <!-- Hier moeten de categorien worden geladen, 

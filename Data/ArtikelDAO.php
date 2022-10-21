@@ -12,7 +12,7 @@ use \PDO;
 use Data\DBConfig;
 use Business\CategorieService;
 use Entities\Artikel;
-use Data\ArtikelDAO;
+
 
 
 
