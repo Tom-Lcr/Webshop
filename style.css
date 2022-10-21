@@ -257,7 +257,7 @@ select::-ms-expand {
     margin-bottom: 1em;
     padding-bottom: 1em;
     float: left;
-    height: 23em;
+    height: 22em;
 }
 
 .artikel img, .nietInVoorraad img {
@@ -269,7 +269,7 @@ select::-ms-expand {
 }
 
 .nietInVoorraad .winkelkarArtikelBtn{
-    
+
 }
 
 .winkelKarPerArtikelForm {
@@ -314,7 +314,7 @@ select::-ms-expand {
     margin-bottom: 1em;
     padding-bottom: 1em;
     float: left;
-    height: 23em;
+    height: 22em;
 }
 
 /*pagina teller*/
