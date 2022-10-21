@@ -31,15 +31,17 @@ declare(strict_types=1);
                     <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
                     hier moet de code komen die het aantal weergeeft -->
                     <?php 
-                     if (isset($_SESSION["winkelmand"])) {
+                    if (isset($_SESSION["aantalitems"])) {
+                        
                     ?>
-                    <span class='badge badge-warning' id='lblCartCount'> <?php print count($_SESSION["winkelmand"]); ?> </span>
-                    <?php 
-                     }else{
-                    ?>
-                    <span class='badge badge-warning' id='lblCartCount'> 0 </span>
+                     <?php // print count($_SESSION["winkelmand"]); ?> 
+                    <span class='badge badge-warning' id='lblCartCount'> <?php print $_SESSION["aantalitems"]; ?> </span>
                     <?php 
                      }
+                    ?>
+                  <!--  <span class='badge badge-warning' id='lblCartCount'> 0 </span> -->
+                    <?php 
+                     //}
                     ?>
                 </div>
             </nav>

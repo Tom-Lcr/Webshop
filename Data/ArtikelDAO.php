@@ -132,10 +132,10 @@ class ArtikelDAO
    public function getAantalZoekArtikelRijen(string $zoekterm, string $volgorde = "rating DESC, prijs DESC"): int
      { 
         
-        $sql = $this->metScores . "select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelenMetScores ORDER BY $volgorde where naam like '%:zoekterm%' ";
+        $sql = $this->metScores . "select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelenMetScores ORDER BY $volgorde where naam like '%m%' ";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
-        $stmt->bindValue(':zoekterm', $zoekterm);
+        //$stmt->bindValue(':zoekterm', $zoekterm);
         $stmt->execute();
         $aantalRijen = $stmt->rowCount();
 

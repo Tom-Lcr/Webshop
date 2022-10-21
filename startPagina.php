@@ -22,11 +22,15 @@ if (!isset($_SESSION["filter"])) {
 $_SESSION["filter"] = "default";
 }
 $error = "";
+if (!isset($_SESSION["aantalitems"])){
+    $_SESSION["aantalitems"] = 0;
+}
 if (isset($_GET["action"]) && $_GET["action"] == "voegToe") {
     $gekozenArtikel = $artikelSvc->getArtikelById((int)$_GET["id"]);
     if ($gekozenArtikel->getVoorraad() >= 1) {
     $winkelkarSvc = new WinkelkarService();
     $winkelkarArtikel = $winkelkarSvc->voegItemToe((int)$_GET["id"], (int)$_POST["aantalVanArtikel"]);
+    $_SESSION["aantalitems"] += $winkelkarArtikel->getAantal();
     $_SESSION["winkelmand"][] = serialize($winkelkarArtikel);
     }else{
         $error = "Dit product is niet in voorraad";
