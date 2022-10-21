@@ -132,7 +132,7 @@ declare(strict_types=1);
                                     }
                                 ?>
                             <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId()); ?>" class="winkelKarPerArtikelForm">
-                                <input type="number" name="aantalVanArtikel" id="aantalVanArtikel">
+                                <input type="number" name="aantalVanArtikel" id="aantalVanArtikel" min="1" required>
                                 <button type="submit" class="winkelkarArtikelBtn" name="btnWinkelKar"><img src="img/winkelkar.png" alt=""></button>
                             </form>
                         </article>
