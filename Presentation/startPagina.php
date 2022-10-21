@@ -125,6 +125,7 @@ declare(strict_types=1);
                             <img src="img/dummy.avif" alt="" class="productFoto">
                             <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
                             <p>€<?php print $artikel->getPrijs(); ?><p>
+                            <p><?php print ($artikel->getRating() == 0 ? "Geen rating" : "Rating:" . $artikel->getRating()); ?><p>    
                                 <?php if($inVoorraad){
                                     ?> <p class="pBeschikbaarheid">In voorraad</p> <?php }
                                     else{
