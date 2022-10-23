@@ -45,14 +45,11 @@ class ArtikelDAO
         return $rating;
     }
 
-    public function getAll(int $pagina = 1, int $aantalPerPagina = 20, string $volgorde = "rating DESC, prijs DESC"): array
+    public function getAll(int $pagina = 1, int $aantalPerPagina = 20, string $volgorde): array
     {
-        
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);        
         $statement = $dbh->prepare($this->metScores . "select * from artikelenMetScores ORDER BY $volgorde LIMIT ". ($pagina-1)*$aantalPerPagina . ", ". $aantalPerPagina);
-        
         //$statement->bindValue(":volgorde", $volgorde);
-        
         $statement->execute();
         $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);        
         $lijst = array();
@@ -90,9 +87,9 @@ class ArtikelDAO
 	    return $artikel;
     }
 
-    public function getAantalArtikelRijen(string $volgorde = "rating DESC, prijs DESC"): int
+    public function getAantalArtikelRijen(): int
     {
-        $sql = $this->metScores . "select * from artikelenMetScores ORDER BY $volgorde";
+        $sql = $this->metScores . "select * from artikelenMetScores";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $resultSet = $dbh->query($sql);
         $aantalRijen = $resultSet->rowCount();
@@ -107,10 +104,10 @@ class ArtikelDAO
     //$this->metScores . "select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelenMetScores ORDER BY $volgorde where naam like '%:zoekterm%' LIMIT ". ($pagina-1)*$aantalPerPagina . ", ". $aantalPerPagina
    
     public function zoekArtikelen(string $zoekterm, int $pagina = 1, int $aantalPerPagina = 20, string $volgorde = "rating DESC, prijs DESC"):? Array {
-        $sql = $this->metScores . "select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelenMetScores ORDER BY $volgorde where naam like '%:zoekterm%' LIMIT ". ($pagina-1)*$aantalPerPagina . ", ". $aantalPerPagina;
+        $sql = $this->metScores . "select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelenMetScores where naam like '%$zoekterm%' ORDER BY $volgorde  LIMIT ". ($pagina-1)*$aantalPerPagina . ", ". $aantalPerPagina;
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);  
         $stmt = $dbh->prepare($sql);
-        $stmt->execute(array(':zoekterm' => $zoekterm));
+        $stmt->execute();
         $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if (!$resultSet) {
             return null;
@@ -129,10 +126,10 @@ class ArtikelDAO
         }
     }
 
-   public function getAantalZoekArtikelRijen(string $zoekterm, string $volgorde = "rating DESC, prijs DESC"): int
+   public function getAantalZoekArtikelRijen(string $zoekterm): int
      { 
         
-        $sql = $this->metScores . "select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelenMetScores ORDER BY $volgorde where naam like '%m%' ";
+        $sql = $this->metScores . "select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd from artikelenMetScores where naam like '%$zoekterm%' ";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
         //$stmt->bindValue(':zoekterm', $zoekterm);

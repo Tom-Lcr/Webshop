@@ -18,7 +18,7 @@ use Entities\Artikel;
 
 
 $artikelSvc = new ArtikelService();
-if (!isset($_SESSION["filter"])) {
+if (!isset($filter)) {
 $_SESSION["filter"] = "default";
 }
 $error = "";
@@ -40,16 +40,29 @@ if (isset($_GET["action"]) && $_GET["action"] == "voegToe") {
 
 
 $aantalArtikelsPerPagina = 20;
-if ($_SESSION["filter"] = "default") {
+
+if (isset($_GET["action"]) && $_GET["action"] == "zoek") {
+    unset($_SESSION["sorteerOptie"]);
+    $_SESSION["filter"] = "zoek"; 
+    $_SESSION["zoekterm"] = $_POST["search"];
+}
+
+if (isset($_GET["action"]) && $_GET["action"] == "filter") {
+    unset($_SESSION["zoekterm"]);
+     $_SESSION["filter"] = "sorteerOpties";
+     $_SESSION["sorteerOptie"] = $_POST["sorteerOpties"];
+}
+
+if ($_SESSION["filter"] == "default" || $_SESSION["filter"] == "sorteerOpties") {
    $aantalRijen = $artikelSvc->getAantalArtikelRijen();
    $aantalPaginas = ceil($aantalRijen / $aantalArtikelsPerPagina);
 }
 
-if (isset($_GET["action"]) && $_GET["action"] == "zoek") {
-    $_SESSION["filter"] = "zoek"; 
-    $aantalRijen = $artikelSvc->getAantalZoekArtikelRijen($_POST["search"]);
+if(isset($_SESSION["zoekterm"])) {
+    $aantalRijen = $artikelSvc->getAantalZoekArtikelRijen($_SESSION["zoekterm"]);
     $aantalPaginas = ceil($aantalRijen / $aantalArtikelsPerPagina);
 }
+
 
 if (isset($_GET["page"])) {
     $pagina = $_GET["page"];
@@ -62,19 +75,17 @@ if (isset($_GET["page"])) {
     $pagina = 1;         
     }
 
-if (isset($_GET["action"]) && $_GET["action"] == "filter") {
-     $artikelSvc->getArtikelOverzicht((int) $pagina, (int) $aantalArtikelsPerPagina, $_POST["sorteerOpties"]);
-}    
- 
-if ($_SESSION["filter"] = "default") {
-   $artikelLijst = $artikelSvc->getArtikelOverzicht((int) $pagina, (int) $aantalArtikelsPerPagina);    
-}             
+if ($_SESSION["filter"] == "default") {
+   $artikelLijst = $artikelSvc->getArtikelOverzicht((int) $pagina, (int) $aantalArtikelsPerPagina, "rating DESC, prijs DESC");    
+}  
 
-if ($_SESSION["filter"] = "zoek" && isset($_POST["search"])) {
-   
-   $artikelLijst = $artikelSvc->zoekArtikelen($_POST["search"], (int) $pagina, (int) $aantalArtikelsPerPagina);
+if(isset($_SESSION["sorteerOptie"])) {
+    $artikelLijst = $artikelSvc->getArtikelOverzicht((int) $pagina, (int) $aantalArtikelsPerPagina, $_SESSION["sorteerOptie"]);
 }
 
+if (isset($_SESSION["zoekterm"])) {
+    $artikelLijst = $artikelSvc->zoekArtikelen($_SESSION["zoekterm"], (int) $pagina, (int) $aantalArtikelsPerPagina);
+}
 
 
 

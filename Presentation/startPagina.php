@@ -64,15 +64,15 @@ declare(strict_types=1);
         <div class="container clearFix">
 
             <aside class="filterOpties">
-                <form action="./startPagina.php?action=filter" method="post" name="filter">
+                <form action="./startPagina.php?action=filter" method="post">
                     <h2>Opties</h2>
                     <section>
                         <h3>Sorteren op:</h3>
-                        <select name="sorteerOpties" id="" class="sorteerOpties">
-                            <option value="">Waardering - hoog</option>
-                            <option value="">Waardering - laag</option>
-                            <option value="prijs DESC">Prijs - hoog</option>
-                            <option value="prijs ASC">Prijs - laag</option>
+                        <select name="sorteerOpties" class="sorteerOpties">
+                            <option value="rating DESC, prijs DESC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "rating DESC, prijs DESC") { print "selected"; } ?>>Waardering - hoog</option>
+                            <option value="rating ASC, prijs DESC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "rating ASC, prijs DESC") { print "selected"; } ?>>Waardering - laag</option>
+                            <option value="prijs DESC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "prijs DESC") { print "selected"; } ?>>Prijs - hoog</option>
+                            <option value="prijs ASC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "prijs ASC") { print "selected"; } ?>>Prijs - laag</option>
                         </select>
                         <h3>Categorie:</h3>
                         <!-- Hier moeten de categorien worden geladen, 
@@ -122,7 +122,8 @@ declare(strict_types=1);
                         }
                     ?>
                         <article class="<?php if(!$inVoorraad) {echo 'nietInVoorraad';}else{echo 'artikel';} ?>">
-                            <img src="img/dummy.avif" alt="" class="productFoto">
+                          <a href="./artikelPaginaController.php?productId=<?php print($artikel->getArtikelId()); ?>"> 
+                          <img src="img/dummy.avif" alt="" class="productFoto"></a>
                             <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
                             <p>€<?php print $artikel->getPrijs(); ?><p>
                             <p><?php print ($artikel->getRating() == 0 ? "Geen rating" : "Rating:" . $artikel->getRating()); ?><p>    

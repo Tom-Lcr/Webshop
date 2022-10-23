@@ -18,21 +18,12 @@ class ArtikelService {
         return $rating;
     }
 
-    public function getArtikelOverzicht(int $waarde1, int $waarde2) : array {
+    public function getArtikelOverzicht(int $waarde1, int $waarde2, string $volgorde) : array {
         $artikelDAO = new ArtikelDAO();
-        $lijst = $artikelDAO->getAll((int) $waarde1, (int) $waarde2);
+        $lijst = $artikelDAO->getAll((int) $waarde1, (int) $waarde2, $volgorde);
         return $lijst;
     }
     
-    public function getArtikelOverzicht2(int $waarde1, int $waarde2) : array {
-        $artikelDAO = new ArtikelDAO();
-        $lijst = $artikelDAO->getAllArtikelen();
-        $lijstgedeelte = array();
-        for ($teller = $waarde1 + 1; $teller <= $waarde1 + $waarde2 && $teller < count($lijst); $teller++) {
-            array_push($lijstgedeelte, $lijst[$teller]);
-        }
-        return $lijstgedeelte;
-    }
 
     public function getAantalArtikelRijen() : int {
         $artikelDAO = new ArtikelDAO();
