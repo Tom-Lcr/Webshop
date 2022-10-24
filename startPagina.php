@@ -6,30 +6,64 @@ spl_autoload_register();
 
 session_start();
 
-/*Tom: Ik wist voor de controller uiteraard nog niet wat we hier exact gaan nodig hebben
-dus er is een lijst gegenereerd van de artikelen door islam en ook een mogelijkheid van om van elk
-artikel de score te weten te komen eventueel om ze te rangschikken onderaan, vandaar de foreach.*/
+/*Tom: Hieronder is een lijst gegenereerd van de artikelen door islam met een functie van mij erin 
+om de rating toe te voegen daaronder ook een foreach om artikel objecten te genereren voor moesten we
+die nodig hebben.*/
 
 use Business\ArtikelService;
+use Business\CategorieService;
+use Business\WinkelkarService;
 use Entities\Artikel;
 //Tom: use Entities\Winkelkar; Kan uit commentaar wanneer we de winkelkar nodig hebben
 
 
 $artikelSvc = new ArtikelService();
+if (!isset($filter)) {
+$_SESSION["filter"] = "default";
+}
 $error = "";
+if (!isset($_SESSION["aantalitems"])){
+    $_SESSION["aantalitems"] = 0;
+}
 if (isset($_GET["action"]) && $_GET["action"] == "voegToe") {
     $gekozenArtikel = $artikelSvc->getArtikelById((int)$_GET["id"]);
     if ($gekozenArtikel->getVoorraad() >= 1) {
     $winkelkarSvc = new WinkelkarService();
     $winkelkarArtikel = $winkelkarSvc->voegItemToe((int)$_GET["id"], (int)$_POST["aantalVanArtikel"]);
+    $_SESSION["aantalitems"] += $winkelkarArtikel->getAantal();
     $_SESSION["winkelmand"][] = serialize($winkelkarArtikel);
     }else{
         $error = "Dit product is niet in voorraad";
     }
 }
+
+
+
 $aantalArtikelsPerPagina = 20;
-$aantalRijen = $artikelSvc->getAantalArtikelRijen();
-$aantalPaginas = ceil($aantalRijen / $aantalArtikelsPerPagina);
+
+if (isset($_GET["action"]) && $_GET["action"] == "zoek") {
+    unset($_SESSION["sorteerOptie"]);
+    $_SESSION["filter"] = "zoek"; 
+    $_SESSION["zoekterm"] = $_POST["search"];
+}
+
+if (isset($_GET["action"]) && $_GET["action"] == "filter") {
+    unset($_SESSION["zoekterm"]);
+     $_SESSION["filter"] = "sorteerOpties";
+     $_SESSION["sorteerOptie"] = $_POST["sorteerOpties"];
+}
+
+if ($_SESSION["filter"] == "default" || $_SESSION["filter"] == "sorteerOpties") {
+   $aantalRijen = $artikelSvc->getAantalArtikelRijen();
+   $aantalPaginas = ceil($aantalRijen / $aantalArtikelsPerPagina);
+}
+
+if(isset($_SESSION["zoekterm"])) {
+    $aantalRijen = $artikelSvc->getAantalZoekArtikelRijen($_SESSION["zoekterm"]);
+    $aantalPaginas = ceil($aantalRijen / $aantalArtikelsPerPagina);
+}
+
+
 if (isset($_GET["page"])) {
     $pagina = $_GET["page"];
     if ($pagina < 1) { 
@@ -40,16 +74,20 @@ if (isset($_GET["page"])) {
 	} else {
     $pagina = 1;         
     }
-$eerstePaginaArtikel = ($pagina-1)*$aantalArtikelsPerPagina;
-$artikelLijst = $artikelSvc->getArtikelOverzicht2((int) $eerstePaginaArtikel, (int) $aantalArtikelsPerPagina);
 
-foreach ($artikelLijst as $artikel) { //elk $artikel = een object $artikel
-    //Hieronder ga ik voor elk artikel het artikelId gaan halen
-               $artikelId = $artikel->getArtikelId();
-               $rating = $artikelSvc->getRating($artikelId);
-               //voor elk artikelId wordt in de database gezocht naar een score
-               //indien score onbestaande is wordt een 0 terug gegeven
-               //Op basis van de scores die eruit gehaald worden zou dan eventueel gerangschikt kunnen worden in de presentation
-            }
+if ($_SESSION["filter"] == "default") {
+   $artikelLijst = $artikelSvc->getArtikelOverzicht((int) $pagina, (int) $aantalArtikelsPerPagina, "rating DESC, prijs DESC");    
+}  
+
+if(isset($_SESSION["sorteerOptie"])) {
+    $artikelLijst = $artikelSvc->getArtikelOverzicht((int) $pagina, (int) $aantalArtikelsPerPagina, $_SESSION["sorteerOptie"]);
+}
+
+if (isset($_SESSION["zoekterm"])) {
+    $artikelLijst = $artikelSvc->zoekArtikelen($_SESSION["zoekterm"], (int) $pagina, (int) $aantalArtikelsPerPagina);
+}
+
+
+
 
 include("Presentation/startPagina.php");
