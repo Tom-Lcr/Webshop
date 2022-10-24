@@ -33,10 +33,27 @@ declare(strict_types=1);
                 </div>
             </nav>
         </div>
-
     </header>
 
-    <section class="zoekSectie">
+    <div class="mobile-container">
+
+        <!-- Top Navigation Menu -->
+        <div class="topnav">
+            <a href="#home" class="active"><img src="img/logo_prularia_wit.png" alt=""></a>
+            <div id="myLinks">
+                <a href="#">Profiel</a>
+                <a href="">Mijn bestellingen</a>
+                <a href="#">Winkelkar</a>
+            </div>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <!-- End smartphone / tablet look -->
+    </div>
+
+
+    <section class="zoekSectie" id="zoekSectie">
         <div class="container">
             <div class="zoeken">
                 <form action="" method="post" id="zoekForm">
@@ -47,10 +64,24 @@ declare(strict_types=1);
         </div>
     </section>
 
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myLinks");
+            var zoek = document.getElementById("zoekSectie");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+                zoek.style.display = "flex"
+                
+            } else {
+                x.style.display = "block";
+                zoek.style.display = "none"
+            }
+        }
+    </script>
+
+
     <main class="clearFix">
-
         <div class="container clearFix">
-
             <aside class="filterOpties">
                 <form action="" method="post" name="filter">
                     <h2>Opties</h2>
@@ -101,20 +132,25 @@ declare(strict_types=1);
                             $inVoorraad = false;
                         }
                     ?>
-                        <article class="<?php if(!$inVoorraad) {echo 'nietInVoorraad';}else{echo 'artikel';} ?>">
+                        <article class="<?php if (!$inVoorraad) {
+                                            echo 'nietInVoorraad';
+                                        } else {
+                                            echo 'artikel';
+                                        } ?>">
                             <img src="img/dummy.avif" alt="" class="productFoto">
                             <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
-                            <p>€<?php print $artikel->getPrijs(); ?><p>
-                                <?php if($inVoorraad){
-                                    ?> <p class="pBeschikbaarheid">In voorraad</p> <?php }
-                                    else{
-                                        ?> <p class="pBeschikbaarheid">Niet Beschikbaar</p><?php
-                                    }
+                            <p>€<?php print $artikel->getPrijs(); ?>
+                            <p>
+                                <?php if ($inVoorraad) {
                                 ?>
-                            <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId()); ?>" class="winkelKarPerArtikelForm">
-                                <input type="number" name="aantalVanArtikel" id="aantalVanArtikel">
-                                <button type="submit" class="winkelkarArtikelBtn" name="btnWinkelKar"><img src="img/winkelkar.png" alt=""></button>
-                            </form>
+                            <p class="pBeschikbaarheid">In voorraad</p> <?php } else {
+                                                                        ?> <p class="pBeschikbaarheid">Niet Beschikbaar</p><?php
+                                                                                                                            }
+                                                                                                                                ?>
+                        <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId()); ?>" class="winkelKarPerArtikelForm">
+                            <input type="number" name="aantalVanArtikel" id="aantalVanArtikel">
+                            <button type="submit" class="winkelkarArtikelBtn" name="btnWinkelKar"><img src="img/winkelkar.png" alt=""></button>
+                        </form>
                         </article>
 
                     <?php
