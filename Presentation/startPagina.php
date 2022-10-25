@@ -11,8 +11,7 @@ declare(strict_types=1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
-    <script src="../script.js"></script>
-
+    <script src="script.js" defer></script>
     <title>Prularia</title>
 </head>
 
@@ -30,7 +29,19 @@ declare(strict_types=1);
                     <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
                     <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
                     hier moet de code komen die het aantal weergeeft -->
-                    <span class='badge badge-warning' id='lblCartCount'> 5 </span>
+                    <?php 
+                    if (isset($_SESSION["aantalitems"])) {
+                        
+                    ?>
+                     <?php // print count($_SESSION["winkelmand"]); ?> 
+                    <span class='badge badge-warning' id='lblCartCount'> <?php print $_SESSION["aantalitems"]; ?> </span>
+                    <?php 
+                     }
+                    ?>
+                  <!--  <span class='badge badge-warning' id='lblCartCount'> 0 </span> -->
+                    <?php 
+                     //}
+                    ?>
                 </div>
             </nav>
         </div>
@@ -40,7 +51,7 @@ declare(strict_types=1);
     <section class="zoekSectie">
         <div class="container">
             <div class="zoeken">
-                <form action="startpagina.php?action=zoek" method="post" id="zoekForm">
+                <form action="./startpagina.php?action=zoek" method="post" id="zoekForm">
                     <input type="text" placeholder="Zoeken.." name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
@@ -53,15 +64,15 @@ declare(strict_types=1);
         <div class="container clearFix">
 
             <aside class="filterOpties">
-                <form action="" method="post" name="filter">
+                <form action="./startPagina.php?action=filter" method="post">
                     <h2>Opties</h2>
                     <section>
                         <h3>Sorteren op:</h3>
-                        <select name="sorteerOpties" id="" class="sorteerOpties">
-                            <option value="">Waardering - hoog</option>
-                            <option value="">Waardering - laag</option>
-                            <option value="">Prijs - hoog</option>
-                            <option value="">Prijs - laag</option>
+                        <select name="sorteerOpties" class="sorteerOpties">
+                            <option value="rating DESC, prijs DESC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "rating DESC, prijs DESC") { print "selected"; } ?>>Waardering - hoog</option>
+                            <option value="rating ASC, prijs DESC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "rating ASC, prijs DESC") { print "selected"; } ?>>Waardering - laag</option>
+                            <option value="prijs DESC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "prijs DESC") { print "selected"; } ?>>Prijs - hoog</option>
+                            <option value="prijs ASC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "prijs ASC") { print "selected"; } ?>>Prijs - laag</option>
                         </select>
                         <h3>Categorie:</h3>
                         <!-- Hier moeten de categorien worden geladen, 
@@ -90,28 +101,42 @@ declare(strict_types=1);
             </aside>
 
             <section class="artikelOverzicht">
+            <?php
+          if($error){
+        ?>                  
+                    <p class="text-danger"><?php echo $error; ?></p>
+
+        <?php
+          }
+        ?> 
                 <h1>Aanbevolen producten</h1>
                 <!-- placeholders tijdelijk-->
                 <section class="producten clearFix">
                     <?php
                     $teller = 0;
                     foreach ($artikelLijst as $artikel) {
-                        $teller++;
+                        if ($artikel->isInVoorraad()) {
+                            $inVoorraad = true;
+                        } else {
+                            $inVoorraad = false;
+                        }
                     ?>
-                        <article class="artikel">
-                            <img src="img/dummy.avif" alt="" class="productFoto">
-                            <h4 id="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
-                            <p>€<?php print $artikel->getPrijs(); ?>
-                            <p>
-                                <?php if ($artikel->isInVoorraad()) { ?>
-                            <p class="pBeschikbaarheid">In voorraad</p>
-                        <?php } else { ?>
-                            <p class="pBeschikbaarheid">Niet beschikbaar</p>
-                        <?php } ?>
-                        <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId()); ?>" class="winkelKarPerArtikelForm">
-                            <input type="number" name="aantalVanArtikel" id="aantalVanArtikel">
-                            <button type="submit" class="winkelkarArtikelBtn"><img src="img/winkelkar.png" alt=""></button>
-                        </form>
+                        <article class="<?php if(!$inVoorraad) {echo 'nietInVoorraad';}else{echo 'artikel';} ?>">
+                          <a href="./artikelPaginaController.php?productId=<?php print($artikel->getArtikelId()); ?>"> 
+                          <img src="img/dummy.avif" alt="" class="productFoto"></a>
+                            <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
+                            <p>€<?php print $artikel->getPrijs(); ?><p>
+                            <p><?php print ($artikel->getRating() == 0 ? "Geen rating" : "Rating:" . $artikel->getRating()); ?><p>    
+                                <?php if($inVoorraad){
+                                    ?> <p class="pBeschikbaarheid">In voorraad</p> <?php }
+                                    else{
+                                        ?> <p class="pBeschikbaarheid">Niet Beschikbaar</p><?php
+                                    }
+                                ?>
+                            <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId()); ?>" class="winkelKarPerArtikelForm">
+                                <input type="number" name="aantalVanArtikel" id="aantalVanArtikel" min="1" required>
+                                <button type="submit" class="winkelkarArtikelBtn" name="btnWinkelKar"><img src="img/winkelkar.png" alt=""></button>
+                            </form>
                         </article>
 
                     <?php

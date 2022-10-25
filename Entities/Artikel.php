@@ -16,12 +16,21 @@ class Artikel
     private int $gewichtInGram;
     private int $voorraad;
     private int $levertijd;
+<<<<<<< HEAD
 
     private float $rating;
 
 
     public function __construct(int $artikelId, string $ean, string $naam, string $beschrijving, 
     float $prijs, int $gewichtInGram, int $voorraad, int $levertijd, float $rating = null)
+=======
+    
+    private float $rating;
+
+
+    public function __construct(int $artikelId, string $ean, string $naam, string $beschrijving, float $prijs, int $gewichtInGram, 
+    int $voorraad, int $levertijd)
+>>>>>>> main
     {
         $this->artikelId = $artikelId;
         $this->ean = $ean;
@@ -31,7 +40,7 @@ class Artikel
         $this->gewichtInGram = $gewichtInGram;
         $this->voorraad = $voorraad;
         $this->levertijd = $levertijd;
-        $this->rating = $rating;
+        
     }
     public function getArtikelId(): int
     {
@@ -71,9 +80,9 @@ class Artikel
         return $this->rating;
     }
 
-    public function setRating($rating): float
+    public function setRating(float $rating)
     {
-        return $this->rating = $rating;
+         $this->rating = $rating;
     }
 
     public function isInVoorraad(): bool

@@ -18,11 +18,12 @@ class ArtikelService {
         return $rating;
     }
 
-    public function getArtikelOverzicht(int $waarde1, int $waarde2) : array {
+    public function getArtikelOverzicht(int $waarde1, int $waarde2, string $volgorde) : array {
         $artikelDAO = new ArtikelDAO();
-        $lijst = $artikelDAO->getAll((int) $waarde1, (int) $waarde2);
+        $lijst = $artikelDAO->getAll((int) $waarde1, (int) $waarde2, $volgorde);
         return $lijst;
-    }	
+    }
+    
 
     public function getAantalArtikelRijen() : int {
         $artikelDAO = new ArtikelDAO();
@@ -30,26 +31,23 @@ class ArtikelService {
         return $aantalArtikelRijen;
     }
 
-    public function zoekArtikelen(string $zoekterm) :? array {
+    public function zoekArtikelen($zoekterm, int $waarde1, int $waarde2) :? array {
         $artikelDAO = new ArtikelDAO();
-        $gevondenArtikelen = $artikelDAO->zoekArtikelen($zoekterm);
+        $gevondenArtikelen = $artikelDAO->zoekArtikelen($zoekterm, (int) $waarde1, (int) $waarde2);
         return $gevondenArtikelen;
     }
-    
 
-//geeft alle artikels die tot een categorie behoren (inclusief de subcategorieen), voor presentatie wanneer op een bepaalde categorie gefilterds is
-    public function getArtikelsByCategorieId(int $categorieId): array
+    public function getArtikelById(int $artikelId): ?Artikel
     {
-        return (new ArtikelDAO)->getArtikelsByCategorieID($categorieId);
-    }
-
-    public function getArtikel(int $artikelId) : Artikel {
         $artikelDAO = new ArtikelDAO();
-        $artikel = $artikelDAO->getArtikelById($artikelId);
-        return $artikel;
+        return $artikelDAO->getArtikelById((int) $artikelId);
     }
-
     
+    public function getAantalZoekArtikelRijen(string $zoekterm) : int {
+        $artikelDAO = new ArtikelDAO();
+        $aantalArtikelRijen = $artikelDAO->getAantalZoekArtikelRijen($zoekterm);
+        return $aantalArtikelRijen;
+    }
          
 } 
 
