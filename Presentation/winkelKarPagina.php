@@ -49,7 +49,7 @@ declare(strict_types=1);
     </header>
 
     <main>
-        <div class="container winkelkarpagina">
+        <div class="container paginaSmal">
             <div class="wrapper">
                 <h2>Winkelkar</h2>
 

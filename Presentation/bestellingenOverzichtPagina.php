@@ -46,45 +46,12 @@ declare(strict_types=1);
                 </div>
             </nav>
         </div>
-
     </header>
 
     <main>
         <div class="container paginaSmal">
-            <h2>Bestelling plaatsen</h2>
-            <section class="afrekenDetails">
-                <section class="adres">
-                    <h4>Leveringsadres</h4>
-                    <p>August De Keyser</p>
-                    <p>Romestraat 1</p>
-                    <p>8400 Oostende</p>
-                </section>
-                <br>
-                <form action="" name="afrekenForml">
-                    <section class="betaalmethode">
-                        <h4> Selecteer een betaalmethode</h4>
-                        <br>
-                        <select name="betaalMethode" id="">
-                            <option value="overschrijving">Overschrijving</option>
-                            <option value="kredietkaart">Kredietkaart</option>
-                        </select>
-                    </section>
-                    <section class="promoCodes">
-                        <h4>Promocode invoeren</h4>
-                        <br>
-                        <input type="text" name="promo" id="promo">
-                        <input type="button" value="Controleren" id="promoCheck">
-                    </section>
-                    <input type="submit" value="Bestellen" class="button">
-                </form>
-            </section>
+            
 
-            <aside class="totaalWinkelkar">
-                <h4>Overzicht</h4>
-                <p>artikelen (3)</p>
-                <p class="totaal">Totaalprijs</p>
-                <p class="totaalPrijs">€189,99</p>
-            </aside>
         </div>
     </main>
     <footer class="cf">
@@ -92,4 +59,5 @@ declare(strict_types=1);
             <p>Prularia</p>
         </div>
     </footer>
+
 </body>
