@@ -260,17 +260,16 @@ select::-ms-expand {
     height: 22em;
 }
 
-.artikel img, .nietInVoorraad img {
+.artikel img,
+.nietInVoorraad img {
     width: 80%;
 }
 
-.nietInVoorraad img{
+.nietInVoorraad img {
     filter: grayscale(100%);
 }
 
-.nietInVoorraad .winkelkarArtikelBtn{
-
-}
+.nietInVoorraad .winkelkarArtikelBtn {}
 
 .winkelKarPerArtikelForm {
     width: 100%;
@@ -441,9 +440,9 @@ input[type=button] {
     font-weight: bold;
 }
 
-/*++++++++++++++++++++++++Register+++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++ Register +++++++++++++++++++++++++++++*/
 
-.register{
+.register {
     padding: 0;
     width: 8em;
     height: 3em;
@@ -451,16 +450,19 @@ input[type=button] {
     font-size: initial;
 }
 
-.registerForm{
+.registerForm {
     width: 60%;
     margin: 0 auto;
 }
 
-.registerForm input, .registerForm h2{
+.registerForm input,
+.registerForm h2 {
     margin-bottom: 1em;
 }
 
-.registerForm input[type=text], .registerForm input[type=email], .registerForm input[type=number]{
+.registerForm input[type=text],
+.registerForm input[type=email],
+.registerForm input[type=number] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -468,7 +470,96 @@ input[type=button] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-  }
+}
+
+/*+++++++++++++++++++++++++++++++ Winkelkar +++++++++++++++++++++++++++++++++*/
+.winkelkarpagina{
+    width: 60%;
+    margin: 0 auto;
+}
+
+.winkelkarInhoud .button{
+    width: 100%;
+}
+
+.winkelkarInhoud{
+    width: 70%;
+    float: left;
+    margin-right: 1%;
+}
+
+.winkelkarInhoud h2{
+    margin-bottom: 1em;
+}
+
+.winkelkarLijn{
+    margin-top: 1em;
+    width: 100%;
+    height: 10em;
+    border: 2px solid #e6e6e8 ;
+}
+
+.winkelkarLijn h4{
+    margin-top: 1em;
+}
+
+.winkelkarLijn img{
+    float: left;
+    margin-right: 2em;
+    height: 100%;
+}
+
+.winkelkarLijn .delete{
+    width: 3em;
+    background-color: #ABD7A8;
+    border: none;
+    height: 3em;
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+.winkelkarLijn .aantalInWinkelkar{
+    height: 3em;
+}
+
+.delete:hover {
+    background: #ff0000;
+    transition: 0.3s;
+    transition-timing-function: ease;
+    cursor: pointer;
+}
+
+.details{
+    float: left;
+}
+
+.verderWinkelen{
+    display: inline-block;
+    margin-top: 1em;
+    text-decoration: none;
+    color: #ABD7A8;
+    border: 2px solid #ABD7A8;
+    padding: 1em 3em;
+    height: 3em;
+}
+
+.totaalWinkelkar{
+    width: 29%;
+    float: left;
+    margin-top: 1em;
+    border: 2px solid #e6e6e8 ;
+    padding-left: 1em;
+    padding-top: 1em;
+}
+
+.totaalWinkelkar h4{
+   margin-bottom: 1em;
+}
+
+.totaal, .totaalPrijs{
+    font-weight: bold;
+}
+
 
 
 /*clear*/

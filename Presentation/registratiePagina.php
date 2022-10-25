@@ -86,4 +86,9 @@ declare(strict_types=1);
             </section>
         </div>
     </main>
+    <footer class="cf">
+        <div class="container">
+            <p>Prularia</p>
+        </div>
+    </footer>
 </body>
