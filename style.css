@@ -560,7 +560,55 @@ input[type=button] {
     font-weight: bold;
 }
 
+/*++++++++++++++++++++++++++++++++ AfrekenPagina +++++++++++++++++++++++++++++++++++*/
 
+.afrekenPagina{
+    width: 60%;
+    margin: 0 auto;
+}
+
+.adres{
+    margin-top: 1em;
+}
+
+.adres p{margin: 0;}
+
+.afrekenDetails{
+    margin-top: 1em;
+    float: left;
+    width: 70%;
+    margin-right: 1%;
+    border: 2px solid #e6e6e8 ;
+    padding-left: 1em;
+}
+
+#promo{
+    width: 10em;
+    height: 3em;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#promoCheck{
+    height: 3em;
+    width: 8em;
+    color: white;
+    background-color: #ABD7A8;
+    border: none;
+    transition: 0.3s;
+    transition-timing-function: ease;
+}
+
+#promoCheck:hover {
+    color: white;
+    background: #717171;
+    transition: 0.3s;
+    transition-timing-function: ease;
+    cursor: pointer;
+}
 
 /*clear*/
 
