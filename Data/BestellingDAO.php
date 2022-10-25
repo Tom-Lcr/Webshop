@@ -22,7 +22,7 @@ class BestellingDAO {
         $lijst = array();
         foreach($resultSet as $rij){
             $bestellijndao = new BestellijnDAO;
-            $bestellijnen = $bestellijndao->getBestellijnenByBestelId((int)$rij["bestelId"]); //nog schrijven!!
+            $bestellijnen = $bestellijndao->getBestellijnenByBestelId((int)$rij["bestelId"]);
             $adresdao = new AdresDAO;
             $facturatieadres = $adresdao->getAdresByAdresId((int)$rij["facturatieAdresId"]);//nog schrijven!!
             $leveringadres = $adresdao->getAdresByAdresId((int)$rij["leveringAdresId"]); //nog schrijven!!
