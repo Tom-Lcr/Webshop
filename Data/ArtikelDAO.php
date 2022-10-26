@@ -23,6 +23,7 @@ class ArtikelDAO
 
     private string $metScores = "WITH scores(rating, id) AS (SELECT AVG(score), artikelId FROM klantenreviews inner JOIN bestellijnen on klantenreviews.bestellijnId = bestellijnen.bestellijnId GROUP BY artikelId), 
     artikelenMetScores AS (SELECT artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd, rating FROM artikelen LEFT OUTER JOIN scores on artikelen.artikelId = scores.id)";
+    
     public function metPaginas(string $sql, int $pagina, int $aantal = 20): string
     {
         return $sql . " LIMIT " . (int) ($pagina - 1) * $aantal . ", " . $aantal;

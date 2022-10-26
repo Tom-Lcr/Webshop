@@ -24,23 +24,34 @@ declare(strict_types=1);
                 <div class="menuOpties">
                     <div class="profielMenu">
                         <a href="#"><img src="img/profiel.png" alt="profiel"></a>
-                        <a href="#" id="menu">MENU</a>
+                        <div class="dropdown" id="myDropdown">
+                            <a href="#" id="menu">MENU</a>
+                            <div class="dropdown-content" >
+                                <a href="#">Mijn profiel</a>
+                
+                                <a href="./bestellingenOverzichtPaginaController.php">Mijn bestellingen</a>
+            
+                                <a href="./winkelKarPaginaController.php">Winkelkar</a>
+                            </div>
+                        </div>
+
                     </div>
                     <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
                     <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
                     hier moet de code komen die het aantal weergeeft -->
-                    <?php 
+                    <?php
                     if (isset($_SESSION["aantalitems"])) {
-                        
+
                     ?>
-                     <?php // print count($_SESSION["winkelmand"]); ?> 
-                    <span class='badge badge-warning' id='lblCartCount'> <?php print $_SESSION["aantalitems"]; ?> </span>
-                    <?php 
-                     }
+                        <?php // print count($_SESSION["winkelmand"]); 
+                        ?>
+                        <span class='badge badge-warning' id='lblCartCount'> <?php print $_SESSION["aantalitems"]; ?> </span>
+                    <?php
+                    }
                     ?>
-                  <!--  <span class='badge badge-warning' id='lblCartCount'> 0 </span> -->
-                    <?php 
-                     //}
+                    <!--  <span class='badge badge-warning' id='lblCartCount'> 0 </span> -->
+                    <?php
+                    //}
                     ?>
                 </div>
             </nav>
@@ -69,10 +80,18 @@ declare(strict_types=1);
                     <section>
                         <h3>Sorteren op:</h3>
                         <select name="sorteerOpties" class="sorteerOpties">
-                            <option value="rating DESC, prijs DESC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "rating DESC, prijs DESC") { print "selected"; } ?>>Waardering - hoog</option>
-                            <option value="rating ASC, prijs DESC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "rating ASC, prijs DESC") { print "selected"; } ?>>Waardering - laag</option>
-                            <option value="prijs DESC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "prijs DESC") { print "selected"; } ?>>Prijs - hoog</option>
-                            <option value="prijs ASC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "prijs ASC") { print "selected"; } ?>>Prijs - laag</option>
+                            <option value="rating DESC, prijs DESC" <?php if (isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "rating DESC, prijs DESC") {
+                                                                        print "selected";
+                                                                    } ?>>Waardering - hoog</option>
+                            <option value="rating ASC, prijs DESC" <?php if (isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "rating ASC, prijs DESC") {
+                                                                        print "selected";
+                                                                    } ?>>Waardering - laag</option>
+                            <option value="prijs DESC" <?php if (isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "prijs DESC") {
+                                                            print "selected";
+                                                        } ?>>Prijs - hoog</option>
+                            <option value="prijs ASC" <?php if (isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "prijs ASC") {
+                                                            print "selected";
+                                                        } ?>>Prijs - laag</option>
                         </select>
                         <h3>Categorie:</h3>
                         <!-- Hier moeten de categorien worden geladen, 
@@ -101,14 +120,14 @@ declare(strict_types=1);
             </aside>
 
             <section class="artikelOverzicht">
-            <?php
-          if($error){
-        ?>                  
+                <?php
+                if ($error) {
+                ?>
                     <p class="text-danger"><?php echo $error; ?></p>
 
-        <?php
-          }
-        ?> 
+                <?php
+                }
+                ?>
                 <h1>Aanbevolen producten</h1>
                 <!-- placeholders tijdelijk-->
                 <section class="producten clearFix">
@@ -121,22 +140,28 @@ declare(strict_types=1);
                             $inVoorraad = false;
                         }
                     ?>
-                        <article class="<?php if(!$inVoorraad) {echo 'nietInVoorraad';}else{echo 'artikel';} ?>">
-                          <a href="./artikelPaginaController.php?productId=<?php print($artikel->getArtikelId()); ?>"> 
-                          <img src="img/dummy.avif" alt="" class="productFoto"></a>
+                        <article class="<?php if (!$inVoorraad) {
+                                            echo 'nietInVoorraad';
+                                        } else {
+                                            echo 'artikel';
+                                        } ?>">
+                            <a href="./artikelPaginaController.php?productId=<?php print($artikel->getArtikelId()); ?>">
+                                <img src="img/dummy.avif" alt="" class="productFoto"></a>
                             <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
-                            <p>€<?php print $artikel->getPrijs(); ?><p>
-                            <p><?php print ($artikel->getRating() == 0 ? "Geen rating" : "Rating:" . $artikel->getRating()); ?><p>    
-                                <?php if($inVoorraad){
-                                    ?> <p class="pBeschikbaarheid">In voorraad</p> <?php }
-                                    else{
-                                        ?> <p class="pBeschikbaarheid">Niet Beschikbaar</p><?php
-                                    }
+                            <p>€<?php print $artikel->getPrijs(); ?>
+                            <p>
+                            <p><?php print($artikel->getRating() == 0 ? "Geen rating" : "Rating:" . $artikel->getRating()); ?>
+                            <p>
+                                <?php if ($inVoorraad) {
                                 ?>
-                            <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId()); ?>" class="winkelKarPerArtikelForm">
-                                <input type="number" name="aantalVanArtikel" id="aantalVanArtikel" min="1" required>
-                                <button type="submit" class="winkelkarArtikelBtn" name="btnWinkelKar"><img src="img/winkelkar.png" alt=""></button>
-                            </form>
+                            <p class="pBeschikbaarheid">In voorraad</p> <?php } else {
+                                                                        ?> <p class="pBeschikbaarheid">Niet Beschikbaar</p><?php
+                                                                                                                        }
+                                                                                                                            ?>
+                        <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId()); ?>" class="winkelKarPerArtikelForm">
+                            <input type="number" name="aantalVanArtikel" id="aantalVanArtikel" min="1" required>
+                            <button type="submit" class="winkelkarArtikelBtn" name="btnWinkelKar"><img src="img/winkelkar.png" alt=""></button>
+                        </form>
                         </article>
 
                     <?php

@@ -90,7 +90,10 @@ if (isset($_SESSION["zoekterm"])) {
 
 
 
+<<<<<<< HEAD
   
 
   
+=======
+>>>>>>> a228ac0260054cfe94db7737862107f05e07c3f4
 include("Presentation/startPagina.php");

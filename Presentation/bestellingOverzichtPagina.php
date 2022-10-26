@@ -54,10 +54,10 @@ declare(strict_types=1);
                             <?php
                               foreach ($bestellijnen as $bestellijn) {
                              ?>
-                             <p><?php print $bestellijn->getAantalBesteld(); ?>x 
-                             <?php print $artikelSvc->getArtikelById($bestellijn->getArtikelId())->getNaam(); ?></p>
+                            <p><?php print $bestellijn->getAantalBesteld(); ?>x 
+                            <?php print $artikelSvc->getArtikelById($bestellijn->getArtikelId())->getNaam(); ?></p>
 
-                             <?php } ?>
+                            <?php } ?>
                             
     <footer class="cf">
         <div class="container">

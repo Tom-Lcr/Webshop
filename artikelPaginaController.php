@@ -5,6 +5,7 @@ declare(strict_types=1);
 spl_autoload_register();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Business\winkelkarService;
 use Business\artikelService;
 use Business\recensieService;
@@ -34,6 +35,8 @@ if(isset($_GET["action"]) && ($_GET["action"] === "addCart")){
 }
 
 =======
+=======
+>>>>>>> a228ac0260054cfe94db7737862107f05e07c3f4
 use Business\WinkelkarService;
 use Business\ArtikelService;
 //use Business\RecensieService;
@@ -67,7 +70,10 @@ if (isset($_GET["action"]) && $_GET["action"] == "voegToe" && isset($gekozenArti
 }
 
 
+<<<<<<< HEAD
 >>>>>>> main
+=======
+>>>>>>> a228ac0260054cfe94db7737862107f05e07c3f4
 include("Presentation/artikelPagina.php");
 
 
