@@ -10,16 +10,20 @@ class Gebruiker
 {
     private int $gebuikersAccountId;
     private string $emailAdres;
+    private string $paswoord;
+    private bool $disabled;
     private int $klantId;
     private persoon $persoon;
     private Adres $facturatieAdres;
     private Adres $leveringsAdres;
 
 
-    public function __construct(int $gebruikersAccountId, string $emailAdres, int $klantId, Persoon $persoon, Adres $facturatieAdres, Adres $leveringsAdres)
+    public function __construct(int $gebruikersAccountId, string $emailAdres, string $paswoord, bool $disabled, int $klantId, Persoon $persoon, Adres $facturatieAdres, Adres $leveringsAdres)
     {
         $this->gebuikersAccountId = $gebruikersAccountId;
         $this->emailAdres = $emailAdres;
+        $this->paswoord = $paswoord;
+        $this->disabled = $disabled;
         $this->klantId = $klantId;
         $this->persoon = $persoon;
         $this->facturatieAdres = $facturatieAdres;
@@ -34,6 +38,16 @@ class Gebruiker
     public function getEmailAdres(): string
     {
         return $this->emailAdres;
+    }
+
+    public function getPaswoord(): string
+    {
+        return $this->paswoord;
+    }
+
+    public function getDisabled(): bool
+    {
+        return $this->disabled;
     }
 
     public function getKlantId(): int

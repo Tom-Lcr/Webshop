@@ -18,7 +18,7 @@ class Adres
     {
         $this->adresId = $adresId;
         $this->straat = $straat;
-        $this->straat = $huisNummer;
+        $this->huisNummer = $huisNummer;
         $this->bus = $bus;
         $this->plaats = $plaats;
         $this->actief = $actief;
