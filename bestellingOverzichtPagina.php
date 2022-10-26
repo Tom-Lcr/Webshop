@@ -12,7 +12,7 @@ use Entities\Gebruiker;
 
 $gebruiker = unserialize($_SESSION["gebruiker"]);
 $bestellingSvc = new BestellingService();
-$bestellingen = $bestellingSvc->getBestellingOverzicht($gebruiker->getKlantId());
+$bestellinglijst = $bestellingSvc->getBestellingOverzicht($gebruiker->getKlantId());
   
 
   
