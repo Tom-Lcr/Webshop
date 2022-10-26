@@ -32,11 +32,29 @@ declare(strict_types=1);
                     <?php
                     foreach ($bestellingLijst as $bestelling) {
                     ?>
-                        <article class="<?php if(!$inVoorraad) {echo 'nietInVoorraad';}else{echo 'artikel';} ?>">
-                          <a href="./artikelPaginaController.php?productId=<?php print($artikel->getArtikelId()); ?>"> 
-                          <img src="img/dummy.avif" alt="" class="productFoto"></a>
-                            <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
-                            <p>€<?php print $artikel->getPrijs(); ?><p>
+                            <h3 class="datum"><?php print $bestelling->getBesteldatum(); ?></h3>
+                            <h5>Facturatieadres:</h5><br>
+                            <p>Straat:<?php print $bestelling->getFacturatieAdres()->getStraat(); ?></p>
+                            <p>Huisnummer:<?php print $bestelling->getFacturatieAdres()->getHuisnummer(); ?></p>
+                            <p>Postcode:<?php print $bestelling->getFacturatieAdres()->getPlaats()->getPostcode(); ?></p>
+                            <p>Plaats:<?php print $bestelling->getFacturatieAdres()->getPlaats()->getPlaatsNaam(); ?></p>
+                            <br>
+                            <h5>Leveradres:</h5><br>
+                            <p>Straat:<?php print $bestelling->getLeveringsAdres()->getStraat(); ?></p>
+                            <p>Huisnummer:<?php print $bestelling->getLeveringsAdres()->getHuisnummer(); ?></p>
+                            <p>Postcode:<?php print $bestelling->getLeveringsAdres()->getPlaats()->getPostcode(); ?></p>
+                            <p>Plaats:<?php print $bestelling->getLeveringsAdres()->getPlaats()->getPlaatsNaam(); ?></p>
+                            <br>
+                            <h5>Betaald:</h5>
+                            <?php if ($bestelling->getBetaald() === 1) {?>
+                                <p>Ja</p>
+                            <?php } else {?>
+                                <p>Nee</p>
+                            <?php } ?>   
+                            <br>
+                            <h5>Status:</h5><p><?php print $bestelling->getBestellingsStatus(); ?></p>
+                            
+                            
                             <p><?php print ($artikel->getRating() == 0 ? "Geen rating" : "Rating:" . $artikel->getRating()); ?><p>    
                                 <?php if($inVoorraad){
                                     ?> <p class="pBeschikbaarheid">In voorraad</p> <?php }
