@@ -78,8 +78,8 @@ class BestellingDAO {
             $bestellijndao = new BestellijnDAO;
             $bestellijnen = $bestellijndao->getBestellijnenByBestelId((int)$rij["bestelId"]);
             $adresdao = new AdresDAO;
-            $facturatieadres = $adresdao->getAdresByAdresId((int)$rij["facturatieAdresId"]);
-            $leveringadres = $adresdao->getAdresByAdresId((int)$rij["leveringsAdresId"]); 
+            $facturatieadres = $adresdao->getAdresById((int)$rij["facturatieAdresId"]);
+            $leveringadres = $adresdao->getAdresById((int)$rij["leveringsAdresId"]); 
             $betaalwijzeId = intval($rij["betaalwijzeId"]);
             if ($betaalwijzeId === 1) {
                 $betaalwijze = "Kredietkaart";
