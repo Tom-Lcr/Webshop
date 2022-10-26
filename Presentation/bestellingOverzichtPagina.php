@@ -20,14 +20,13 @@ declare(strict_types=1);
                               
                 
                 <h1>Bestellingen</h1>
-                <!-- placeholders tijdelijk-->
                     <?php
                     foreach ($bestellingLijst as $bestelling) {
                     ?>
-                            <h3 class="datum"><?php print $bestelling->getBesteldatum(); ?></h3>
+                            <h3 class="datum"><?php print serialize($bestelling->getBesteldatum()); ?></h3>
                             <h5>Facturatieadres:</h5><br>
                             <p>Straat:<?php print $bestelling->getFacturatieAdres()->getStraat(); ?></p>
-                            <p>Huisnummer:<?php print $bestelling->getFacturatieAdres()->getHuisnummer(); ?></p>
+                            <p>Huisnummer:<?php print $bestelling->getFacturatieAdres()->getHuisNummer(); ?></p>
                             <p>Postcode:<?php print $bestelling->getFacturatieAdres()->getPlaats()->getPostcode(); ?></p>
                             <p>Plaats:<?php print $bestelling->getFacturatieAdres()->getPlaats()->getPlaatsNaam(); ?></p>
                             <br>
@@ -51,8 +50,8 @@ declare(strict_types=1);
                             <?php
                               foreach ($bestellijnen as $bestellijn) {
                              ?>
-                             <p>Artikel:<?php print $artikelsvc->getArtikelById($bestellijn->getArtikelId())->getNaam(); ?></p>
-                             <p>Aantal:<?php print $bestellijn->getAantalBesteld(); ?></p>
+                             <p>Artikels: <?php print $bestellijn->getAantalBesteld(); ?>x 
+                             <?php print $artikelSvc->getArtikelById($bestellijn->getArtikelId())->getNaam(); ?></p>
 
                              <?php } ?>
                             

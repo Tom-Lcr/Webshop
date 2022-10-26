@@ -16,7 +16,7 @@ class Bestelling
     private string $betaalwijze;
     private bool $annulatie;
 
-    private string $terugetalingscode;
+    private ?string $terugetalingscode = null;
     private string $bestellingsstatus;
     private bool $actiecodeGebruikt;
     private string $bedrijfsnaam;
@@ -36,7 +36,7 @@ class Bestelling
         string $betalingscode,
         string $betaalwijze,
         bool $annulatie,
-        string $terubetalingsCode,
+        ?string $terubetalingsCode = null,
         string $bestellingstatus,
         bool $actiecodeGebruikt,
         string $bedrijfsnaam,
