@@ -11,6 +11,8 @@ use Business\BestellingService;
 use Business\ArtikelService;
 use Entities\Gebruiker;
 
+if (isset($_SESSION["gebruiker"])) {
+
 $gebruiker = unserialize($_SESSION["gebruiker"]);
 $bestellingSvc = new BestellingService();
 $bestellingLijst = $bestellingSvc->getBestellingOverzicht($gebruiker->getKlantId());
@@ -21,5 +23,6 @@ foreach($bestellingLijst as $bestelling) {
 
 $artikelSvc = new ArtikelService;
 
+}
   
 include("Presentation/bestellingOverzichtPagina.php");
