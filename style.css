@@ -21,6 +21,38 @@ body {
 }
 
 /*header en navigatie*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 2em;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-top: 0.5em;
+}
+
+.menu .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
 header {
     width: 100%;
@@ -473,43 +505,46 @@ input[type=button] {
 }
 
 /*+++++++++++++++++++++++++++++++ Winkelkar +++++++++++++++++++++++++++++++++*/
-.winkelkarpagina{
+.winkelkarpagina {
     width: 60%;
     margin: 0 auto;
 }
 
-.winkelkarInhoud .button{
+.winkelkarInhoud .button {
     width: 100%;
 }
 
-.winkelkarInhoud{
+.winkelkarInhoud {
     width: 70%;
     float: left;
     margin-right: 1%;
 }
 
-.winkelkarInhoud h2{
+.winkelkarInhoud h2 {
     margin-bottom: 1em;
 }
 
-.winkelkarLijn{
+.winkelkarLijn,
+.bestellingenLijn {
     margin-top: 1em;
     width: 100%;
     height: 10em;
-    border: 2px solid #e6e6e8 ;
+    border: 2px solid #e6e6e8;
 }
 
-.winkelkarLijn h4{
+.winkelkarLijn h4,
+.bestellingenLijn h4 {
     margin-top: 1em;
 }
 
-.winkelkarLijn img{
+.winkelkarLijn img,
+.bestellingenLijn img {
     float: left;
     margin-right: 2em;
     height: 100%;
 }
 
-.winkelkarLijn .delete{
+.winkelkarLijn .delete {
     width: 3em;
     background-color: #ABD7A8;
     border: none;
@@ -518,7 +553,7 @@ input[type=button] {
     margin-bottom: 1em;
 }
 
-.winkelkarLijn .aantalInWinkelkar{
+.winkelkarLijn .aantalInWinkelkar {
     height: 3em;
 }
 
@@ -529,11 +564,11 @@ input[type=button] {
     cursor: pointer;
 }
 
-.details{
+.details {
     float: left;
 }
 
-.verderWinkelen{
+.verderWinkelen {
     display: inline-block;
     margin-top: 1em;
     text-decoration: none;
@@ -543,46 +578,49 @@ input[type=button] {
     height: 3em;
 }
 
-.totaalWinkelkar{
+.totaalWinkelkar {
     width: 29%;
     float: left;
     margin-top: 1em;
-    border: 2px solid #e6e6e8 ;
+    border: 2px solid #e6e6e8;
     padding-left: 1em;
     padding-top: 1em;
 }
 
-.totaalWinkelkar h4{
-   margin-bottom: 1em;
+.totaalWinkelkar h4 {
+    margin-bottom: 1em;
 }
 
-.totaal, .totaalPrijs{
+.totaal,
+.totaalPrijs {
     font-weight: bold;
 }
 
 /*++++++++++++++++++++++++++++++++ AfrekenPagina +++++++++++++++++++++++++++++++++++*/
 
-.afrekenPagina{
+.afrekenPagina {
     width: 60%;
     margin: 0 auto;
 }
 
-.adres{
+.adres {
     margin-top: 1em;
 }
 
-.adres p{margin: 0;}
+.adres p {
+    margin: 0;
+}
 
-.afrekenDetails{
+.afrekenDetails {
     margin-top: 1em;
     float: left;
     width: 70%;
     margin-right: 1%;
-    border: 2px solid #e6e6e8 ;
+    border: 2px solid #e6e6e8;
     padding-left: 1em;
 }
 
-#promo{
+#promo {
     width: 10em;
     height: 3em;
     margin: 8px 0;
@@ -592,7 +630,7 @@ input[type=button] {
     box-sizing: border-box;
 }
 
-#promoCheck{
+#promoCheck {
     height: 3em;
     width: 8em;
     color: white;
@@ -608,6 +646,30 @@ input[type=button] {
     transition: 0.3s;
     transition-timing-function: ease;
     cursor: pointer;
+}
+
+/*+++++++++++++++++++++++++ Mijn bestellingen +++++++++++++++++++++++++++++++*/
+
+.bestellingenLijn .details {
+    margin-top: 2.5em;
+}
+
+.Lopend,
+.Klaarmaken,
+.Onderweg,
+.Betaald {
+    color: #c67605;
+}
+
+.Geleverd {
+    color: #ABD7A8;
+}
+
+.Verloren,
+.Geannuleerd,
+.Beschadigd,
+.Retour {
+    color: #ff0000;
 }
 
 /*clear*/

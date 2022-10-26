@@ -17,14 +17,24 @@ declare(strict_types=1);
 
 <body>
 
-    <header>
+<header>
         <div class="container">
             <a href="startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
             <nav class="menu">
                 <div class="menuOpties">
                     <div class="profielMenu">
                         <a href="#"><img src="img/profiel.png" alt="profiel"></a>
-                        <a href="#" id="menu">MENU</a>
+                        <div class="dropdown" id="myDropdown">
+                            <a href="#" id="menu">MENU</a>
+                            <div class="dropdown-content" >
+                                <a href="#">Mijn profiel</a>
+                
+                                <a href="./bestellingenOverzichtPaginaController.php">Mijn bestellingen</a>
+            
+                                <a href="./winkelKarPaginaController.php">Winkelkar</a>
+                            </div>
+                        </div>
+
                     </div>
                     <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
                     <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
@@ -46,12 +56,46 @@ declare(strict_types=1);
                 </div>
             </nav>
         </div>
+
     </header>
 
     <main>
         <div class="container paginaSmal">
-            
+            <h2>Mijn Bestellingen</h2>
+            <section class="bestellingenOverzicht">
 
+
+            <!-- voor elke bestellingsstatus heb ik een css klasse gemaakt zodat de verschillende statussen een kleur krijgen, dus de class van de staus paragraaf moet worden gevudl met de status van het bestellingsobject-->
+                <article class="bestellingenLijn">
+                    <div class="details">
+                        <h4 class="artikelTitel">Artikelnaam</h4>
+                        <p class="Betaald">Lopend</p>
+                    </div>
+                </article>
+                <article class="bestellingenLijn">
+                    <div class="details">
+                        <h4 class="artikelTitel">Artikelnaam</h4>
+                        <p class="Geannuleerd">Geannuleerd</p>
+                    </div>
+                </article>
+                <article class="bestellingenLijn">
+                    <div class="details">
+                        <h4 class="artikelTitel">Artikelnaam</h4>
+                        <p class="Onderweg">Onderweg</p>
+                    </div>
+                </article>
+                <article class="bestellingenLijn">
+                    <div class="details">
+                        <h4 class="artikelTitel">Artikelnaam</h4>
+                        <p class="Geleverd">Geleverd</p>
+                    </div>
+                </article
+                    <div class="details">
+                        <h4 class="artikelTitel">Artikelnaam</h4>
+                        <p class="Geleverd">Geleverd</p>
+                    </div>
+                </article>
+            </section>
         </div>
     </main>
     <footer class="cf">
