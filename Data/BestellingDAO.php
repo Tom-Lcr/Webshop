@@ -33,47 +33,37 @@ class BestellingDAO {
             } else {
                 $betaalwijze = "Overschrijving";
             }
-            $bestellingsStatusId = intval($rij["bestellingsStatuseId"]);
+            $bestellingsStatusId = intval($rij["bestellingsStatusId"]);
             switch ($bestellingsStatusId) {
                 case 1:
                     $bestellingsStatus = "Lopend";
-                    return $bestellingsStatus;
                     break;
                 case 2:
                     $bestellingsStatus = "Betaald";
-                    return $bestellingsStatus;
                     break;
                 case 3:
                     $bestellingsStatus = "Geannuleerd";
-                    return $bestellingsStatus;
                     break;
                 case 4:
                     $bestellingsStatus = "Klaarmaken";
-                    return $bestellingsStatus;
                     break;
                 case 5:
                     $bestellingsStatus = "Onderweg";
-                    return $bestellingsStatus;
                     break;
                 case 6:
                     $bestellingsStatus = "Geleverd";
-                    return $bestellingsStatus;
                     break;
                 case 7:
                     $bestellingsStatus = "Verloren";
-                    return $bestellingsStatus;
                     break;
                 case 8:
                     $bestellingsStatus = "Beschadigd";
-                    return $bestellingsStatus;
                     break;
                 case 9:
                     $bestellingsStatus = "Retour";
-                    return $bestellingsStatus;
                     break;
                 case 10:
                     $bestellingsStatus = "Retour in stock";
-                    return $bestellingsStatus;
                     break;                                         
             }
             $bestelling = new Bestelling((int)$rij["bestelId"], $besteldatum, (int)$rij["klantId"], 
