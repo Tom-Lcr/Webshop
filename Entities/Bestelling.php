@@ -9,7 +9,7 @@ use DateTime;
 class Bestelling
 {
     private ?int $bestelId;
-    private ?DateTime $besteldatum;
+    private ?string $besteldatum;
     private int $klantId;
     private bool $betaald;
     private ?string $betalingscode;
@@ -30,7 +30,7 @@ class Bestelling
 
     public function __construct(
         ?int $bestelId,
-        ?DateTime $besteldatum,
+        ?string $besteldatum,
         int $klantId,
         ?bool $betaald,
         ?string $betalingscode,
@@ -69,7 +69,7 @@ class Bestelling
     {
         return $this->bestelId;
     }
-    public function getBesteldatum(): ?DateTime
+    public function getBesteldatum(): ?string
     {
         return $this->besteldatum;
     }
