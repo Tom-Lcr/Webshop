@@ -23,7 +23,7 @@ class Rechtspersoon implements Persoon
         $this->contactId = $contactId;
         $this->contactVoornaam = $contactVoornaam;
         $this->contactFamilienaam = $contactFamilienaam;
-        $this->contactFamilienaam = $contactFunctie;
+        $this->contactFunctie = $contactFunctie;
     }
     public function getNaam(): string
     {

@@ -11,46 +11,19 @@
 </head>
 
 <body>
-<header>
+    <header>
         <div class="container">
             <a href="startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
             <nav class="menu">
                 <div class="menuOpties">
+                    <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
                     <div class="profielMenu">
                         <a href="#"><img src="img/profiel.png" alt="profiel"></a>
-                        <div class="dropdown" id="myDropdown">
-                            <a href="#" id="menu">MENU</a>
-                            <div class="dropdown-content" >
-                                <a href="#">Mijn profiel</a>
-                
-                                <a href="./bestellingenOverzichtPaginaController.php">Mijn bestellingen</a>
-            
-                                <a href="./winkelKarPaginaController.php">Winkelkar</a>
-                            </div>
-                        </div>
-
+                        <a href="#" id="menu">MENU</a>
                     </div>
-                    <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
-                    <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
-                    hier moet de code komen die het aantal weergeeft -->
-                    <?php
-                    if (isset($_SESSION["aantalitems"])) {
-
-                    ?>
-                        <?php // print count($_SESSION["winkelmand"]); 
-                        ?>
-                        <span class='badge badge-warning' id='lblCartCount'> <?php print $_SESSION["aantalitems"]; ?> </span>
-                    <?php
-                    }
-                    ?>
-                    <!--  <span class='badge badge-warning' id='lblCartCount'> 0 </span> -->
-                    <?php
-                    //}
-                    ?>
                 </div>
             </nav>
         </div>
-
     </header>
 
     <section class="zoekSectie">
@@ -65,39 +38,31 @@
     </section>
 
     <main>
-    <?php
-          if($error){
-        ?>                  
-                    <p class="text-danger"><?php echo $error; ?></p>
-
-        <?php
-          }
-        ?> 
         <div class="container artikelSpecifiek">
             <article>
                 <section class="artikelHeader">
-                    <h2><?php print $gekozenArtikel->getNaam(); ?></h2>
+                    <h2>Artikelnaam</h2>
                     <img src="img/dummy.avif" alt="" class="productFoto">
                 </section>
                 <aside class="artikelSpecifiekeOpties">
-                    <h2>€<?php print $gekozenArtikel->getPrijs(); ?></h2>
-                    <p><?php print $gekozenArtikel->getVoorraad(); ?> stuks in voorraad</p>
+                    <h2>€129,99</h2>
+                    <p>11 stuks in voorraad</p>
 
                     <!--aantal en artikel id via de url (GET) meegeven aan de controller -->
-                    <form action="artikelPaginaController.php?action=voegToe" method="POST" class="winkelKarSpecifiekArtikelform">
+                    <form action="artikelPaginaController.php?action=addCart&id=1&aantal=5" method="POST" class="winkelKarSpecifiekArtikelform">
                         <label for="aantalVanArtikel">Aantal:</label>
                         <br>
-                        <input type="number" name="aantalVanArtikel" id="aantalVanArtikel">
+                        <input type="number" name="" id="aantalVanArtikel">
                         <button type="submit" class="winkelkarArtikelBtn"><img src="img/winkelkar.png" alt=""></button>
                     </form>
                 </aside>
                 <section class="artikelBeschrijving cf">
                     <h3>Productbeschrijving</h3>
-                    <p><?php print $gekozenArtikel->getBeschrijving(); ?></p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo beatae nihil neque voluptatibus nemo nisi officia, laudantium excepturi fugit quasi asperiores, consequuntur eos, incidunt ipsum omnis quam ab ut aspernatur. Quam sapiente ad iure quos. Dolorem aliquam vitae eligendi vel. Numquam ea provident sint natus ullam eveniet inventore necessitatibus iusto.</p>
                 </section>
                 <section class="score">
                     <h3>Gemiddelde waardering</h3>
-                    <p class="scoreGem"><?php print $gekozenArtikel->getRating(); ?></p>
+                    <p class="scoreGem">3,3</p>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>

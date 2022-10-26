@@ -17,24 +17,14 @@ declare(strict_types=1);
 
 <body>
 
-<header>
+    <header>
         <div class="container">
             <a href="startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
             <nav class="menu">
                 <div class="menuOpties">
                     <div class="profielMenu">
                         <a href="#"><img src="img/profiel.png" alt="profiel"></a>
-                        <div class="dropdown" id="myDropdown">
-                            <a href="#" id="menu">MENU</a>
-                            <div class="dropdown-content" >
-                                <a href="#">Mijn profiel</a>
-                
-                                <a href="./bestellingenOverzichtPaginaController.php">Mijn bestellingen</a>
-            
-                                <a href="./winkelKarPaginaController.php">Winkelkar</a>
-                            </div>
-                        </div>
-
+                        <a href="#" id="menu">MENU</a>
                     </div>
                     <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
                     <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
@@ -63,21 +53,21 @@ declare(strict_types=1);
         <div class="container">
             <section class="registerForm">
                 <h2>Login</h2>
-                <form action="" name="LoginForm">
+
+                <?php if ($error != "") { 
+print("<p style='color: red'>$error | nl2br</p>");
+                } ?>
+
+                <form action="loginPaginaController.php?action=process" method="POST" name="LoginForm">
                     <label for="txtEmail">E-mailadres</label>
-                    <input type="email" name="txtEmail" id="" required>
+                    <input type="email" name="txtEmail" id="" value="<?php print($emailadres); ?>" required>
                     <br>
                     <label for="txtWachtwoord">Wachtwoord</label>
                     <input type="text" name="txtWachtwoord" id="" required>
                     <br>
-                    <input type="submit" value="Registreren" class="button register">
+                    <input type="submit" value="Inloggen" class="button register">
                 </form>
             </section>
         </div>
     </main>
-    <footer class="cf">
-        <div class="container">
-            <p>Prularia</p>
-        </div>
-    </footer>
 </body>

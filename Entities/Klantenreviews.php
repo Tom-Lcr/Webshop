@@ -26,32 +26,32 @@ class Klantenreviews
         $this->bestellijnId = $bestellijnId;
     }
 
-    public function getKlantenReviewId() :int
+    public function getKlantenReviewId()
     {
         return $this->klantenReviewId;
     }
 
-    public function getNickname() :string
+    public function getNickname()
     {
         return $this->nickname;
     }
 
-    public function getScore() :int
+    public function getScore()
     {
         return $this->score;
     }
 
-    public function getCommentaar() :string
+    public function getCommentaar()
     {
         return $this->commentaar;
     }
 
-    public function getDatum() :DateTime
+    public function getDatum()
     {
         return $this->datum;
     }
 
-    public function getBestellijnId() :int
+    public function getBestellijnId()
     {
         return $this->bestellijnId;
     }

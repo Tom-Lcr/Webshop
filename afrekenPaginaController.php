@@ -12,6 +12,3 @@ session_start();
 
 
 include("Presentation/afrekenPagina.php");
-
-
-

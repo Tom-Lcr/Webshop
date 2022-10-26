@@ -8,18 +8,19 @@ use DateTime;
 
 class Bestelling
 {
-    private int $bestelId;
-    private string $besteldatum;
+    private ?int $bestelId;
+    private ?DateTime $besteldatum;
     private int $klantId;
     private bool $betaald;
-    private string $betalingscode;
+    private ?string $betalingscode;
     private string $betaalwijze;
-    private bool $annulatie;
-    private ?string $terugetalingscode = null;
-    private string $bestellingsstatus;
-    private bool $actiecodeGebruikt;
-    private ?string $bedrijfsnaam = null;
-    private ?string $btwNummer = null;
+    private ?bool $annulatie;
+
+    private ?string $terugetalingscode;
+    private ?string $bestellingsstatus;
+    private ?bool $actiecodeGebruikt;
+    private ?string $bedrijfsnaam;
+    private ?string $btwNummer;
     private string $voornaam;
     private string $familienaam;
     private Adres $facturatieAdres;
@@ -28,23 +29,23 @@ class Bestelling
     private array $bestellijnen;
 
     public function __construct(
-        int $bestelId,
-        string $besteldatum,
+        ?int $bestelId,
+        ?DateTime $besteldatum,
         int $klantId,
-        bool $betaald,
-        string $betalingscode,
+        ?bool $betaald,
+        ?string $betalingscode,
         string $betaalwijze,
-        bool $annulatie,
-        ?string $terubetalingsCode = null,
-        string $bestellingstatus,
-        bool $actiecodeGebruikt,
-        ?string $bedrijfsnaam = null,
-        ?string $btwNummer = null,
+        ?bool $annulatie,
+        ?string $terubetalingsCode,
+        ?string $bestellingstatus,
+        ?bool $actiecodeGebruikt,
+        ?string $bedrijfsnaam,
+        ?string $btwNummer,
         string $voornaam,
         string $familienaam,
         Adres $facturatieAdres,
         Adres $leveringsAdres,
-        array $bestellijnen = []
+        ?array $bestellijnen = []
     ) {
         $this->bestelId = $bestelId;
         $this->besteldatum = $besteldatum;
@@ -64,11 +65,11 @@ class Bestelling
         $this->leveringsAdres = $leveringsAdres;
         $this->bestellijnen = $bestellijnen;
     }
-    public function getBestelId(): int
+    public function getBestelId(): ?int
     {
         return $this->bestelId;
     }
-    public function getBesteldatum(): string
+    public function getBesteldatum(): ?DateTime
     {
         return $this->besteldatum;
     }
@@ -76,39 +77,39 @@ class Bestelling
     {
         return $this->klantId;
     }
-    public function getBetaald(): bool
+    public function getBetaald(): ?bool
     {
         return $this->betaald;
     }
-    public function getBetalingscode(): string
+    public function getBetalingscode(): ?string
     {
         return $this->betalingscode;
     }
-    public function getBetaalwijze(): string
+    public function getBetaalwijze(): ?string
     {
         return $this->betaalwijze;
     }
-    public function getAnnulatie(): bool
+    public function getAnnulatie(): ?bool
     {
         return $this->annulatie;
     }
-    public function getTerugbetalingscode(): string
+    public function getTerugbetalingscode(): ?string
     {
         return $this->terugetalingscode;
     }
-    public function getBestellingsstatus(): string
+    public function getBestellingsstatus(): ?string
     {
         return $this->bestellingsstatus;
     }
-    public function getActiecodeGebruikt(): bool
+    public function getActiecodeGebruikt(): ?bool
     {
         return $this->actiecodeGebruikt;
     }
-    public function getBedrijfsnaam(): string
+    public function getBedrijfsnaam(): ?string
     {
         return $this->bedrijfsnaam;
     }
-    public function getBtwNummer(): string
+    public function getBtwNummer(): ?string
     {
         return $this->btwNummer;
     }
@@ -129,7 +130,7 @@ class Bestelling
         return $this->leveringsAdres;
     }
 
-    public function getBestellijnen(): array
+    public function getBestellijnen(): ?array
     {
         return $this->bestellijnen;
     }
