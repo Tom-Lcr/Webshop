@@ -15,12 +15,11 @@ class Bestelling
     private string $betalingscode;
     private string $betaalwijze;
     private bool $annulatie;
-
     private ?string $terugetalingscode = null;
     private string $bestellingsstatus;
     private bool $actiecodeGebruikt;
-    private string $bedrijfsnaam;
-    private string $btwNummer;
+    private ?string $bedrijfsnaam = null;
+    private ?string $btwNummer = null;
     private string $voornaam;
     private string $familienaam;
     private Adres $facturatieAdres;
@@ -39,8 +38,8 @@ class Bestelling
         ?string $terubetalingsCode = null,
         string $bestellingstatus,
         bool $actiecodeGebruikt,
-        string $bedrijfsnaam,
-        string $btwNummer,
+        ?string $bedrijfsnaam = null,
+        ?string $btwNummer = null,
         string $voornaam,
         string $familienaam,
         Adres $facturatieAdres,
