@@ -82,7 +82,7 @@ class CategorieDAO
             $resultSet =  $stmt->fetchAll(PDO::FETCH_ASSOC);
             $lijst = array();
             foreach ($resultSet as $rij) {
-                $lijst[$rij["id"]] = new Categorie((int)$rij["categorieId"], $rij["naam"], $rij["hoofdCategorieId"]);
+                $lijst[$rij["categorieId"]] = new Categorie((int)$rij["categorieId"], $rij["naam"], $rij["hoofdCategorieId"]);
             }
             $dbh = null;
             return $lijst;
@@ -93,7 +93,7 @@ class CategorieDAO
 
     public function getHoofdcategorieen(): array
     {
-        $sql = "SELECT * FROM categorieen WHERE hoofdCategorieId = NULL";
+        $sql = "SELECT * FROM categorieen WHERE hoofdCategorieId is NULL";
         try {
             $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -102,7 +102,7 @@ class CategorieDAO
             $resultSet =  $stmt->fetchAll(PDO::FETCH_ASSOC);
             $lijst = array();
             foreach ($resultSet as $rij) {
-                $lijst[$rij["id"]] = new Categorie((int)$rij["categorieId"], $rij["naam"], $rij["hoofdCategorieId"]);
+                $lijst[$rij["categorieId"]] = new Categorie($rij["categorieId"], $rij["naam"], $rij["hoofdCategorieId"]);
             }
             $dbh = null;
             return $lijst;
