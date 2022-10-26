@@ -487,10 +487,7 @@ input[type=button] {
     margin: 0 auto;
 }
 
-.registerForm input,
-.registerForm h2 {
-    margin-bottom: 1em;
-}
+
 
 .registerForm input[type=text],
 .registerForm input[type=email],
@@ -503,6 +500,33 @@ input[type=button] {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+.adres{
+    margin-top: 1em;
+    border: 2px solid #e6e6e8;
+}
+
+#plaatsNaam{
+    margin-bottom: 2em;
+}
+
+.adresInput{
+    margin-left: 1em;
+}
+
+.links{
+    width: 47%;
+    margin-right: 6%;
+    margin-bottom: 1em;
+    float: left;
+}
+
+.rechts{
+    width: 47%;
+    float: left;
+}
+
+
 
 /*+++++++++++++++++++++++++++++++ Winkelkar +++++++++++++++++++++++++++++++++*/
 .winkelkarpagina {
