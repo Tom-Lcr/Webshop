@@ -23,7 +23,7 @@ declare(strict_types=1);
                     <?php
                     foreach ($bestellingLijst as $bestelling) {
                     ?>
-                            <h3 class="datum"><?php print serialize($bestelling->getBesteldatum()); ?></h3>
+                            <h3 class="datum"><?php print $bestelling->getBesteldatum(); ?></h3>
                             <h5>Facturatieadres:</h5><br>
                             <p>Straat:<?php print $bestelling->getFacturatieAdres()->getStraat(); ?></p>
                             <p>Huisnummer:<?php print $bestelling->getFacturatieAdres()->getHuisNummer(); ?></p>
@@ -47,6 +47,7 @@ declare(strict_types=1);
                             <br>
                             <h5>Bestellingsstatus:</h5><p><?php print $bestelling->getBestellingsStatus(); ?></p>
                             <?php } ?>
+                            <h5>Artikeloverzicht:</h5>
                             <?php
                               foreach ($bestellijnen as $bestellijn) {
                              ?>
