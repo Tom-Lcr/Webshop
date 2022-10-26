@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Data;
 
+use DateTime;
 use \PDO;
 use Data\DBConfig;
 use Entities\Bestelling;
@@ -21,12 +22,12 @@ class BestellingDAO {
         $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $lijst = array();
         foreach($resultSet as $rij){
-           // $besteldatum = new DateTime($rij["besteldatum"]);
+            $besteldatum = new DateTime($rij["besteldatum"]);
             $bestellijndao = new BestellijnDAO;
             $bestellijnen = $bestellijndao->getBestellijnenByBestelId((int)$rij["bestelId"]);
             $adresdao = new AdresDAO;
             $facturatieadres = $adresdao->getAdresByAdresId((int)$rij["facturatieAdresId"]);
-            $leveringadres = $adresdao->getAdresByAdresId((int)$rij["leveringAdresId"]); 
+            $leveringadres = $adresdao->getAdresByAdresId((int)$rij["leveringsAdresId"]); 
             $betaalwijzeId = intval($rij["betaalwijzeId"]);
             if ($betaalwijzeId === 1) {
                 $betaalwijze = "Kredietkaart";
@@ -66,7 +67,7 @@ class BestellingDAO {
                     $bestellingsStatus = "Retour in stock";
                     break;                                         
             }
-            $bestelling = new Bestelling((int)$rij["bestelId"], $rij["besteldatum"], (int)$rij["klantId"], 
+            $bestelling = new Bestelling((int)$rij["bestelId"], $besteldatum, (int)$rij["klantId"], 
             (bool)$rij["betaald"], $rij["betalingscode"], $betaalwijze, (bool)$rij["annulatie"], $rij["terugbetalingscode"],
             $bestellingsStatus, (bool)$rij["actiecodeGebruikt"], $rij["bedrijfsnaam"], $rij["btwNummer"], $rij["voornaam"],
             $rij["familienaam"], $facturatieadres, $leveringadres, $bestellijnen);

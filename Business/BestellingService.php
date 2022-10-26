@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Business;
 
 use Data\BestellingDAO;
-//use Entities\Bestelling;
+use Entities\Bestellingen;
 
 
 class BestellingService {
