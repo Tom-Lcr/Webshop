@@ -18,7 +18,7 @@ class PlaatsDAO {
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':plaatsId' => $plaatsId));
         $rij = $stmt->fetch(PDO::FETCH_ASSOC);
-        $plaats = new Plaats((int)$rij["plaatsId"], $rij["plaats"], $rij["postcode"], $rij["bus"]);
+        $plaats = new Plaats((int)$rij["plaatsId"], $rij["plaats"], $rij["postcode"]);
         $dbh = null;
         return $plaats;
         }

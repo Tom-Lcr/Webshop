@@ -20,7 +20,7 @@ class AdresDAO {
         $rij = $stmt->fetch(PDO::FETCH_ASSOC);
         $plaatsdao = new PlaatsDAO;
         $plaats = $plaatsdao->getPlaatsByPlaatsId((int)$rij["plaatsId"]);
-        $adres = new Adres((int)$rij["adresId"], $rij["straat"], (int)$rij["huisnummer"], $rij["bus"], 
+        $adres = new Adres((int)$rij["adresId"], $rij["straat"], (int)$rij["huisNummer"], $rij["bus"], 
         $plaats, (bool)$rij["actief"]);
         $dbh = null;
         return $adres;

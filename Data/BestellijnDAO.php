@@ -21,7 +21,7 @@ class BestellijnDAO {
         $bestellijnen = array();
         foreach($resultset as $rij)	{
             $bestellijn = new Bestellijn((int)$rij["bestellijnId"], (int)$rij["bestelId"], (int)$rij["artikelId"], 
-            (int)$rij["aantalBesteldId"], (int)$rij["aantalGeannuleerd"]);
+            (int)$rij["aantalBesteld"], (int)$rij["aantalGeannuleerd"]);
             array_push($bestellijnen, $bestellijn);
         }
         $dbh = null;
