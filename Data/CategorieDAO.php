@@ -30,6 +30,26 @@ class CategorieDAO
         }
     }
 
+    public function getCategorieById(?int $categorieId): ?Categorie
+    {
+        if (!$categorieId) return null;
+
+        $sql = "SELECT * FROM categorieen WHERE categorieId = :categorieId";
+        try {
+            $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $dbh->prepare($sql);
+            $stmt->execute(array(':categorieId' => $categorieId));
+            $rij =  $stmt->fetch(PDO::FETCH_ASSOC);            
+            $categorie = new Categorie((int)$rij["categorieId"], $rij["naam"], $rij["hoofdCategorieId"]);           
+            $dbh = null;
+            return $categorie;
+        } catch (PDOException $e) {
+            throw new DatabaseException($e->getMessage());
+        }
+    }
+
+
     //geeft lijst van ids van de categorieën die een subcategorie zijn van het hoofdcategorieId
     public function getSubcategorieIds(int $hoofdCategorieId): array
     {
