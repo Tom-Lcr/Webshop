@@ -74,7 +74,6 @@ class BestellingDAO {
         $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $lijst = array();
         foreach($resultSet as $rij){
-            $besteldatum = new DateTime($rij["besteldatum"]);
             $bestellijndao = new BestellijnDAO;
             $bestellijnen = $bestellijndao->getBestellijnenByBestelId((int)$rij["bestelId"]);
             $adresdao = new AdresDAO;
@@ -119,7 +118,7 @@ class BestellingDAO {
                     $bestellingsStatus = "Retour in stock";
                     break;                                         
             }
-            $bestelling = new Bestelling((int)$rij["bestelId"], $besteldatum, (int)$rij["klantId"], 
+            $bestelling = new Bestelling((int)$rij["bestelId"], $rij["besteldatum"], (int)$rij["klantId"], 
             (bool)$rij["betaald"], $rij["betalingscode"], $betaalwijze, (bool)$rij["annulatie"], $rij["terugbetalingscode"],
             $bestellingsStatus, (bool)$rij["actiecodeGebruikt"], $rij["bedrijfsnaam"], $rij["btwNummer"], $rij["voornaam"],
             $rij["familienaam"], $facturatieadres, $leveringadres, $bestellijnen);
