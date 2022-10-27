@@ -291,6 +291,13 @@ select::-ms-expand {
     float: left;
 }
 
+.artikelTitel{
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .artikel img,
 .nietInVoorraad img {
     width: 80%;
@@ -344,7 +351,6 @@ select::-ms-expand {
     margin-bottom: 1em;
     padding-bottom: 1em;
     float: left;
-    height: 22em;
 }
 
 /*pagina teller*/

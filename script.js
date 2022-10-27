@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function () {
+/*window.addEventListener('DOMContentLoaded', function () {
 
     var titels = document.getElementsByClassName("artikelTitel");
     console.log(titels);
@@ -14,4 +14,4 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
-
+*/
