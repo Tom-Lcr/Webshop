@@ -24,7 +24,17 @@ declare(strict_types=1);
                 <div class="menuOpties">
                     <div class="profielMenu">
                         <a href="#"><img src="img/profiel.png" alt="profiel"></a>
-                        <a href="#" id="menu">MENU</a>
+                        <div class="dropdown" id="myDropdown">
+                            <a href="#" id="menu">MENU</a>
+                            <div class="dropdown-content" >
+                                <a href="#">Mijn profiel</a>
+                
+                                <a href="./bestellingenOverzichtPaginaController.php">Mijn bestellingen</a>
+            
+                                <a href="./winkelKarPaginaController.php">Winkelkar</a>
+                            </div>
+                        </div>
+
                     </div>
                     <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
                     <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
@@ -69,11 +79,27 @@ declare(strict_types=1);
                     <h2>Opties</h2>
                     <section>
                         <h3>Sorteren op:</h3>
+<<<<<<< HEAD
                         <select name="sorteerOpties" id="" class="sorteerOpties">
                             <option value="1" <?php if ($opties->getVolgorde() == 1) print("selected") ?>>Waardering - hoog</option>
                             <option value="2" <?php if ($opties->getVolgorde() == 2) print("selected") ?>>Waardering - laag</option>
                             <option value="3" <?php if ($opties->getVolgorde() == 3) print("selected") ?>>Prijs - hoog</option>
                             <option value="4" <?php if ($opties->getVolgorde() == 4) print("selected") ?>>Prijs - laag</option>
+=======
+                        <select name="sorteerOpties" class="sorteerOpties">
+                            <option value="rating DESC, prijs DESC" <?php if (isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "rating DESC, prijs DESC") {
+                                                                        print "selected";
+                                                                    } ?>>Waardering - hoog</option>
+                            <option value="rating ASC, prijs DESC" <?php if (isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "rating ASC, prijs DESC") {
+                                                                        print "selected";
+                                                                    } ?>>Waardering - laag</option>
+                            <option value="prijs DESC" <?php if (isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "prijs DESC") {
+                                                            print "selected";
+                                                        } ?>>Prijs - hoog</option>
+                            <option value="prijs ASC" <?php if (isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "prijs ASC") {
+                                                            print "selected";
+                                                        } ?>>Prijs - laag</option>
+>>>>>>> a228ac0260054cfe94db7737862107f05e07c3f4
                         </select>
                         <h3>Categorie:</h3>
                         <!-- Hier moeten de categorien worden geladen, 
@@ -111,8 +137,12 @@ declare(strict_types=1);
                 <?php
                 }
                 ?>
+<<<<<<< HEAD
                 <h1> <?php print(($categorie2 !== null) ? "Categorie: " . $categorie2->getNaam() : "Aanbevolen producten") ?> </h1>
                 <span><?php print($aantalArtikels) ?> producten</span>
+=======
+                <h1>Aanbevolen producten</h1>
+>>>>>>> a228ac0260054cfe94db7737862107f05e07c3f4
                 <!-- placeholders tijdelijk-->
                 <section class="producten clearFix">
                     <?php
@@ -129,9 +159,18 @@ declare(strict_types=1);
                                         } else {
                                             echo 'artikel';
                                         } ?>">
+<<<<<<< HEAD
                             <img src="img/dummy.avif" alt="" class="productFoto">
                             <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
                             <p>€<?php print $artikel->getPrijs(); ?> <?php print($artikel->getRating() ? "<br>Rating: " . $artikel->getRating()   : "<br>Geen rating"); ?>
+=======
+                            <a href="./artikelPaginaController.php?productId=<?php print($artikel->getArtikelId()); ?>">
+                                <img src="img/dummy.avif" alt="" class="productFoto"></a>
+                            <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
+                            <p>€<?php print $artikel->getPrijs(); ?>
+                            <p>
+                            <p><?php print($artikel->getRating() == 0 ? "Geen rating" : "Rating:" . $artikel->getRating()); ?>
+>>>>>>> a228ac0260054cfe94db7737862107f05e07c3f4
                             <p>
                                 <?php if ($inVoorraad) {
                                 ?>
