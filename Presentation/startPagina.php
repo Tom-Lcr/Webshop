@@ -140,7 +140,7 @@ declare(strict_types=1);
                                             echo 'artikel';
                                         } ?>">
                             <a href="./artikelPaginaController.php?productId=<?php print($artikel->getArtikelId()); ?>">
-                                <img src="img/dummy.avif" alt="" class="productFoto"></a>
+                                <img src="img/<?php echo rand(1,20)?>.png" alt="" class="productFoto"></a>
                             <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
                             <p>€<?php print $artikel->getPrijs(); ?>
                             <p>
