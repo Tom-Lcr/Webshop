@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Business;
 
-use Data\CategorieDAO2;
+use Data\CategorieDAO;
 
 //ieder artikel heeft slechts 1 (of geen) hoofdcategorie
 //veronderstelling ivm de database:
