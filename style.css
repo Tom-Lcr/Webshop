@@ -441,6 +441,35 @@ input[type=button] {
     font-weight: bold;
 }
 
+/*++++++++++++++++++++++++Register+++++++++++++++++++++++++++++*/
+
+.register{
+    padding: 0;
+    width: 8em;
+    height: 3em;
+    text-align: center;
+    font-size: initial;
+}
+
+.registerForm{
+    width: 60%;
+    margin: 0 auto;
+}
+
+.registerForm input, .registerForm h2{
+    margin-bottom: 1em;
+}
+
+.registerForm input[type=text], .registerForm input[type=email], .registerForm input[type=number]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
 
 /*clear*/
 
