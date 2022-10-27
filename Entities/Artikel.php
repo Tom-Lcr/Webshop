@@ -31,7 +31,7 @@ class Artikel
         $this->gewichtInGram = $gewichtInGram;
         $this->voorraad = $voorraad;
         $this->levertijd = $levertijd;
-        
+        $this->rating = $rating;
     }
     
     public function getArtikelId(): int

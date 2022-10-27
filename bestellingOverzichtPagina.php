@@ -11,11 +11,11 @@ use Business\BestellingService;
 use Business\ArtikelService;
 use Entities\Gebruiker;
 
-//if (isset($_SESSION["gebruiker"])) {
+if (isset($_SESSION["gebruiker"])) {
 
-//$gebruiker = unserialize($_SESSION["gebruiker"]);
+$gebruiker = unserialize($_SESSION["gebruiker"]);
 $bestellingSvc = new BestellingService();
-$bestellingLijst = $bestellingSvc->getBestellingOverzicht(1);//($gebruiker->getKlantId());
+$bestellingLijst = $bestellingSvc->getBestellingOverzicht($gebruiker->getKlantId());
 
 foreach($bestellingLijst as $bestelling) {
     $bestellijnen = $bestelling->getBestellijnen();
@@ -23,6 +23,6 @@ foreach($bestellingLijst as $bestelling) {
 
 $artikelSvc = new ArtikelService;
 
-//}
+}
   
 include("Presentation/bestellingOverzichtPagina.php");

@@ -13,5 +13,5 @@ window.addEventListener('DOMContentLoaded', function () {
             titel.style.fontSize = "0.9em";
         }
     }
-
 });
+

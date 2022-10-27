@@ -11,19 +11,46 @@
 </head>
 
 <body>
-    <header>
+<header>
         <div class="container">
             <a href="startPagina.php"><img src="img/logo_prularia_wit.png" alt="logo" id="logo"></a>
             <nav class="menu">
                 <div class="menuOpties">
-                    <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
                     <div class="profielMenu">
                         <a href="#"><img src="img/profiel.png" alt="profiel"></a>
-                        <a href="#" id="menu">MENU</a>
+                        <div class="dropdown" id="myDropdown">
+                            <a href="#" id="menu">MENU</a>
+                            <div class="dropdown-content" >
+                                <a href="#">Mijn profiel</a>
+                
+                                <a href="./bestellingenOverzichtPaginaController.php">Mijn bestellingen</a>
+            
+                                <a href="./winkelKarPaginaController.php">Winkelkar</a>
+                            </div>
+                        </div>
+
                     </div>
+                    <a href="./winkelKarPaginaController.php"><img src="img/winkelkar.png" alt="winkelkar"></a>
+                    <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
+                    hier moet de code komen die het aantal weergeeft -->
+                    <?php
+                    if (isset($_SESSION["aantalitems"])) {
+
+                    ?>
+                        <?php // print count($_SESSION["winkelmand"]); 
+                        ?>
+                        <span class='badge badge-warning' id='lblCartCount'> <?php print $_SESSION["aantalitems"]; ?> </span>
+                    <?php
+                    }
+                    ?>
+                    <!--  <span class='badge badge-warning' id='lblCartCount'> 0 </span> -->
+                    <?php
+                    //}
+                    ?>
                 </div>
             </nav>
         </div>
+
     </header>
 
     <section class="zoekSectie">
@@ -57,7 +84,7 @@
                     <p><?php print $gekozenArtikel->getVoorraad(); ?> stuks in voorraad</p>
 
                     <!--aantal en artikel id via de url (GET) meegeven aan de controller -->
-                    <form action="artikelPaginaController.php?action=voegToe" method="POST" class="winkelKarSpecifiekArtikelform">
+                    <form action="artikelPaginaController.php?action=voegToe&productId=<?php print(isset($_GET["productId"]) ? $_GET["productId"] : 0); ?>" method="POST" class="winkelKarSpecifiekArtikelform">
                         <label for="aantalVanArtikel">Aantal:</label>
                         <br>
                         <input type="number" name="aantalVanArtikel" id="aantalVanArtikel">

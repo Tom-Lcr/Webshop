@@ -10,8 +10,8 @@ class Gebruiker
 {
     private int $gebuikersAccountId;
     private string $emailAdres;
-    private string $paswoord;
-    private bool $disabled;
+    private ?string $paswoord;
+    private ?bool $disabled;
     private ?int $klantId;
     private ?persoon $persoon;
     private ?Adres $facturatieAdres;
@@ -19,7 +19,7 @@ class Gebruiker
 
 
 
-    public function __construct(int $gebruikersAccountId, string $emailAdres, ?int $klantId = null, ?Persoon $persoon = null, ?Adres $facturatieAdres = null, ?Adres $leveringsAdres = null)
+    public function __construct(int $gebruikersAccountId, string $emailAdres, ?string $paswoord = null, ?bool $disabled = null,  ?int $klantId = null, ?Persoon $persoon = null, ?Adres $facturatieAdres = null, ?Adres $leveringsAdres = null)
     {
         $this->gebuikersAccountId = $gebruikersAccountId;
         $this->emailAdres = $emailAdres;

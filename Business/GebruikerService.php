@@ -12,9 +12,9 @@ class GebruikerService {
  
    
 
-    public function registreer($familieNaam, $voorNaam, $emailAdres, $paswoord, $herpaswoord, bool $tweeAdressen, bool $isParticulier, $straatNaaml, int $huisNummerl, $postcodel, $plaatsNaaml, $straatNaamf = null, int $huisNummerf = null, $postcodef = null, $plaatsNaamf = null, $bedrijfsNaam, $btwNummer, $functie): ?Gebruiker {
+    public function registreer($familieNaam, $voorNaam, $emailAdres, $paswoord, $herpaswoord, bool $tweeAdressen, bool $isParticulier, $straatNaaml, $huisNummerl, $postcodel, $plaatsNaaml, $straatNaamf = null, int $huisNummerf = null, $postcodef = null, $plaatsNaamf = null, $bedrijfsNaam, $btwNummer, $functie): ?Gebruiker {
         $gebruikerDAO = new GebruikerDAO();
-        $gebruiker = $gebruikerDAO->registreer($familieNaam, $voorNaam, $emailAdres, $paswoord, $herpaswoord, (bool) $tweeAdressen, (bool) $isParticulier, $straatNaaml, (int) $huisNummerl, $postcodel, $plaatsNaaml, $straatNaamf, (int) $huisNummerf, $postcodef, $plaatsNaamf, $bedrijfsNaam, $btwNummer, $functie);
+        $gebruiker = $gebruikerDAO->registreer($familieNaam, $voorNaam, $emailAdres, $paswoord, $herpaswoord, (bool) $tweeAdressen, (bool) $isParticulier, $straatNaaml, $huisNummerl, $postcodel, $plaatsNaaml, $straatNaamf, (int) $huisNummerf, $postcodef, $plaatsNaamf, $bedrijfsNaam, $btwNummer, $functie);
         return $gebruiker;
     }
          

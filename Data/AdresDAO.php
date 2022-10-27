@@ -29,7 +29,7 @@ class AdresDAO {
         $stmt->execute();	
         $adresId = $dbh->lastInsertId();
         
-        $adres = new Adres((int)$adresId, $straatNaam, (int) $huisNummer, $bus, $plaats, true);
+        $adres = new Adres((int)$adresId, $straatNaam, $huisNummer, $bus, $plaats, true);
     
         $dbh = null;    
         return $adres;

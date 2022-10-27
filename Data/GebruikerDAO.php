@@ -26,7 +26,7 @@ use Exceptions\GebruikerBestaatNietException;
 
 class GebruikerDAO {
     
-    public function registreer($familieNaam, $voorNaam, $emailAdres, $paswoord, $herpaswoord, bool $tweeAdressen, bool $isParticulier, $straatNaaml, int $huisNummerl, $postcodel, $plaatsNaaml, $straatNaamf = null, int $huisNummerf = null, $postcodef = null, $plaatsNaamf = null, $bedrijfsNaam, $btwNummer, $functie): ?Gebruiker 
+    public function registreer($familieNaam, $voorNaam, $emailAdres, $paswoord, $herpaswoord, bool $tweeAdressen, bool $isParticulier, $straatNaaml, $huisNummerl, $postcodel, $plaatsNaaml, $straatNaamf = null, int $huisNummerf = null, $postcodef = null, $plaatsNaamf = null, $bedrijfsNaam, $btwNummer, $functie): ?Gebruiker 
     {
         $adresDAO = new AdresDAO();
         $persoonDAO = new PersoonDAO();
@@ -52,11 +52,11 @@ class GebruikerDAO {
             $stmt->execute();
             $gebruikersAccountId = $dbh->lastInsertId();
             if ($tweeAdressen) {
-                $adresl = $adresDAO->create($straatNaaml, (int) $huisNummerl, $postcodel, $plaatsNaaml);
-                $adresf = $adresDAO->create($straatNaamf, (int) $huisNummerf, $postcodef, $plaatsNaamf);
+                $adresl = $adresDAO->create($straatNaaml,  $huisNummerl, $postcodel, $plaatsNaaml);
+                $adresf = $adresDAO->create($straatNaamf,  $huisNummerf, $postcodef, $plaatsNaamf);
                 $klantId = $this->createKlant((int) $adresf->getAdresId(), (int) $adresl->getAdresId());
             }else{
-                $adresl = $adresDAO->create($straatNaaml, (int) $huisNummerl, $postcodel, $plaatsNaaml);
+                $adresl = $adresDAO->create($straatNaaml,  $huisNummerl, $postcodel, $plaatsNaaml);
                 $adresf = $adresl;
                 $klantId = $this->createKlant((int) $adresl->getAdresId(), (int) $adresl->getAdresId());
             }
@@ -160,7 +160,7 @@ class GebruikerDAO {
             throw new WachtwoordVerkeerdException();
         }
 
-        $gebruiker = new gebruiker($resultSet["gebruikersAccountId"], $email);
+        $gebruiker = new Gebruiker($resultSet["gebruikersAccountId"], $email);
 
         //ophalen gegevens uit natuurlijkepersonen of contact/rechtspersonen en setten persoon en klantId van de gebruiker
         $persoonLijst = $this->getNatuurlijkepersoonByGebruikersAccountId($gebruiker->getGebruikersAccountId());

@@ -62,43 +62,33 @@ declare(strict_types=1);
         <div class="container paginaSmal">
             <div class="wrapper">
                 <h2>Winkelkar</h2>
-
-                <section class="winkelkarInhoud">
-                    <form action="" class="winkelkarInhoudForm">
+                 <section class="winkelkarInhoud">
+                    <form action="./winkelKarPaginaController.php?action=process" method="POST" class="winkelkarInhoudForm">
+                    <?php
+                    $teller = 0; 
+                    foreach ($winkelkarLijst as $artikel) {
+                          
+                    ?>
                         <article class="winkelkarLijn">
                             <img src="img/dummy.avif" alt="Productfoto" class="artikelInKar">
                             <div class="details">
-                                <h4 class="artikelTitel">Artikelnaam</h4>
-                                <p class="prijs">€99,99</p>
-                                <p>10 in voorraad</p>
-                                <input type="number" name="aantalInWinkelkar" id="" value="10" class="aantalInWinkelkar">
-                                <button type="submit" class="delete"><i class="fa fa-trash"></i></button>
+                                <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
+                                <p class="prijs">€<?php print $artikel->getPrijs(); ?></p>
+                                <p><?php print $artikel->getVoorraad(); ?> in voorraad</p>
+                                <input type="number" name="aantalInWinkelkar<?php print $teller; ?>" id="" value="<?php print $winkelkarAantal[$teller]; ?>" class="aantalInWinkelkar">
+                                
+                                <a href="./winkelKarPaginaController.php?action=delete&id=<?php print $teller; ?>"  class="delete"><i class="fa fa-trash"></i></a>
+                                
                             </div>
                         </article>
-                        <article class="winkelkarLijn">
-                            <img src="img/dummy.avif" alt="Productfoto" class="artikelInKar">
-                            <div class="details">
-                                <h4 class="artikelTitel">Artikelnaam</h4>
-                                <p class="prijs">€99,99</p>
-                                <p>10 in voorraad</p>
-                                <input type="number" name="aantalInWinkelkar" id="" value="10" class="aantalInWinkelkar">
-                                <button type="submit" class="delete"><i class="fa fa-trash"></i></button>
-                            </div>
-                        </article>
-                        <article class="winkelkarLijn">
-                            <img src="img/dummy.avif" alt="Productfoto" class="artikelInKar">
-                            <div class="details">
-                                <h4 class="artikelTitel">Artikelnaam</h4>
-                                <p class="prijs">€99,99</p>
-                                <p>10 in voorraad</p>
-                                <input type="number" name="aantalInWinkelkar" id="" value="10" class="aantalInWinkelkar">
-                                <button type="submit" class="delete"><i class="fa fa-trash"></i></button>
-                            </div>
-                        </article>
+                    <?php
+                    $teller++;
+                    }
+                    ?>
 
                         <input type="submit" value="Afrekenen" class="button">
                         <br>
-                        <a href="startPagina.php" class="verderWinkelen">
+                        <a href="./startPagina.php" class="verderWinkelen">
                             < Verder winkelen</a>
 
                     </form>
@@ -106,9 +96,9 @@ declare(strict_types=1);
 
                 <aside class="totaalWinkelkar">
                     <h4>Overzicht</h4>
-                    <p>artikelen (3)</p>
+                    <p>artikelen (<?php print(isset($_SESSION["aantalitems"]) ? $_SESSION["aantalitems"] : 0); ?>)</p>
                     <p class="totaal">Totaalprijs</p>
-                    <p class="totaalPrijs">€189,99</p>
+                    <p class="totaalPrijs">€<?php print(isset($_SESSION["totaalPrijs"]) ? $_SESSION["totaalPrijs"] : 0); ?></p>
                 </aside>
             </div>
 
