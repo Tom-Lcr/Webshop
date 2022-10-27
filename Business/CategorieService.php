@@ -21,20 +21,28 @@ class CategorieService
         return $categorieDAO->getAllCategorieen();
     }
 
+    public function getCategorieById(?int $id)
+    {
+
+        if($id=== null) return null;
+        $categorieDAO = new CategorieDAO();
+        $categorie = $categorieDAO->getCategorieById($id);
+        return $categorie;
+    }
+
     public function getHoofdcategorieën()
     {
         $categorieDAO = new CategorieDAO();
         return $categorieDAO->getHoofdcategorieen();
     }
 
-    //geeft lijst categorieIds terug bij input van een lijst van categorieën
-    public function getIdList(array $categorieen)
-    {
-    }
 
     //geeft alle categorieën weer die zich 1 niveau onder het hoofdCategorieId bevinden
-    public function getSubcategorieenById(int $hoofdCategorieId): ?array
+    public function getSubcategorieenById(?int $hoofdCategorieId): ?array
     {
+        if ($hoofdCategorieId === null) {
+            return $this->getHoofdcategorieën();
+        }
         $categorieDAO = new CategorieDAO();
         return $categorieDAO->getSubcategorieen($hoofdCategorieId);
     }
@@ -69,6 +77,4 @@ class CategorieService
         }
         return $lijst;
     }
-
-
 }

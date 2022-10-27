@@ -6,11 +6,11 @@ namespace Entities;
 
 class Categorie
 {
-    private $categorieId;
+    private int $categorieId;
     private string $naam;
-    private int $hoofdcategorieId;
+    private ?int $hoofdcategorieId;
 
-    public function __construct(int $categorieId, string $naam, int $hoofdcategorieId)
+    public function __construct(int $categorieId, string $naam, ?int $hoofdcategorieId)
     {
         $this->categorieId = $categorieId;
         $this->naam = $naam;
@@ -24,7 +24,7 @@ class Categorie
     {
         return $this->naam;
     }
-    public function getHoofdcategorieId(): int
+    public function getHoofdcategorieId(): ?int
     {
         return $this->hoofdcategorieId;
     }

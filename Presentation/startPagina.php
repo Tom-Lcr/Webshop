@@ -29,18 +29,19 @@ declare(strict_types=1);
                     <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
                     <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
                     hier moet de code komen die het aantal weergeeft -->
-                    <?php 
+                    <?php
                     if (isset($_SESSION["aantalitems"])) {
-                        
+
                     ?>
-                     <?php // print count($_SESSION["winkelmand"]); ?> 
-                    <span class='badge badge-warning' id='lblCartCount'> <?php print $_SESSION["aantalitems"]; ?> </span>
-                    <?php 
-                     }
+                        <?php // print count($_SESSION["winkelmand"]); 
+                        ?>
+                        <span class='badge badge-warning' id='lblCartCount'> <?php print $_SESSION["aantalitems"]; ?> </span>
+                    <?php
+                    }
                     ?>
-                  <!--  <span class='badge badge-warning' id='lblCartCount'> 0 </span> -->
-                    <?php 
-                     //}
+                    <!--  <span class='badge badge-warning' id='lblCartCount'> 0 </span> -->
+                    <?php
+                    //}
                     ?>
                 </div>
             </nav>
@@ -52,7 +53,7 @@ declare(strict_types=1);
         <div class="container">
             <div class="zoeken">
                 <form action="./startpagina.php?action=zoek" method="post" id="zoekForm">
-                    <input type="text" placeholder="Zoeken.." name="search">
+                    <input type="text" placeholder="Zoeken.." name="search" <?php if ($opties->getZoekterm()) print("value='" . $opties->getZoekterm() . "'") ?>>
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
@@ -64,52 +65,54 @@ declare(strict_types=1);
         <div class="container clearFix">
 
             <aside class="filterOpties">
-                <form action="./startPagina.php?action=filter" method="post">
+                <form action="./startpagina.php?action=filter" method="post" name="filter">
                     <h2>Opties</h2>
                     <section>
                         <h3>Sorteren op:</h3>
-                        <select name="sorteerOpties" class="sorteerOpties">
-                            <option value="rating DESC, prijs DESC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "rating DESC, prijs DESC") { print "selected"; } ?>>Waardering - hoog</option>
-                            <option value="rating ASC, prijs DESC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "rating ASC, prijs DESC") { print "selected"; } ?>>Waardering - laag</option>
-                            <option value="prijs DESC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "prijs DESC") { print "selected"; } ?>>Prijs - hoog</option>
-                            <option value="prijs ASC" <?php if(isset($_SESSION["sorteerOptie"]) && $_SESSION["sorteerOptie"] == "prijs ASC") { print "selected"; } ?>>Prijs - laag</option>
+                        <select name="sorteerOpties" id="" class="sorteerOpties">
+                            <option value="1" <?php if ($opties->getVolgorde() == 1) print("selected") ?>>Waardering - hoog</option>
+                            <option value="2" <?php if ($opties->getVolgorde() == 2) print("selected") ?>>Waardering - laag</option>
+                            <option value="3" <?php if ($opties->getVolgorde() == 3) print("selected") ?>>Prijs - hoog</option>
+                            <option value="4" <?php if ($opties->getVolgorde() == 4) print("selected") ?>>Prijs - laag</option>
                         </select>
                         <h3>Categorie:</h3>
                         <!-- Hier moeten de categorien worden geladen, 
                         eerst de hoofdcategorien, als een hoofdcategorie geselecteerd is -> nieuwe pagina met de subcategorieen. -->
-                        <a href="" class="categorieLink">Huishouden</a>
-                        <br>
-                        <a href="" class="categorieLink">Klussen</a>
-                        <br>
-                        <a href="" class="categorieLink">Wonen</a>
+                        <?php
+                        foreach ($categorieen as $key => $categorie) {
+                            print("<a href='./startpagina.php?categorie=" . $categorie->getCategorieId() . "' class='categorieLink'>" . $categorie->getNaam() . "</a><br>");
+                        }
+
+                        ?>
 
                         <h3>Beschikbaarheid:</h3>
-                        <input type="checkbox" name="checkBeschikbaarheid" value="nuBeschikbaar">
+                        <input type="checkbox" name="checkboxen[]" value="nuBeschikbaar" <?php if ($opties->getEnkelBeschikbaar()) print("checked") ?>>
                         <label for="checkBeschikbaarheid">Nu beschikbaar</label>
                         <h3>Waardering:</h3>
-                        <input type="checkbox" name="checkRecencie">
+                        <input type="checkbox" name="checkboxen[]" value="metRecensie" <?php if ($opties->getMetRecentie()) print("checked") ?>>
                         <label for="checkRecensie">Artikelen met een recencie</label>
                         <br>
-                        <input type="checkbox" name="checkZonderRecensie">
+                        <input type="checkbox" name="checkboxen[]" value="zonderRecensie" <?php if ($opties->getZonderRecentie()) print("checked") ?>>
                         <label for="checkZonderRecensie">Zonder recensie (Be first to buy)</label>
                         <br>
                         <input type="submit" value="Filteren" class="button">
                         <br>
-                        <a href="Presentation/startPagina.php">Filters herstellen</a>
+                        <a href="startpagina.php?action=reset">Filters herstellen</a>
                     </section>
                 </form>
             </aside>
 
             <section class="artikelOverzicht">
-            <?php
-          if($error){
-        ?>                  
+                <?php
+                if ($error) {
+                ?>
                     <p class="text-danger"><?php echo $error; ?></p>
 
-        <?php
-          }
-        ?> 
-                <h1>Aanbevolen producten</h1>
+                <?php
+                }
+                ?>
+                <h1> <?php print(($categorie2 !== null) ? "Categorie: " . $categorie2->getNaam() : "Aanbevolen producten") ?> </h1>
+                <span><?php print($aantalArtikels) ?> producten</span>
                 <!-- placeholders tijdelijk-->
                 <section class="producten clearFix">
                     <?php
@@ -121,22 +124,25 @@ declare(strict_types=1);
                             $inVoorraad = false;
                         }
                     ?>
-                        <article class="<?php if(!$inVoorraad) {echo 'nietInVoorraad';}else{echo 'artikel';} ?>">
-                          <a href="./artikelPaginaController.php?productId=<?php print($artikel->getArtikelId()); ?>"> 
-                          <img src="img/dummy.avif" alt="" class="productFoto"></a>
+                        <article class="<?php if (!$inVoorraad) {
+                                            echo 'nietInVoorraad';
+                                        } else {
+                                            echo 'artikel';
+                                        } ?>">
+                            <img src="img/dummy.avif" alt="" class="productFoto">
                             <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
-                            <p>€<?php print $artikel->getPrijs(); ?><p>
-                            <p><?php print ($artikel->getRating() == 0 ? "Geen rating" : "Rating:" . $artikel->getRating()); ?><p>    
-                                <?php if($inVoorraad){
-                                    ?> <p class="pBeschikbaarheid">In voorraad</p> <?php }
-                                    else{
-                                        ?> <p class="pBeschikbaarheid">Niet Beschikbaar</p><?php
-                                    }
+                            <p>€<?php print $artikel->getPrijs(); ?> <?php print($artikel->getRating() ? "<br>Rating: " . $artikel->getRating()   : "<br>Geen rating"); ?>
+                            <p>
+                                <?php if ($inVoorraad) {
                                 ?>
-                            <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId()); ?>" class="winkelKarPerArtikelForm">
-                                <input type="number" name="aantalVanArtikel" id="aantalVanArtikel" min="1" required>
-                                <button type="submit" class="winkelkarArtikelBtn" name="btnWinkelKar"><img src="img/winkelkar.png" alt=""></button>
-                            </form>
+                            <p class="pBeschikbaarheid">In voorraad</p> <?php } else {
+                                                                        ?> <p class="pBeschikbaarheid">Niet Beschikbaar</p><?php
+                                                                                                                        }
+                                                                                                                            ?>
+                        <form method="post" action="./startPagina.php?action=voegToe&id=<?php print($artikel->getArtikelId()); ?>" class="winkelKarPerArtikelForm">
+                            <input type="number" name="aantalVanArtikel" id="aantalVanArtikel" min="1" required>
+                            <button type="submit" class="winkelkarArtikelBtn" name="btnWinkelKar"><img src="img/winkelkar.png" alt=""></button>
+                        </form>
                         </article>
 
                     <?php

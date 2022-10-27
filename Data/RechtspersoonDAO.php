@@ -11,9 +11,4 @@ use Entities\Rechtspersoon;
 
 class RechtspersoonDAO {
     
-    
-
-
-   
-
 }
