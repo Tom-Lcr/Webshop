@@ -64,7 +64,7 @@ class PlaatsDAO {
             $stmt->bindValue(":id", $id);
             $stmt->execute();
             $resultSet = $stmt->fetch(PDO::FETCH_ASSOC);
-            $plaats = new Plaats($id, $resultSet["plaats"], $resultSet["postcode"]);
+            $plaats = new Plaats($id, $resultSet["postcode"], $resultSet["plaats"]);
             $dbh = null;
             return $plaats;
         } catch (PDOException $e) {
