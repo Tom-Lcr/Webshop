@@ -160,7 +160,7 @@ class GebruikerDAO {
             throw new WachtwoordVerkeerdException();
         }
 
-        $gebruiker = new gebruiker($resultSet["gebruikersAccountId"], $email);
+        $gebruiker = new Gebruiker($resultSet["gebruikersAccountId"], $email);
 
         //ophalen gegevens uit natuurlijkepersonen of contact/rechtspersonen en setten persoon en klantId van de gebruiker
         $persoonLijst = $this->getNatuurlijkepersoonByGebruikersAccountId($gebruiker->getGebruikersAccountId());
