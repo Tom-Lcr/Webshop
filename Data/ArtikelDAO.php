@@ -17,6 +17,15 @@ class ArtikelDAO
     //zodat bij oplopend sorteren op rating artikelen die rating hebben bovenaan gezet kunnen worden
     private string $metScores = "WITH scores(rating, id) AS (SELECT AVG(score), artikelId FROM klantenreviews inner JOIN bestellijnen on klantenreviews.bestellijnId = bestellijnen.bestellijnId GROUP BY artikelId), 
     artikelenMetScores AS (SELECT artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd, rating FROM artikelen LEFT OUTER JOIN scores on artikelen.artikelId = scores.id)";
+    
+    public function metPaginas(string $sql, int $pagina, int $aantal = 20): string
+    {
+        return $sql . " LIMIT " . (int) ($pagina - 1) * $aantal . ", " . $aantal;
+    }
+    /*
+    select artikelen.artikelId as artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd, ROUND(AVG(score)) as rating from artikelen, bestellijnen, klantenreviews where artikelen.artikelId = bestellijnen.artikelId and bestellijnen.bestellijnId = klantenreviews.bestellijnId group by artikelId order by rating desc limit 0,3; 
+
+     */
 
     public function getRatingByArtikelId(int $artikelId): ?float
     {

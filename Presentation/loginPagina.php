@@ -24,7 +24,17 @@ declare(strict_types=1);
                 <div class="menuOpties">
                     <div class="profielMenu">
                         <a href="#"><img src="img/profiel.png" alt="profiel"></a>
-                        <a href="#" id="menu">MENU</a>
+                        <div class="dropdown" id="myDropdown">
+                            <a href="#" id="menu">MENU</a>
+                            <div class="dropdown-content" >
+                                <a href="#">Mijn profiel</a>
+                
+                                <a href="./bestellingenOverzichtPaginaController.php">Mijn bestellingen</a>
+            
+                                <a href="./winkelKarPaginaController.php">Winkelkar</a>
+                            </div>
+                        </div>
+
                     </div>
                     <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
                     <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
@@ -55,7 +65,7 @@ declare(strict_types=1);
                 <h2>Login</h2>
 
                 <?php if ($error != "") { 
-print("<p style='color: red'>$error | nl2br</p>");
+print("<p style='color: red'>$error </p>");
                 } ?>
 
                 <form action="loginPaginaController.php?action=process" method="POST" name="LoginForm">
@@ -70,4 +80,9 @@ print("<p style='color: red'>$error | nl2br</p>");
             </section>
         </div>
     </main>
+    <footer class="cf">
+        <div class="container">
+            <p>Prularia</p>
+        </div>
+    </footer>
 </body>

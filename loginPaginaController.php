@@ -1,13 +1,11 @@
 <?php
-//startPagina.php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 spl_autoload_register();
 
-//session_start();
-
-
 use Business\WinkelkarService;
+use Business\ArtikelService;
 //use Business\RecensieService;
 
 session_start();
