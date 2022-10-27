@@ -29,7 +29,7 @@ declare(strict_types=1);
                             <div class="dropdown-content" >
                                 <a href="#">Mijn profiel</a>
                 
-                                <a href="./bestellingenOverzichtPaginaController.php">Mijn bestellingen</a>
+                                <a href="./bestellingOverzichtPagina.php">Mijn bestellingen</a>
             
                                 <a href="./winkelKarPaginaController.php">Winkelkar</a>
                             </div>
@@ -63,10 +63,12 @@ declare(strict_types=1);
             <div class="wrapper">
                 <h2>Winkelkar</h2>
 
+                
+
                 <section class="winkelkarInhoud">
                     <form action="" class="winkelkarInhoudForm">
                         <article class="winkelkarLijn">
-                            <img src="img/dummy.avif" alt="Productfoto" class="artikelInKar">
+                            <img src="img/<?php echo rand(1,20)?>.png" alt="Productfoto" class="artikelInKar">
                             <div class="details">
                                 <h4 class="artikelTitel">Artikelnaam</h4>
                                 <p class="prijs">€99,99</p>
@@ -76,7 +78,7 @@ declare(strict_types=1);
                             </div>
                         </article>
                         <article class="winkelkarLijn">
-                            <img src="img/dummy.avif" alt="Productfoto" class="artikelInKar">
+                            <img src="img/<?php echo rand(1,20)?>.png" alt="Productfoto" class="artikelInKar">
                             <div class="details">
                                 <h4 class="artikelTitel">Artikelnaam</h4>
                                 <p class="prijs">€99,99</p>
@@ -86,7 +88,7 @@ declare(strict_types=1);
                             </div>
                         </article>
                         <article class="winkelkarLijn">
-                            <img src="img/dummy.avif" alt="Productfoto" class="artikelInKar">
+                            <img src="img/<?php echo rand(1,20)?>.png" alt="Productfoto" class="artikelInKar">
                             <div class="details">
                                 <h4 class="artikelTitel">Artikelnaam</h4>
                                 <p class="prijs">€99,99</p>
