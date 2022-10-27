@@ -24,7 +24,17 @@ declare(strict_types=1);
                 <div class="menuOpties">
                     <div class="profielMenu">
                         <a href="#"><img src="img/profiel.png" alt="profiel"></a>
-                        <a href="#" id="menu">MENU</a>
+                        <div class="dropdown" id="myDropdown">
+                            <a href="#" id="menu">MENU</a>
+                            <div class="dropdown-content">
+                                <a href="#">Mijn profiel</a>
+
+                                <a href="./bestellingenOverzichtPaginaController.php">Mijn bestellingen</a>
+
+                                <a href="./winkelKarPaginaController.php">Winkelkar</a>
+                            </div>
+                        </div>
+
                     </div>
                     <a href="#"><img src="img/winkelkar.png" alt="winkelkar"></a>
                     <!-- Dit is de badge die bij het winkelkarretje aanduidt hoeveel items erin zitten. Het getal vijf is hier placeholder, 
@@ -52,8 +62,12 @@ declare(strict_types=1);
     <main>
         <div class="container">
             <section class="registerForm">
+
                 <h2>Registratie</h2>
                 <form action="" name="registratieForm">
+                    <input type="button" value="Particulier" class="button links">
+                    <input type="button" value="Professioneel" class="button rechts">
+                    <br>
                     <label for="txtNaam">Naam</label>
                     <input type="text" name="txtNaam" id="" required>
                     <br>
@@ -69,21 +83,63 @@ declare(strict_types=1);
                     <label for="txtWachtwoordHerhaling">Wachtwoord herhaling</label>
                     <input type="text" name="txtWachtwoordHerhaling" id="" required>
                     <br>
-                    <label for="txtStraat">Straatnaam</label>
-                    <input type="text" name="txtStraat" id="" required>
+                    <section class="adres">
+                        <br>
+                        <div class="adresInput">
+                            <h4>Leveringsadres</h4>
+                            <br>
+                            <label for="txtStraat">Straatnaam</label>
+                            <input type="text" name="txtStraat" id="" required>
+                            <br>
+                            <label for="nmbHuisnummer">Huisnummer</label>
+                            <input type="number" name="nmbHuisnummer" id="" required>
+                            <br>
+                            <label for="txtBus">Bus</label>
+                            <input type="text" name="txtBus" id="">
+                            <br>
+                            <label for="txtPostcode">Postcode</label>
+                            <input type="text" name="txtPostcode" id="" required>
+                            <br>
+                            <label for="txtPlaats">Plaatsnaam</label>
+                            <input type="text" name="txtPlaats" id="plaatsNaam" required>
+                        </div>
+                    </section>
+                    <section class="adres">
+                        <br>
+                        <div class="adresInput">
+                            <h4>Facturatiesadres (optioneel)</h4>
+                            <br>
+                            <label for="txtStraat">Straatnaam</label>
+                            <input type="text" name="txtStraat" id="" required>
+                            <br>
+                            <label for="nmbHuisnummer">Huisnummer</label>
+                            <input type="number" name="nmbHuisnummer" id="" required>
+                            <br>
+                            <label for="txtBus">Bus</label>
+                            <input type="text" name="txtBus" id="">
+                            <br>
+                            <label for="txtPostcode">Postcode</label>
+                            <input type="text" name="txtPostcode" id="" required>
+                            <br>
+                            <label for="txtPlaats">Plaatsnaam</label>
+                            <input type="text" name="txtPlaats" id="plaatsNaam" required>
+                        </div>
+                    </section>
                     <br>
-                    <label for="nmbHuisnummer">Huisnummer</label>
-                    <input type="number" name="nmbHuisnummer" id="" required>
+                    <label for="txtBTW">BTW-nummmer (optioneel)</label>
+                    <input type="text" name="txtBTW" id="">
                     <br>
-                    <label for="txtPostcode">Postcode</label>
-                    <input type="text" name="txtPostcode" id="" required>
-                    <br>
-                    <label for="txtPlaats">Plaatsnaam</label>
-                    <input type="text" name="txtPlaats" id="" required>
+                    <label for="txtBedrijfsNaam">Bedrijfsnaam (optioneel)</label>
+                    <input type="text" name="txtBedrijfsNaam" id="">
                     <br>
                     <input type="submit" value="Registreren" class="button register">
                 </form>
             </section>
         </div>
     </main>
+    <footer class="cf">
+        <div class="container">
+            <p>Prularia</p>
+        </div>
+    </footer>
 </body>

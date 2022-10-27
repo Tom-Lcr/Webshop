@@ -14,7 +14,7 @@ class Adres
     private bool $actief;
 
 
-    public function __construct(int $adresId, string $straat, string $huisNummer, string $bus, Plaats $plaats, bool $actief)
+    public function __construct(int $adresId, string $straat, string $huisNummer, string $bus, Plaats $plaats, bool $actief = true)
     {
         $this->adresId = $adresId;
         $this->straat = $straat;

@@ -53,14 +53,19 @@ declare(strict_types=1);
         <div class="container">
             <section class="registerForm">
                 <h2>Login</h2>
-                <form action="" name="LoginForm">
+
+                <?php if ($error != "") { 
+print("<p style='color: red'>$error | nl2br</p>");
+                } ?>
+
+                <form action="loginPaginaController.php?action=process" method="POST" name="LoginForm">
                     <label for="txtEmail">E-mailadres</label>
-                    <input type="email" name="txtEmail" id="" required>
+                    <input type="email" name="txtEmail" id="" value="<?php print($emailadres); ?>" required>
                     <br>
                     <label for="txtWachtwoord">Wachtwoord</label>
                     <input type="text" name="txtWachtwoord" id="" required>
                     <br>
-                    <input type="submit" value="Registreren" class="button register">
+                    <input type="submit" value="Inloggen" class="button register">
                 </form>
             </section>
         </div>

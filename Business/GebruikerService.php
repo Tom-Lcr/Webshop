@@ -18,6 +18,39 @@ class GebruikerService {
         return $gebruiker;
     }
          
-} 
 
+    /*
+    public function registreerGebruiker(User $user): User
+    {
+        return ((new UserDAO)->register($user));
+    }
+*/
 
+/*
+    public function controleerGebruiker()
+    {
+        if (!isset($_SESSION["gebruiker"])) {
+            header("Location: login.php?redirect=true");
+            exit;
+        }
+    }
+
+    */
+    public function logOut()
+    {
+        unset($_SESSION["gebruiker"]);
+    }
+
+    public function login($email, $paswoord) :?Gebruiker
+    {
+        return ((new GebruikerDAO)->login($email, $paswoord));
+    }
+
+    /*
+    public function update(User $user)
+    {
+        (new UserDAO)->updateUser($user);
+    }
+
+    */
+}

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Entities;
 
-
-//misschien nog klantenreview(id)s toevoegen
 class Bestellijn
 {
     private int $bestellijnId;

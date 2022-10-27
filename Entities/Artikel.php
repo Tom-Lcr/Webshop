@@ -17,11 +17,11 @@ class Artikel
     private int $voorraad;
     private int $levertijd;
     
-    private float $rating;
+    private ?float $rating;
 
 
     public function __construct(int $artikelId, string $ean, string $naam, string $beschrijving, float $prijs, int $gewichtInGram, 
-    int $voorraad, int $levertijd)
+    int $voorraad, int $levertijd, ?float $rating = null)
     {
         $this->artikelId = $artikelId;
         $this->ean = $ean;
