@@ -16,29 +16,14 @@ use Exceptions\ActieCodeBestaatNietException;
 use Exceptions\ActieCodeNietMeerGeldigException;
 use Entities\Bestellijn;
 
-//use Business\RecensieService;
-
-//todo winkelkar unsetten als bestelling geslaagd is
-
 session_start();
-
-$mandje;
 $controle = "";
-
 
 if (!isset($_SESSION["gebruiker"])) {
     header("location: startPagina.php");
     exit(0);
 }
 $gebruiker = unserialize($_SESSION["gebruiker"]);
-//print("<h2>" . $gebruiker->getPersoon()->getNaam() . "</h2>");
-
-if (isset($_SESSION["winkelmand"])) {
-    // $mand = unserialize($_SESSION["winkelmand"]);
-}
-
-////////////////////////////////////////////////////////////////////////
-
 if (isset($_GET["action"]) && $_GET["action"] === "submit") {
     try {
 
@@ -46,10 +31,9 @@ if (isset($_GET["action"]) && $_GET["action"] === "submit") {
             $actiecodeInput = $_POST["promo"];
             $controle = !($_POST["promo"]) ? "Geen actiecode" : (((new ActiecodeService())->controleer($_POST["promo"])) ? "Actiecode toegevoegd"  : "foutje");
         }
-        //bestellen
 
+        //bestellen
         if (isset($_POST['bestellen'])) {
-            // print("***********bestelling verwerken***********");
             $bestelling = new Bestelling();
             if ($_POST["promo"] && (new ActiecodeService())->controleer($_POST["promo"])) {
                 $actiecodeInput = $_POST["promo"];
@@ -76,18 +60,15 @@ if (isset($_GET["action"]) && $_GET["action"] === "submit") {
                 $bestelling->setBtwNummer($gebruiker->getPersoon()->getBtwNummer());
             }
 
-            //bestellijnen toevoegen
-            //AAN TE PASSEN!!!!!!!!!!!!!!!
-            /*
+            //bestellijnen toevoegen            
             foreach ($_SESSION["winkelmand"] as $artikel) {
-                $bestelling->voegBestellijnToe(new Bestellijn(null, null, $mandje->getArtikelId(), $mandje->getAantal(), 0));    
+                $bestelling->voegBestellijnToe(new Bestellijn(null, null, (unserialize($artikel))->getProductId(), (unserialize($artikel))->getAantal(), 0));
             }
-            */
-            $bestelling->voegBestellijnToe(new Bestellijn(null, null, 1, 2, 0));
-            $bestelling->voegBestellijnToe(new Bestellijn(null, null, 2, 4, 0));
-            
-            (new BestellingService())->plaatsBestelling($bestelling); 
-            //unset winkelmandje;           
+
+            (new BestellingService())->plaatsBestelling($bestelling);
+            unset($_SESSION["winkelmand"]);
+            unset($_SESSION["totaalPrijs"]);
+            unset($_SESSION["aantalitems"]);
             header("location: startPagina.php");
             exit(0);
         }
@@ -100,8 +81,6 @@ if (isset($_GET["action"]) && $_GET["action"] === "submit") {
     }
 }
 
-//AAN TE PASSEN
-$totaal=100.6;
-$aantalArtikelen=3;
-
+$totaal = $_SESSION["totaalPrijs"];
+$aantalArtikelen = $_SESSION["aantalitems"];
 include("Presentation/afrekenPagina.php");

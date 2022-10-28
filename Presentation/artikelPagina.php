@@ -73,11 +73,11 @@
         <?php
           }
         ?> 
-        <div class="container artikelSpecifiek">
+        <div class="container artikelSpecifiek paginaSmal">
             <article>
                 <section class="artikelHeader">
                     <h2><?php print $gekozenArtikel->getNaam(); ?></h2>
-                    <img src="img/dummy.avif" alt="" class="productFoto">
+                    <img src="img/1.png" alt="" class="productFoto">
                 </section>
                 <aside class="artikelSpecifiekeOpties">
                     <h2>€<?php print $gekozenArtikel->getPrijs(); ?></h2>
