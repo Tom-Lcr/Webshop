@@ -32,13 +32,9 @@ class ActieCodeDAO
             $stmt = $dbh->prepare($sql);
             $stmt->execute(array(':naam' => $naam));
             $rij =  $stmt->fetch(PDO::FETCH_ASSOC);
-            if (!$rij) throw new ActieCodeBestaatNietException();
-            print(strtotime($rij["geldigVanDatum"]));
+            if (!$rij) throw new ActieCodeBestaatNietException();            
             $actiecode = new ActieCode((int)$rij["actiecodeId"], $rij["naam"], new DateTime('@' .strtotime($rij["geldigVanDatum"])), new DateTime('@' .strtotime($rij["geldigTotDatum"])), (bool) $rij["isEenmalig"]);
-            if($actiecode->getGeldigTotDatum()< new DateTime() ||$actiecode->getGeldigVanDatum() > new DateTime()) throw new ActieCodeNietMeerGeldigException();
-            //controleren geldigheidsperiode:
-            //if()
-
+            if($actiecode->getGeldigTotDatum()< new DateTime() ||$actiecode->getGeldigVanDatum() > new DateTime()) throw new ActieCodeNietMeerGeldigException();      
             $dbh = null;
             return true;
 

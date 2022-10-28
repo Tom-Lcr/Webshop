@@ -26,11 +26,11 @@ declare(strict_types=1);
                         <a href="#"><img src="img/profiel.png" alt="profiel"></a>
                         <div class="dropdown" id="myDropdown">
                             <a href="#" id="menu">MENU</a>
-                            <div class="dropdown-content" >
+                            <div class="dropdown-content">
                                 <a href="#">Mijn profiel</a>
-                
-                                <a href="./bestellingOverzichtPagina.php">Mijn bestellingen</a>
-            
+
+                                <a href="./bestellingenOverzichtPaginaController.php">Mijn bestellingen</a>
+
                                 <a href="./winkelKarPaginaController.php">Winkelkar</a>
                             </div>
                         </div>
@@ -61,40 +61,48 @@ declare(strict_types=1);
 
     <main>
         <div class="container paginaSmal">
-            <h2>Bestelling plaatsen</h2>
-            <section class="afrekenDetails">
-                <section class="adres">
-                    <h4>Leveringsadres</h4>
-                    <p><?php print($gebruiker->getNaam()) ?></p>
-                    <p><?php print($gebruiker->getLeveringsAdres()->getStraat() . " " . $gebruiker->getLeveringsAdres()->getHuisNummer()) ?></p>
-                    <p><?php print($gebruiker->getLeveringsAdres()->getPlaats()->getPostcode() . " " . $gebruiker->getLeveringsAdres()->getPlaats()->getplaatsNaam()) ?></p>
-                </section>
-                <br>
-                <form action="./afrekenPaginaController.php?action=submit" method="POST" name="afrekenForml">
-                    <section class="betaalmethode">
-                        <h4> Selecteer een betaalmethode</h4>
-                        <br>
-                        <select name="betaalMethode" id="">
-                            <option value="2">Overschrijving</option>
-                            <option value="1" <?php if(($_POST["betaalMethode"] ?? "2") === "1") print("selected") ?> >Kredietkaart</option>
-                        </select>
+            <a href="" class="verderWinkelen">
+                < Alle bestellingen</a>
+                    <section class="bestellingDetails">
+                        <h2>Bestelling</h2>
+                        <h4>Bestellingsnummer:</h4>
+                        <p>13244</p>
+                        <h4>Klantnummer:</h4>
+                        <p>1478</p>
+                        <h4>Leveringsadres:</h4>
+                        <p>Alexander Le Grande</p>
+                        <p>Macedoniëplein 14</p>
+                        <p>9000 Gent</p>
+                        <h4>Datum van bestelling</h4>
+                        <p>2022-10-03</p>
+                        <h4>Status van de bestelling:</h4>
+                        <p>Geleverd</p>
                     </section>
-                    <section class="promoCodes">
-                        <h4>Promocode invoeren</h4>
-                        <br>                        
-                            <input type="text" name="promo" value="<?php print($actiecodeInput ?? '') ?>" id="promo">
-                            <input type="submit" name="controleren" value="Controleren" id="promoCheck"> <span class="Retour"><?php print($controle)  ?></span>                 
-                    </section>
-                    <input type="submit" name="bestellen" value="Bestellen" class="button">
-                </form>
-            </section>
 
-            <aside class="totaalWinkelkar">
-                <h4>Overzicht</h4>
-                <p><?php print($aantalArtikelen) ?> artikelen</p>
-                <p class="totaal">Totaalprijs</p>
-                <p class="totaalPrijs">€<?php print($controle ==="Actiecode toegevoegd" ? $totaal*0.9 : $totaal) ?></p>
-            </aside>
+                    <article class="winkelkarLijn">
+                        <img src="img/dummy.avif" alt="Productfoto" class="artikelInKar">
+                        <div class="details bestelDetails">
+                            <h4 class="artikelTitel">Artikelnaam</h4>
+                            <p class="prijs">€99,99</p>
+                            <p>2 besteld</p>
+                        </div>
+                    </article>
+                    <article class="winkelkarLijn">
+                        <img src="img/dummy.avif" alt="Productfoto" class="artikelInKar">
+                        <div class="details bestelDetails">
+                            <h4 class="artikelTitel">Artikelnaam</h4>
+                            <p class="prijs">€99,99</p>
+                            <p>2 besteld</p>
+                        </div>
+                    </article>
+                    <article class="winkelkarLijn">
+                        <img src="img/dummy.avif" alt="Productfoto" class="artikelInKar">
+                        <div class="details bestelDetails">
+                            <h4 class="artikelTitel">Artikelnaam</h4>
+                            <p class="prijs">€99,99</p>
+                            <p>2 besteld</p>
+                        </div>
+                    </article>
         </div>
     </main>
     <footer class="cf">
@@ -102,4 +110,5 @@ declare(strict_types=1);
             <p>Prularia</p>
         </div>
     </footer>
+
 </body>

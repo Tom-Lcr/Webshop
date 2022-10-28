@@ -6,9 +6,9 @@ namespace Entities;
 
 class Bestellijn
 {
-    private int $bestellijnId;
+    private ?int $bestellijnId;
     //moet bestelId erbij?
-    private int $bestelId;
+    private ?int $bestelId;
     private int $artikelId;
     private int $aantalBesteld;
     private int $aantalGeannuleerd;
@@ -21,11 +21,11 @@ class Bestellijn
         $this->aantalBesteld = $aantalBesteld;
         $this->aantalGeannuleerd = $aantalGeannuleerd;
     }
-    public function getBestellijnId(): int
+    public function getBestellijnId(): ?int
     {
         return $this->bestellijnId;
     }
-    public function getBestelId(): int
+    public function getBestelId(): ?int
     {
         return $this->bestelId;
     }
@@ -40,5 +40,10 @@ class Bestellijn
     public function getAantalGeannulleerd(): int
     {
         return $this->aantalGeannuleerd;
+    }
+
+    public function setBestelId($id)
+    {
+        $this->bestelId=$id;
     }
 }

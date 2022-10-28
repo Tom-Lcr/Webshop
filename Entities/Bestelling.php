@@ -10,41 +10,41 @@ class Bestelling
 {
     private ?int $bestelId;
     private ?string $besteldatum;
-    private int $klantId;
-    private bool $betaald;
+    private ?int $klantId;
+    private ?bool $betaald;
     private ?string $betalingscode;
-    private string $betaalwijze;
+    private ?string $betaalwijze;
     private ?bool $annulatie;
 
-    private ?string $terugetalingscode;
+    private ?string $terugbetalingscode;
     private ?string $bestellingsstatus;
     private ?bool $actiecodeGebruikt;
     private ?string $bedrijfsnaam;
     private ?string $btwNummer;
-    private string $voornaam;
-    private string $familienaam;
-    private Adres $facturatieAdres;
-    private Adres $leveringsAdres;
+    private ?string $voornaam;
+    private ?string $familienaam;
+    private ?Adres $facturatieAdres;
+    private ?Adres $leveringsAdres;
 
-    private array $bestellijnen;
+    private ?array $bestellijnen;
 
     public function __construct(
-        ?int $bestelId,
-        ?string $besteldatum,
-        int $klantId,
-        ?bool $betaald,
-        ?string $betalingscode,
-        string $betaalwijze,
-        ?bool $annulatie,
-        ?string $terubetalingsCode,
-        ?string $bestellingstatus,
-        ?bool $actiecodeGebruikt,
-        ?string $bedrijfsnaam,
-        ?string $btwNummer,
-        string $voornaam,
-        string $familienaam,
-        Adres $facturatieAdres,
-        Adres $leveringsAdres,
+        ?int $bestelId = null,
+        ?string $besteldatum = null,
+        ?int $klantId = null,
+        ?bool $betaald = null,
+        ?string $betalingscode = null,
+        ?string $betaalwijze = null,
+        ?bool $annulatie = null,
+        ?string $terugbetalingsCode = null,
+        ?string $bestellingstatus = null,
+        ?bool $actiecodeGebruikt = null,
+        ?string $bedrijfsnaam = null,
+        ?string $btwNummer = null,
+        ?string $voornaam = null,
+        ?string $familienaam = null,
+        ?Adres $facturatieAdres = null,
+        ?Adres $leveringsAdres = null,
         ?array $bestellijnen = []
     ) {
         $this->bestelId = $bestelId;
@@ -54,7 +54,7 @@ class Bestelling
         $this->betalingscode = $betalingscode;
         $this->betaalwijze = $betaalwijze;
         $this->annulatie = $annulatie;
-        $this->terugetalingscode = $terubetalingsCode;
+        $this->terugbetalingscode = $terugbetalingsCode;
         $this->bestellingsstatus = $bestellingstatus;
         $this->actiecodeGebruikt = $actiecodeGebruikt;
         $this->bedrijfsnaam = $bedrijfsnaam;
@@ -65,6 +65,10 @@ class Bestelling
         $this->leveringsAdres = $leveringsAdres;
         $this->bestellijnen = $bestellijnen;
     }
+
+
+
+
     public function getBestelId(): ?int
     {
         return $this->bestelId;
@@ -95,7 +99,7 @@ class Bestelling
     }
     public function getTerugbetalingscode(): ?string
     {
-        return $this->terugetalingscode;
+        return $this->terugbetalingscode;
     }
     public function getBestellingsstatus(): ?string
     {
@@ -135,8 +139,78 @@ class Bestelling
         return $this->bestellijnen;
     }
 
+
+    //SETTERS
+
+    public function setBestelId($bestelId)
+    {
+        $this->bestelId = $bestelId;
+    }
+
+    public function setKlantId($klantId)
+    {
+        $this->klantId = $klantId;
+    }
+    public function setBetaald($betaald)
+    {
+        $this->betaald = $betaald;
+    }
+    public function setBetalingscode($code)
+    {
+        $this->betalingscode = $code;
+    }
+    public function setBetaalwijze($betaalwijze)
+    {
+        $this->betaalwijze = $betaalwijze;
+    }
+    public function setAnnulatie($annulatie)
+    {
+        $this->annulatie = $annulatie;
+    }
+    public function setTerugbetalingscode($terugbetalingsCode)
+    {
+        $this->terugbetalingscode = $terugbetalingsCode;
+    }
+    public function setBestellingsstatus($bestellingsstatus)
+    {
+        $this->bestellingsstatus = $bestellingsstatus;
+    }
+    public function setActiecodeGebruikt($actiecodeGebruikt)
+    {
+        $this->actiecodeGebruikt = $actiecodeGebruikt;
+    }
+    public function setBedrijfsnaam($bedrijfsnaam)
+    {
+        $this->bedrijfsnaam = $bedrijfsnaam;
+    }
+    public function setBtwNummer($btwNummer)
+    {
+        $this->btwNummer = $btwNummer;
+    }
+    public function setVoornaam($voornaam)
+    {
+        $this->voornaam = $voornaam;
+    }
+    public function setFamilienaam($familienaam)
+    {
+        $this->familienaam = $familienaam;
+    }
+    public function setFacturatieAdres($facturatieAdres)
+    {
+        $this->facturatieAdres = $facturatieAdres;
+    }
+    public function setLeveringsAdres($leveringsAdres)
+    {
+        $this->leveringsAdres = $leveringsAdres;
+    }
+
+    public function setBestellijnen($bestellijnen)
+    {
+        $this->bestellijnen = $bestellijnen;
+    }
+
     public function voegBestellijnToe(Bestellijn $bestellijn)
     {
-        array_push($bestellijnen, $bestellijn);
+        array_push($this->bestellijnen, $bestellijn);
     }
 }

@@ -40,7 +40,7 @@ class PlaatsDAO {
             $statement = $dbh->prepare($sql);
             $statement->bindValue(":postcode", $postcode);
             $statement->execute();
-            $row = $statement->fetch(\PDO::FETCH_ASSOC);
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
             if ($row) {
                 return new Plaats(
                     (int)$row["plaatsId"],

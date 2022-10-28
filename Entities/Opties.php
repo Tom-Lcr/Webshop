@@ -9,8 +9,6 @@ use Business\CategorieService;
 class Opties
 {
 
-    //todo eerst sorteren op kolom heeftRating desc (nog toe te voegen) en dan op rating, zodat artikelen met rating steeds bovenaan staan
-
     private int $volgorde = 1;
     private ?int $categorie = null;
     private bool $enkelBeschikbaar = false;
@@ -131,7 +129,7 @@ class Opties
 
         switch ($this->volgorde) {
             case 2:
-                $query .= "rating asc, prijs asc";
+                $query .= "heeftRating desc, rating asc, prijs asc";
                 break;
 
             case 3:

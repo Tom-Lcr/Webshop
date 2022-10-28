@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Entities;
 
+use Business\ActiecodeService;
 use DateTime;
+use Exceptions\ActieCodeBestaatNietException;
+use Exceptions\ActieCodeNietMeerGeldigException;
 
 class Actiecode
 {
@@ -47,5 +50,5 @@ class Actiecode
     public function getIsEenmalig(): bool
     {
         return $this->isEenmalig;
-    }
+    }    
 }

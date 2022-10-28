@@ -93,8 +93,7 @@ class GebruikerDAO {
            $stmt->bindValue(":facturatieAdresId", $facturatieAdresId);
            $stmt->bindValue(":leveringsAdresId", $leveringsAdresId);
            $stmt->execute();	
-	       $klantId = $dbh->lastInsertId();
-	
+	       $klantId = (int) $dbh->lastInsertId();
 
            $dbh = null;    
 	       return $klantId;

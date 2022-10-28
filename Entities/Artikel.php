@@ -31,7 +31,7 @@ class Artikel
         $this->gewichtInGram = $gewichtInGram;
         $this->voorraad = $voorraad;
         $this->levertijd = $levertijd;
-        $this->rating = $rating;
+        $this->rating = $rating;        
     }
     
     public function getArtikelId(): int
@@ -67,7 +67,7 @@ class Artikel
         return $this->levertijd;
     }
 
-    public function getRating(): float
+    public function getRating(): ?float
     {
         return $this->rating;
     }

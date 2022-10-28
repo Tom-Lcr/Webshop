@@ -13,10 +13,9 @@ use Entities\Opties;
 class ArtikelDAO
 {
 
-    //todo: string metScores aanpassen, kolom heeftRating (boolean) toevoegen aan artikelenMetScores,
-    //zodat bij oplopend sorteren op rating artikelen die rating hebben bovenaan gezet kunnen worden
+
     private string $metScores = "WITH scores(rating, id) AS (SELECT AVG(score), artikelId FROM klantenreviews inner JOIN bestellijnen on klantenreviews.bestellijnId = bestellijnen.bestellijnId GROUP BY artikelId), 
-    artikelenMetScores AS (SELECT artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd, rating FROM artikelen LEFT OUTER JOIN scores on artikelen.artikelId = scores.id)";
+    artikelenMetScores AS (SELECT artikelId, ean, naam, beschrijving, prijs, gewichtInGram, voorraad, levertijd, rating, (rating IS NOT NULL) as heeftRating FROM artikelen LEFT OUTER JOIN scores on artikelen.artikelId = scores.id)";
     
     public function metPaginas(string $sql, int $pagina, int $aantal = 20): string
     {
@@ -60,9 +59,9 @@ class ArtikelDAO
                 (int) $rij["gewichtInGram"],
                 (int) $rij["voorraad"],
                 (int) $rij["levertijd"],
-                (float) $rij["rating"],
+                (float) $rij["rating"]
             );
-            $artikel->setRating((float) $rij["rating"]);
+           // $artikel->setRating((float) $rij["rating"]); waardering in tabel (en dus resultset, rij), moet dus niet apart berekend en geset worden
             array_push($lijst, $artikel);
         }
         $dbh = null;

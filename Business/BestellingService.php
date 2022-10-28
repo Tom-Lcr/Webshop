@@ -17,5 +17,10 @@ class BestellingService {
         $lijst = $bestellingDAO->getBestellingenByKlantId((int) $klantId);
         return $lijst;
     }
+
+    public function plaatsBestelling($bestelling)
+    {
+        (new BestellingDAO())->plaatsBestelling($bestelling);
+    }
          
 } 
