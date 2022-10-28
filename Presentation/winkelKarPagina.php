@@ -29,7 +29,7 @@ declare(strict_types=1);
                             <div class="dropdown-content" >
                                 <a href="#">Mijn profiel</a>
                 
-                                <a href="./bestellingenOverzichtPaginaController.php">Mijn bestellingen</a>
+                                <a href="./bestellingOverzichtPagina.php">Mijn bestellingen</a>
             
                                 <a href="./winkelKarPaginaController.php">Winkelkar</a>
                             </div>
@@ -70,7 +70,7 @@ declare(strict_types=1);
                           
                     ?>
                         <article class="winkelkarLijn">
-                            <img src="img/dummy.avif" alt="Productfoto" class="artikelInKar">
+                            <img src="img/<?php echo rand(1,20)?>.png" alt="Productfoto" class="artikelInKar">
                             <div class="details">
                                 <h4 class="artikelTitel"><?php print $artikel->getNaam(); ?></h4>
                                 <p class="prijs">€<?php print $artikel->getPrijs(); ?></p>

@@ -23,7 +23,7 @@
                             <div class="dropdown-content" >
                                 <a href="#">Mijn profiel</a>
                 
-                                <a href="./bestellingenOverzichtPaginaController.php">Mijn bestellingen</a>
+                                <a href="./bestellingOverzichtPagina.php">Mijn bestellingen</a>
             
                                 <a href="./winkelKarPaginaController.php">Winkelkar</a>
                             </div>
