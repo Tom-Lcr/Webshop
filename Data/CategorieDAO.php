@@ -102,7 +102,7 @@ class CategorieDAO
             $resultSet =  $stmt->fetchAll(PDO::FETCH_ASSOC);
             $lijst = array();
             foreach ($resultSet as $rij) {
-                $lijst[$rij["categorieId"]] = new Categorie($rij["categorieId"], $rij["naam"], $rij["hoofdCategorieId"]);
+                $lijst[$rij["categorieId"]] = new Categorie((int)$rij["categorieId"], $rij["naam"], (int)$rij["hoofdCategorieId"]);
             }
             $dbh = null;
             return $lijst;
